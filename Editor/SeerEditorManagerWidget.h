@@ -2,7 +2,7 @@
 
 #include "SeerEditorManagerEntry.h"
 #include "SeerHighlighterSettings.h"
-#include "keysettings.h.h"
+#include "keysettings.h"
 #include <QtGui/QFont>
 #include <QtWidgets/QWidget>
 #include <QtCore/QMap>
@@ -40,8 +40,8 @@ class SeerEditorManagerWidget : public QWidget, protected Ui::SeerEditorManagerW
         bool                                            editorHighlighterEnabled            () const;
         void                                            setEditorAlternateDirectories       (const QStringList alternateDirectories);
         const QStringList&                              editorAlternateDirectories          () const;
-        void                                            setEditorKeySettings                (const SeerKeySettings& settings);
-        const SeerKeySettings&                          editorKeySettings                   () const;
+        void                                            setEditorKeySettings                (const KeySettings& settings);
+        const KeySettings&                          editorKeySettings                   () const;
 
     public slots:
         void                                            handleText                          (const QString& text);
@@ -94,6 +94,6 @@ class SeerEditorManagerWidget : public QWidget, protected Ui::SeerEditorManagerW
         bool                                            _editorHighlighterEnabled;
         QFont                                           _editorFont;
         QStringList                                     _editorAlternateDirectories;
-        SeerKeySettings                                 _editorKeySettings;
+        KeySettings                                 _editorKeySettings;
 };
 

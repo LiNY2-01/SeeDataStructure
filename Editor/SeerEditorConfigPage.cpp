@@ -1,5 +1,5 @@
 #include "SeerEditorConfigPage.h"
-#include "myQT/QColorButton.h"
+#include "myQT/Qcolorbutton.h"
 #include <QtGui/QFontDatabase>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QSpinBox>

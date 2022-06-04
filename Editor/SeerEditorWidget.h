@@ -1,7 +1,7 @@
 #pragma once
-
+#include "ui_SeerEditorWidget.h"
 #include "SeerCppSourceHighlighter.h"
-#include "SeerKeySettings.h"
+#include "keysettings.h"
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QShortcut>
 #include <QtWidgets/QWidget>
@@ -212,7 +212,7 @@ class SeerEditorWidgetMiniMapArea : public QWidget {
         SeerEditorWidgetSourceArea*         _editorWidget;
 };
 
-#include "ui_SeerEditorWidget.h"
+
 
 class SeerEditorWidget : public QWidget, protected Ui::SeerEditorWidgetForm {
 
@@ -227,8 +227,8 @@ class SeerEditorWidget : public QWidget, protected Ui::SeerEditorWidgetForm {
         bool                                isSearchBarShown                        () const;
         bool                                searchMatchCase                         () const;
         bool                                isAlternateBarShown                     () const;
-        void                                setKeySettings                          (const SeerKeySettings& settings);
-        const SeerKeySettings&              keySettings                             () const;
+        void                                setKeySettings                          (const KeySettings& settings);
+        const KeySettings&              keySettings                             () const;
 
     public slots:
         void                                showSearchBar                           (bool flag);
@@ -253,7 +253,7 @@ class SeerEditorWidget : public QWidget, protected Ui::SeerEditorWidgetForm {
         void                                addAlternateDirectory                   (QString path);
 
     private:
-        SeerKeySettings                     _keySettings;
+        KeySettings                     _keySettings;
         QShortcut*                          _textSearchShortcut;
         QShortcut*                          _textSearchNextShortcut;
         QShortcut*                          _textSearchPrevShortcut;

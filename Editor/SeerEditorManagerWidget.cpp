@@ -3,6 +3,7 @@
 #include "SeerEditorOptionsBarWidget.h"
 #include "SeerCloseSourceDialog.h"
 #include "util.h"
+#include "myQT/QDetachTabWidget.h"
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
@@ -18,7 +19,7 @@ SeerEditorManagerWidget::SeerEditorManagerWidget (QWidget* parent) : QWidget(par
     _editorFont                = QFont("Source Code Pro", 10);              // Default font.
     _editorHighlighterSettings = SeerHighlighterSettings::populateForCPP(); // Default syntax highlighting.
     _editorHighlighterEnabled  = true;
-    _editorKeySettings         = SeerKeySettings::populate();               // Defualt key settings.
+    _editorKeySettings         = KeySettings::populate();               // Defualt key settings.
 
     // Setup UI
     setupUi(this);
@@ -199,7 +200,7 @@ const QStringList& SeerEditorManagerWidget::editorAlternateDirectories () const 
     return _editorAlternateDirectories;
 }
 
-void SeerEditorManagerWidget::setEditorKeySettings (const SeerKeySettings& settings) {
+void SeerEditorManagerWidget::setEditorKeySettings (const KeySettings& settings) {
 
     _editorKeySettings = settings;
 
@@ -212,7 +213,7 @@ void SeerEditorManagerWidget::setEditorKeySettings (const SeerKeySettings& setti
     }
 }
 
-const SeerKeySettings& SeerEditorManagerWidget::editorKeySettings () const {
+const KeySettings& SeerEditorManagerWidget::editorKeySettings () const {
 
     return _editorKeySettings;
 }
@@ -223,17 +224,17 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
 
         //qDebug() << ":stopped:" << text;
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString frame_text = Seer::parseFirst(newtext, "frame=", '{', '}', false);
+        QString frame_text = SDS::parseFirst(newtext, "frame=", '{', '}', false);
 
         if (frame_text == "") {
             return;
         }
 
-        QString fullname_text = Seer::parseFirst(frame_text, "fullname=", '"', '"', false);
-        QString file_text     = Seer::parseFirst(frame_text, "file=",     '"', '"', false);
-        QString line_text     = Seer::parseFirst(frame_text, "line=",     '"', '"', false);
+        QString fullname_text = SDS::parseFirst(frame_text, "fullname=", '"', '"', false);
+        QString file_text     = SDS::parseFirst(frame_text, "file=",     '"', '"', false);
+        QString line_text     = SDS::parseFirst(frame_text, "line=",     '"', '"', false);
 
         //qDebug() << frame_text;
         //qDebug() << fullname_text << file_text << line_text;
@@ -257,10 +258,10 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
         editorWidget->sourceArea()->handleText(text);
 
         // Handle certain reasons uniquely.
-        QString reason_text = Seer::parseFirst(newtext, "reason=", '"', '"', false);
+        QString reason_text = SDS::parseFirst(newtext, "reason=", '"', '"', false);
 
         if (reason_text == "breakpoint-hit") {
-            QString disp_text = Seer::parseFirst(newtext, "disp=", '"', '"', false);
+            QString disp_text = SDS::parseFirst(newtext, "disp=", '"', '"', false);
 
             // Ask for the breakpoint list to be resent, in case the encountered breakpoint was temporary.
             if (disp_text == "del") {
@@ -292,29 +293,29 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
         }
 
         // Now parse the table and re-add the breakpoints.
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString body_text = Seer::parseFirst(newtext, "body=", '[', ']', false);
+        QString body_text = SDS::parseFirst(newtext, "body=", '[', ']', false);
 
         //qDebug() << body_text;
 
         if (body_text != "") {
 
-            QStringList bkpt_list = Seer::parse(newtext, "bkpt=", '{', '}', false);
+            QStringList bkpt_list = SDS::parse(newtext, "bkpt=", '{', '}', false);
 
             for ( const auto& bkpt_text : bkpt_list  ) {
-                QString number_text            = Seer::parseFirst(bkpt_text, "number=",            '"', '"', false);
-                QString type_text              = Seer::parseFirst(bkpt_text, "type=",              '"', '"', false);
-                QString disp_text              = Seer::parseFirst(bkpt_text, "disp=",              '"', '"', false);
-                QString enabled_text           = Seer::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
-                QString addr_text              = Seer::parseFirst(bkpt_text, "addr=",              '"', '"', false);
-                QString func_text              = Seer::parseFirst(bkpt_text, "func=",              '"', '"', false);
-                QString file_text              = Seer::parseFirst(bkpt_text, "file=",              '"', '"', false);
-                QString fullname_text          = Seer::parseFirst(bkpt_text, "fullname=",          '"', '"', false);
-                QString line_text              = Seer::parseFirst(bkpt_text, "line=",              '"', '"', false);
-                QString thread_groups_text     = Seer::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
-                QString times_text             = Seer::parseFirst(bkpt_text, "times=",             '"', '"', false);
-                QString original_location_text = Seer::parseFirst(bkpt_text, "original-location=", '"', '"', false);
+                QString number_text            = SDS::parseFirst(bkpt_text, "number=",            '"', '"', false);
+                QString type_text              = SDS::parseFirst(bkpt_text, "type=",              '"', '"', false);
+                QString disp_text              = SDS::parseFirst(bkpt_text, "disp=",              '"', '"', false);
+                QString enabled_text           = SDS::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
+                QString addr_text              = SDS::parseFirst(bkpt_text, "addr=",              '"', '"', false);
+                QString func_text              = SDS::parseFirst(bkpt_text, "func=",              '"', '"', false);
+                QString file_text              = SDS::parseFirst(bkpt_text, "file=",              '"', '"', false);
+                QString fullname_text          = SDS::parseFirst(bkpt_text, "fullname=",          '"', '"', false);
+                QString line_text              = SDS::parseFirst(bkpt_text, "line=",              '"', '"', false);
+                QString thread_groups_text     = SDS::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
+                QString times_text             = SDS::parseFirst(bkpt_text, "times=",             '"', '"', false);
+                QString original_location_text = SDS::parseFirst(bkpt_text, "original-location=", '"', '"', false);
 
                 SeerEditorManagerEntries::iterator i = findEntry(fullname_text);
                 SeerEditorManagerEntries::iterator e = endEntry();
@@ -337,9 +338,9 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
         //
 
         // Now parse the table and re-add the breakpoints.
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString stack_text = Seer::parseFirst(newtext, "stack=", '[', ']', false);
+        QString stack_text = SDS::parseFirst(newtext, "stack=", '[', ']', false);
 
         if (stack_text != "") {
 
@@ -354,16 +355,16 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
             }
 
             // Parse through the frame list and set the current lines that are in the frame list.
-            QStringList frame_list = Seer::parse(newtext, "frame=", '{', '}', false);
+            QStringList frame_list = SDS::parse(newtext, "frame=", '{', '}', false);
 
             for ( const auto& frame_text : frame_list  ) {
-                QString level_text    = Seer::parseFirst(frame_text, "level=",    '"', '"', false);
-                QString addr_text     = Seer::parseFirst(frame_text, "addr=",     '"', '"', false);
-                QString func_text     = Seer::parseFirst(frame_text, "func=",     '"', '"', false);
-                QString file_text     = Seer::parseFirst(frame_text, "file=",     '"', '"', false);
-                QString fullname_text = Seer::parseFirst(frame_text, "fullname=", '"', '"', false);
-                QString line_text     = Seer::parseFirst(frame_text, "line=",     '"', '"', false);
-                QString arch_text     = Seer::parseFirst(frame_text, "arch=",     '"', '"', false);
+                QString level_text    = SDS::parseFirst(frame_text, "level=",    '"', '"', false);
+                QString addr_text     = SDS::parseFirst(frame_text, "addr=",     '"', '"', false);
+                QString func_text     = SDS::parseFirst(frame_text, "func=",     '"', '"', false);
+                QString file_text     = SDS::parseFirst(frame_text, "file=",     '"', '"', false);
+                QString fullname_text = SDS::parseFirst(frame_text, "fullname=", '"', '"', false);
+                QString line_text     = SDS::parseFirst(frame_text, "line=",     '"', '"', false);
+                QString arch_text     = SDS::parseFirst(frame_text, "arch=",     '"', '"', false);
 
                 SeerEditorManagerEntries::iterator i = findEntry(fullname_text);
                 SeerEditorManagerEntries::iterator e = endEntry();

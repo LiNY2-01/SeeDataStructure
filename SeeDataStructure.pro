@@ -17,7 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     BaseDebug/LogWidget.cpp \
+    BaseDebug/SeerBreakpointCreateDialog.cpp \
     Editor/SeerCloseSourceDialog.cpp \
+    Editor/SeerCppSourceHighlighter.cpp \
     Editor/SeerEditorConfigPage.cpp \
     Editor/SeerEditorManagerWidget.cpp \
     Editor/SeerEditorOptionsBarWidget.cpp \
@@ -45,7 +47,9 @@ SOURCES += \
 
 HEADERS += \
     BaseDebug/LogWidget.h \
+    BaseDebug/SeerBreakpointCreateDialog.h \
     Editor/SeerCloseSourceDialog.h \
+    Editor/SeerCppSourceHighlighter.h \
     Editor/SeerEditorConfigPage.h \
     Editor/SeerEditorManagerEntry.h \
     Editor/SeerEditorManagerWidget.h \
@@ -69,6 +73,7 @@ HEADERS += \
 
 FORMS += \
     BaseDebug/LogWidget.ui \
+    BaseDebug/SeerBreakpointCreateDialog.ui \
     Editor/SeerCloseSourceDialog.ui \
     Editor/SeerEditorConfigPage.ui \
     Editor/SeerEditorManagerWidget.ui \

@@ -1,7 +1,7 @@
 #include "SeerEditorWidget.h"
-#include "SeerBreakpointCreateDialog.h"
-#include "SeerPrintpointCreateDialog.h"
-#include "SeerUtl.h"
+#include "BaseDebug/SeerBreakpointCreateDialog.h"
+
+#include "util.h"
 #include <QtGui/QColor>
 #include <QtGui/QPainter>
 #include <QtGui/QTextBlock>
@@ -445,7 +445,7 @@ void SeerEditorWidgetSourceArea::mouseReleaseEvent (QMouseEvent* event) {
 
     _selectedExpressionCursor = textCursor();
     _selectedExpressionValue  = "";
-    _selectedExpressionId     = Seer::createID();
+    _selectedExpressionId     = SDS::createID();
 
     // Look for a keyboard modifier to prepend a '*', '&', or '*&'.
     Qt::KeyboardModifiers modifiers = QGuiApplication::keyboardModifiers();
@@ -964,14 +964,14 @@ void SeerEditorWidgetSourceArea::showContextMenu (const QPoint& pos, const QPoin
         int breakno = breakpointLineToNumber(lineno);
 
         createBreakpointAction    = new QAction(QIcon(":/seer/resources/RelaxLightIcons/document-new.svg"), QString("Create breakpoint on line %1").arg(lineno), this);
-        createPrintpointAction    = new QAction(QIcon(":/seer/resources/RelaxLightIcons/document-new.svg"), QString("Create printpoint on line %1").arg(lineno), this);
+//        createPrintpointAction    = new QAction(QIcon(":/seer/resources/RelaxLightIcons/document-new.svg"), QString("Create printpoint on line %1").arg(lineno), this);
         deleteAction              = new QAction(QIcon(":/seer/resources/RelaxLightIcons/edit-delete.svg"),  QString("Delete breakpoint %1 on line %2").arg(breakno).arg(lineno), this);
         enableAction              = new QAction(QIcon(":/seer/resources/RelaxLightIcons/list-add.svg"),     QString("Enable breakpoint %1 on line %2").arg(breakno).arg(lineno), this);
         disableAction             = new QAction(QIcon(":/seer/resources/RelaxLightIcons/list-remove.svg"),  QString("Disable breakpoint %1 on line %2").arg(breakno).arg(lineno), this);
         runToLineAction           = new QAction(QString("Run to line %1").arg(lineno), this);
 
         createBreakpointAction->setEnabled(false);
-        createPrintpointAction->setEnabled(false);
+//        createPrintpointAction->setEnabled(false);
         deleteAction->setEnabled(true);
         enableAction->setEnabled(true);
         disableAction->setEnabled(true);
@@ -979,7 +979,7 @@ void SeerEditorWidgetSourceArea::showContextMenu (const QPoint& pos, const QPoin
 
     }else{
         createBreakpointAction    = new QAction(QIcon(":/seer/resources/RelaxLightIcons/document-new.svg"), QString("Create breakpoint on line %1").arg(lineno), this);
-        createPrintpointAction    = new QAction(QIcon(":/seer/resources/RelaxLightIcons/document-new.svg"), QString("Create printpoint on line %1").arg(lineno), this);
+//        createPrintpointAction    = new QAction(QIcon(":/seer/resources/RelaxLightIcons/document-new.svg"), QString("Create printpoint on line %1").arg(lineno), this);
         deleteAction              = new QAction(QIcon(":/seer/resources/RelaxLightIcons/edit-delete.svg"),  QString("Delete breakpoint on line %1").arg(lineno), this);
         enableAction              = new QAction(QIcon(":/seer/resources/RelaxLightIcons/list-add.svg"),     QString("Enable breakpoint on line %1").arg(lineno), this);
         disableAction             = new QAction(QIcon(":/seer/resources/RelaxLightIcons/list-remove.svg"),  QString("Disable breakpoint on line %1").arg(lineno), this);
@@ -1011,7 +1011,7 @@ void SeerEditorWidgetSourceArea::showContextMenu (const QPoint& pos, const QPoin
     QMenu menu("Breakpoints", this);
     menu.setTitle("Breakpoints");
     menu.addAction(createBreakpointAction);
-    menu.addAction(createPrintpointAction);
+//    menu.addAction(createPrintpointAction);
     menu.addAction(deleteAction);
     menu.addAction(enableAction);
     menu.addAction(disableAction);
@@ -1106,25 +1106,25 @@ void SeerEditorWidgetSourceArea::showContextMenu (const QPoint& pos, const QPoin
     }
 
     // Handle creating a new printpoint.
-    if (action == createPrintpointAction) {
+//    if (action == createPrintpointAction) {
 
-        SeerPrintpointCreateDialog dlg(this);
-        dlg.setFilename(fullname());
-        dlg.setLineNumber(QString("%1").arg(lineno));
+//        SeerPrintpointCreateDialog dlg(this);
+//        dlg.setFilename(fullname());
+//        dlg.setLineNumber(QString("%1").arg(lineno));
+//
+//        int ret = dlg.exec();
+//
+//        if (ret == 0) {
+//            return;
+//        }
+//
+//        //qDebug() << dlg.printpointText();
+//
+//        // Emit the create breakpoint signal.
+//        emit insertPrintpoint(dlg.printpointText());
 
-        int ret = dlg.exec();
-
-        if (ret == 0) {
-            return;
-        }
-
-        //qDebug() << dlg.printpointText();
-
-        // Emit the create breakpoint signal.
-        emit insertPrintpoint(dlg.printpointText());
-
-        return;
-    }
+//        return;
+//    }
 
     // Handle deleting a breakpoint.
     if (action == deleteAction) {
@@ -1435,17 +1435,17 @@ void SeerEditorWidgetSourceArea::handleText (const QString& text) {
         // stopped-threads="all",
         // core="6"
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString frame_text = Seer::parseFirst(newtext, "frame=", '{', '}', false);
+        QString frame_text = SDS::parseFirst(newtext, "frame=", '{', '}', false);
 
         if (frame_text == "") {
             return;
         }
 
-        QString fullname_text = Seer::parseFirst(frame_text, "fullname=", '"', '"', false);
-        QString file_text     = Seer::parseFirst(frame_text, "file=",     '"', '"', false);
-        QString line_text     = Seer::parseFirst(frame_text, "line=",     '"', '"', false);
+        QString fullname_text = SDS::parseFirst(frame_text, "fullname=", '"', '"', false);
+        QString file_text     = SDS::parseFirst(frame_text, "file=",     '"', '"', false);
+        QString line_text     = SDS::parseFirst(frame_text, "line=",     '"', '"', false);
 
         //qDebug() << frame_text;
         //qDebug() << fullname_text << file_text << line_text;
@@ -1469,7 +1469,7 @@ void SeerEditorWidgetSourceArea::handleText (const QString& text) {
 
         if (id_text.toInt() == _selectedExpressionId) {
 
-            _selectedExpressionValue = Seer::filterEscapes(Seer::parseFirst(text, "value=", '"', '"', false));
+            _selectedExpressionValue = SDS::filterEscapes(SDS::parseFirst(text, "value=", '"', '"', false));
 
             //qDebug() << _selectedExpressionValue;
         }
@@ -1485,7 +1485,7 @@ void SeerEditorWidgetSourceArea::handleText (const QString& text) {
 
         if (id_text.toInt() == _selectedExpressionId) {
 
-            _selectedExpressionValue = Seer::filterEscapes(Seer::parseFirst(text, "msg=", '"', '"', false));
+            _selectedExpressionValue = SDS::filterEscapes(SDS::parseFirst(text, "msg=", '"', '"', false));
 
             //qDebug() << _selectedExpressionValue;
         }

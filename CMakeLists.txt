@@ -14,13 +14,15 @@ find_package ( Qt5Gui REQUIRED )
 set (
 		SeeDataStructure_HDRS
 		BaseDebug/LogWidget.h
-		Editor/SeerEditorConfigPage.h 
+		BaseDebug/SeerBreakpointCreateDialog.h
+		Editor/SeerCloseSourceDialog.h 
+		Editor/SeerCppSourceHighlighter.h
+		Editor/SeerEditorConfigPage.h
 		Editor/SeerEditorManagerEntry.h
 		Editor/SeerEditorManagerWidget.h
 		Editor/SeerEditorOptionsBarWidget.h
 		Editor/SeerEditorWidget.h
 		Editor/SeerHighlighterSettings.h
-		Editor/SeerCloseSourceDialog.h
 		GdbCtrl/gdbconfigpage.h
 		GdbCtrl/gdblogwidget.h
 		GdbCtrl/gdbmonitor.h
@@ -38,7 +40,10 @@ set (
 
 set ( 	SeeDataStructure_SRCS
 		BaseDebug/LogWidget.cpp
-		Editor/SeerEditorConfigPage.cpp 
+		BaseDebug/SeerBreakpointCreateDialog.cpp
+		Editor/SeerCloseSourceDialog.cpp 
+		Editor/SeerCppSourceHighlighter.cpp
+		Editor/SeerEditorConfigPage.cpp
 		Editor/SeerEditorManagerWidget.cpp
 		Editor/SeerEditorOptionsBarWidget.cpp
 		Editor/SeerEditorWidget.cpp
@@ -47,7 +52,6 @@ set ( 	SeeDataStructure_SRCS
 		Editor/SeerEditorWidgetMiniMapArea.cpp
 		Editor/SeerEditorWidgetSourceArea.cpp
 		Editor/SeerHighlighterSettings.cpp
-		Editor/SeerCloseSourceDialog.cpp
 		GdbCtrl/gdbconfigpage.cpp
 		GdbCtrl/gdblogwidget.cpp
 		GdbCtrl/gdbmonitor.cpp
@@ -66,11 +70,12 @@ set ( 	SeeDataStructure_SRCS
 
 set ( SeeDataStructure_UIS
 		BaseDebug/LogWidget.ui
+		BaseDebug/SeerBreakpointCreateDialog.ui
+		Editor/SeerCloseSourceDialog.ui 
 		Editor/SeerEditorConfigPage.ui
 		Editor/SeerEditorManagerWidget.ui
 		Editor/SeerEditorOptionsBarWidget.ui
 		Editor/SeerEditorWidget.ui
-		Editor/SeerCloseSourceDialog.ui
 		GdbCtrl/gdbconfigpage.ui
 		GdbCtrl/gdbwidget.ui
 		myQT/QProcessInfoWidget.ui
