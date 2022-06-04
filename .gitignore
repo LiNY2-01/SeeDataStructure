@@ -1,0 +1,6 @@
+/.qtc_clangd/
+/build-SeeDataStructure-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/
+/cmake-build-debug-mingw-qt/
+/cmake-build-minsizerel-mingw-qt/
+/cmake-build-release-mingw-qt/
+/cmake-build-relwithdebinfo-mingw-qt/
