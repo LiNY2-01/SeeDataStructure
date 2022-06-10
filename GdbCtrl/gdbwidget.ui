@@ -19,7 +19,7 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QSplitter" name="sourceLibraryVariableManagerSplitter_2">
+     <widget class="QSplitter" name="sourceLibraryVariableManagerSplitter">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>20</horstretch>
@@ -35,7 +35,7 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="SeerSourceLibraryManagerWidget" name="sourceLibraryManagerWidget_2" native="true">
+      <widget class="SeerSourceLibraryManagerWidget" name="sourceLibraryManagerWidget" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>50</horstretch>
@@ -43,7 +43,7 @@
         </sizepolicy>
        </property>
       </widget>
-      <widget class="SeerVariableManagerWidget" name="variableManagerWidget_2" native="true">
+      <widget class="SeerVariableManagerWidget" name="variableManagerWidget" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>50</horstretch>
@@ -52,7 +52,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QSplitter" name="codeManagerLogTabsSplitter_2">
+     <widget class="QSplitter" name="codeManagerLogTabsSplitter">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>60</horstretch>
@@ -62,7 +62,7 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="EditorManagerWidget" name="editorManagerWidget_2" native="true">
+      <widget class="SeerEditorManagerWidget" name="editorManagerWidget" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>20</horstretch>
@@ -70,17 +70,17 @@
         </sizepolicy>
        </property>
       </widget>
-      <widget class="QWidget" name="layoutWidget_3">
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0">
+      <widget class="QWidget" name="layoutWidget_2">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
         <item>
-         <widget class="QComboBox" name="manualCommandComboBox_2">
+         <widget class="QComboBox" name="manualCommandComboBox">
           <property name="editable">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QDetachTabWidget" name="logsTabWidget_2">
+         <widget class="QDetachTabWidget" name="logsTabWidget">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -92,7 +92,7 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QSplitter" name="stackThreadManagerSplitter_2">
+     <widget class="QSplitter" name="stackThreadManagerSplitter">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>20</horstretch>
@@ -102,7 +102,7 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="SeerStackManagerWidget" name="stackManagerWidget_2" native="true">
+      <widget class="SeerStackManagerWidget" name="stackManagerWidget" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>50</horstretch>
@@ -110,7 +110,7 @@
         </sizepolicy>
        </property>
       </widget>
-      <widget class="SeerThreadManagerWidget" name="threadManagerWidget_2" native="true">
+      <widget class="SeerThreadManagerWidget" name="threadManagerWidget" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>50</horstretch>
@@ -124,12 +124,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>EditorManagerWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">EditorManagerWidget.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>SeerSourceLibraryManagerWidget</class>
    <extends>QWidget</extends>
@@ -158,6 +152,12 @@
    <class>QDetachTabWidget</class>
    <extends>QTabWidget</extends>
    <header location="global">QDetachTabWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SeerEditorManagerWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">SeerEditorManagerWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

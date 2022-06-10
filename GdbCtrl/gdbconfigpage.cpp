@@ -53,8 +53,8 @@ void GdbConfigPage::setGdbHandleTerminatingException(bool flag){
 }
 
 void GdbConfigPage::handleGdbProgramToolButton(){
-    QString program = QFileDialog::getOpenFileName(this,"选择gdb程序作为你的调试器",gdbProgram(),"",nullptr
-                                                   ,QFileDialog::DontUseNativeDialog);
+    QString program = QFileDialog::getOpenFileName(this,"选择gdb程序作为你的调试器",gdbProgram(),"",nullptr);
+                                                   //,QFileDialog::DontUseNativeDialog);
     if (program != ""){
         setGdbProgram(program);
     }
