@@ -202,7 +202,7 @@ QString SeerDebugDialog::launchMode () {
 
 void SeerDebugDialog::handleExecutableNameToolButton () {
 
-    QString name = QFileDialog::getOpenFileName(this, "Select an Executable to debug.", executableName(), "", nullptr, QFileDialog::DontUseNativeDialog);
+    QString name = QFileDialog::getOpenFileName(this, "Select an Executable to debug.", executableName(), "", nullptr);//, QFileDialog::DontUseNativeDialog);
 
     if (name != "") {
         setExecutableName(name);
@@ -211,7 +211,7 @@ void SeerDebugDialog::handleExecutableNameToolButton () {
 
 void SeerDebugDialog::handleExecutableWorkingDirectoryToolButton () {
 
-    QString name = QFileDialog::getExistingDirectory(this, "Select a Working Directory to run in.", executableWorkingDirectory(), QFileDialog::ShowDirsOnly|QFileDialog::DontUseNativeDialog);
+    QString name = QFileDialog::getExistingDirectory(this, "Select a Working Directory to run in.", executableWorkingDirectory(), QFileDialog::ShowDirsOnly);//|QFileDialog::DontUseNativeDialog);
 
     if (name != "") {
         setExecutableWorkingDirectory(name);

@@ -1,5 +1,5 @@
 #include "SeerStackManagerWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QToolButton>
 #include <QtGui/QIcon>
 #include <QtCore/QDebug>
@@ -24,7 +24,7 @@ SeerStackManagerWidget::SeerStackManagerWidget (QWidget* parent) : QWidget(paren
     tabWidget->addTab(_stackLocalsBrowserWidget,    "Locals");
 
     QToolButton* refreshToolButton = new QToolButton(tabWidget);
-    refreshToolButton->setIcon(QIcon(":/seer/resources/RelaxLightIcons/view-refresh.svg"));
+    refreshToolButton->setIcon(QIcon(":/SeeDataStructure/resources/RelaxLightIcons/view-refresh.svg"));
     refreshToolButton->setToolTip("Refresh the stack information.");
     tabWidget->setCornerWidget(refreshToolButton, Qt::TopRightCorner);
 
@@ -67,7 +67,7 @@ void SeerStackManagerWidget::handleText (const QString& text) {
 
     if (text.startsWith("^done,thread-ids={")) {
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
         // ^done,thread-ids={
         //        thread-id=\"1\",
@@ -76,7 +76,7 @@ void SeerStackManagerWidget::handleText (const QString& text) {
         //    current-thread-id=\"1\",
         //    number-of-threads=\"2\"
 
-        QString currentthreadid_text = Seer::parseFirst(newtext,   "current-thread-id=", '"', '"', false);
+        QString currentthreadid_text = SDS::parseFirst(newtext,   "current-thread-id=", '"', '"', false);
 
         groupBox->setTitle("Stack Info for Thread Id : " + currentthreadid_text);
 

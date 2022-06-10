@@ -1,5 +1,5 @@
 #include "SeerTypeBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QLabel>
@@ -12,7 +12,7 @@
 SeerTypeBrowserWidget::SeerTypeBrowserWidget (QWidget* parent) : QWidget(parent) {
 
     // Set the state.
-    _id = Seer::createID();
+    _id = SDS::createID();
 
     // Construct the UI.
     setupUi(this);
@@ -65,23 +65,23 @@ void SeerTypeBrowserWidget::handleText (const QString& text) {
         //                 ]
         //               }
 
-        QString debug_text = Seer::parseFirst(text, "debug=", '[', ']', false);
+        QString debug_text = SDS::parseFirst(text, "debug=", '[', ']', false);
 
-        QStringList filenames_list = Seer::parse(debug_text, "", '{', '}', false);
+        QStringList filenames_list = SDS::parse(debug_text, "", '{', '}', false);
 
         for (const auto& filename_entry : filenames_list) {
 
-            QString filename_text = Seer::parseFirst(filename_entry, "filename=", '"', '"', false);
-            QString fullname_text = Seer::parseFirst(filename_entry, "fullname=", '"', '"', false);
+            QString filename_text = SDS::parseFirst(filename_entry, "filename=", '"', '"', false);
+            QString fullname_text = SDS::parseFirst(filename_entry, "fullname=", '"', '"', false);
 
-            QString symbols_text = Seer::parseFirst(filename_entry, "symbols=", '[', ']', false);
+            QString symbols_text = SDS::parseFirst(filename_entry, "symbols=", '[', ']', false);
 
-            QStringList symbols_list = Seer::parse(symbols_text, "", '{', '}', false);
+            QStringList symbols_list = SDS::parse(symbols_text, "", '{', '}', false);
 
             for (const auto& symbol_entry : symbols_list) {
 
-                QString line_text = Seer::parseFirst(symbol_entry, "line=", '"', '"', false);
-                QString name_text = Seer::parseFirst(symbol_entry, "name=", '"', '"', false);
+                QString line_text = SDS::parseFirst(symbol_entry, "line=", '"', '"', false);
+                QString name_text = SDS::parseFirst(symbol_entry, "name=", '"', '"', false);
 
                 // Skip type entries that have no line number.
                 if (line_text == "") {

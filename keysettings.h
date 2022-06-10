@@ -27,7 +27,7 @@ class KeySettings {
 
         QStringList                             keys                () const;
         bool                                    has                 (const QString& action) const;
-        KeySetting                          get                 (const QString& action) const;
+        KeySetting                              get                 (const QString& action) const;
         void                                    add                 (const QString& action, const KeySetting& setting);
         int                                     count               () const;
 

@@ -1,5 +1,5 @@
 #include "SeerLibraryBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QLabel>
@@ -53,20 +53,20 @@ void SeerLibraryBrowserWidget::handleText (const QString& text) {
         //     {id="/lib/libbar.so",target-name="/lib/libbar.so",host-name="/lib/libbar.so",symbols-loaded="1",thread-group="i1",ranges=[{from="0x76ee48c0",to="0x76ee9160"}]}
         // ]
 
-        QString libraries_text = Seer::parseFirst(text, "shared-libraries=", '[', ']', false);
+        QString libraries_text = SDS::parseFirst(text, "shared-libraries=", '[', ']', false);
 
         //qDebug() << libraries_text;
 
-        QStringList libraries_list = Seer::parse(libraries_text, "", '{', '}', false);
+        QStringList libraries_list = SDS::parse(libraries_text, "", '{', '}', false);
 
         for ( const auto& entry_text : libraries_list  ) {
 
-            QString id_text             = Seer::parseFirst(entry_text, "id=",             '"', '"', false);
-            QString target_name_text    = Seer::parseFirst(entry_text, "target-name=",    '"', '"', false);
-            QString host_name_text      = Seer::parseFirst(entry_text, "host-name=",      '"', '"', false);
-            QString symbols_loaded_text = Seer::parseFirst(entry_text, "symbols-loaded=", '"', '"', false);
-            QString thread_group_text   = Seer::parseFirst(entry_text, "thread-group=",   '"', '"', false);
-            QString ranges_text         = Seer::parseFirst(entry_text, "ranges=",         '[', ']', false);
+            QString id_text             = SDS::parseFirst(entry_text, "id=",             '"', '"', false);
+            QString target_name_text    = SDS::parseFirst(entry_text, "target-name=",    '"', '"', false);
+            QString host_name_text      = SDS::parseFirst(entry_text, "host-name=",      '"', '"', false);
+            QString symbols_loaded_text = SDS::parseFirst(entry_text, "symbols-loaded=", '"', '"', false);
+            QString thread_group_text   = SDS::parseFirst(entry_text, "thread-group=",   '"', '"', false);
+            QString ranges_text         = SDS::parseFirst(entry_text, "ranges=",         '[', ']', false);
 
             // Add the file to the tree.
             QTreeWidgetItem* item = new QTreeWidgetItem;

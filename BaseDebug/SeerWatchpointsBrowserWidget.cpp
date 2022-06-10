@@ -1,6 +1,6 @@
 #include "SeerWatchpointsBrowserWidget.h"
 #include "SeerWatchpointCreateDialog.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -97,9 +97,9 @@ void SeerWatchpointsBrowserWidget::handleText (const QString& text) {
         // }
         //
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString body_text = Seer::parseFirst(newtext, "body=", '[', ']', false);
+        QString body_text = SDS::parseFirst(newtext, "body=", '[', ']', false);
 
         //qDebug() << body_text;
 
@@ -119,22 +119,22 @@ void SeerWatchpointsBrowserWidget::handleText (const QString& text) {
                 ++it;
             }
 
-            QStringList bkpt_list = Seer::parse(newtext, "bkpt=", '{', '}', false);
+            QStringList bkpt_list = SDS::parse(newtext, "bkpt=", '{', '}', false);
 
             for ( const auto& bkpt_text : bkpt_list  ) {
 
-                QString number_text            = Seer::parseFirst(bkpt_text, "number=",            '"', '"', false);
-                QString type_text              = Seer::parseFirst(bkpt_text, "type=",              '"', '"', false);
-                QString disp_text              = Seer::parseFirst(bkpt_text, "disp=",              '"', '"', false);
-                QString enabled_text           = Seer::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
-                QString addr_text              = Seer::parseFirst(bkpt_text, "addr=",              '"', '"', false);
-                QString func_text              = Seer::parseFirst(bkpt_text, "func=",              '"', '"', false);
-                QString file_text              = Seer::parseFirst(bkpt_text, "file=",              '"', '"', false);
-                QString fullname_text          = Seer::parseFirst(bkpt_text, "fullname=",          '"', '"', false);
-                QString line_text              = Seer::parseFirst(bkpt_text, "line=",              '"', '"', false);
-                QString thread_groups_text     = Seer::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
-                QString times_text             = Seer::parseFirst(bkpt_text, "times=",             '"', '"', false);
-                QString original_location_text = Seer::parseFirst(bkpt_text, "original-location=", '"', '"', false);
+                QString number_text            = SDS::parseFirst(bkpt_text, "number=",            '"', '"', false);
+                QString type_text              = SDS::parseFirst(bkpt_text, "type=",              '"', '"', false);
+                QString disp_text              = SDS::parseFirst(bkpt_text, "disp=",              '"', '"', false);
+                QString enabled_text           = SDS::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
+                QString addr_text              = SDS::parseFirst(bkpt_text, "addr=",              '"', '"', false);
+                QString func_text              = SDS::parseFirst(bkpt_text, "func=",              '"', '"', false);
+                QString file_text              = SDS::parseFirst(bkpt_text, "file=",              '"', '"', false);
+                QString fullname_text          = SDS::parseFirst(bkpt_text, "fullname=",          '"', '"', false);
+                QString line_text              = SDS::parseFirst(bkpt_text, "line=",              '"', '"', false);
+                QString thread_groups_text     = SDS::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
+                QString times_text             = SDS::parseFirst(bkpt_text, "times=",             '"', '"', false);
+                QString original_location_text = SDS::parseFirst(bkpt_text, "original-location=", '"', '"', false);
 
                 // Only look for 'watchpoint' type break points.
                 if (type_text != "hw watchpoint" && type_text != "watchpoint" && type_text != "read watchpoint" && type_text != "acc watchpoint") {
@@ -201,21 +201,21 @@ void SeerWatchpointsBrowserWidget::handleText (const QString& text) {
 
     }else if (text.startsWith("*stopped,reason=\"") || text.startsWith("*stopped,hw-awpt={")) {
 
-        QString reason_text = Seer::parseFirst(text, "reason=", '"', '"', false);
+        QString reason_text = SDS::parseFirst(text, "reason=", '"', '"', false);
 
         if (reason_text == "watchpoint-trigger") {
             //*stopped,reason="watchpoint-trigger",wpt={number="3",exp="i"},value={old="32767",new="42"},frame={addr="0x0000000000400d79",func="function1",args=[{name="text",value="\"Hello, World!\""}],file="function1.cpp",fullname="/home/erniep/Development/Peak/src/Seer/helloworld/function1.cpp",line="9",arch="i386:x86-64"},thread-id="1",stopped-threads="all",core="0"
 
-            QString wpt_text       = Seer::parseFirst(text,       "wpt=",       '{', '}', false);
-            QString number_text    = Seer::parseFirst(wpt_text,   "number=",    '"', '"', false);
-            QString exp_text       = Seer::parseFirst(wpt_text,   "exp=",       '"', '"', false);
-            QString value_text     = Seer::parseFirst(text,       "value=",     '{', '}', false);
-            QString old_text       = Seer::parseFirst(value_text, "old=",       '"', '"', false);
-            QString new_text       = Seer::parseFirst(value_text, "new=",       '"', '"', false);
-            QString frame_text     = Seer::parseFirst(text,       "frame=",     '{', '}', false);
-            QString file_text      = Seer::parseFirst(frame_text, "file=",      '"', '"', false);
-            QString fullname_text  = Seer::parseFirst(frame_text, "fullname=",  '"', '"', false);
-            QString line_text      = Seer::parseFirst(frame_text, "line=",      '"', '"', false);
+            QString wpt_text       = SDS::parseFirst(text,       "wpt=",       '{', '}', false);
+            QString number_text    = SDS::parseFirst(wpt_text,   "number=",    '"', '"', false);
+            QString exp_text       = SDS::parseFirst(wpt_text,   "exp=",       '"', '"', false);
+            QString value_text     = SDS::parseFirst(text,       "value=",     '{', '}', false);
+            QString old_text       = SDS::parseFirst(value_text, "old=",       '"', '"', false);
+            QString new_text       = SDS::parseFirst(value_text, "new=",       '"', '"', false);
+            QString frame_text     = SDS::parseFirst(text,       "frame=",     '{', '}', false);
+            QString file_text      = SDS::parseFirst(frame_text, "file=",      '"', '"', false);
+            QString fullname_text  = SDS::parseFirst(frame_text, "fullname=",  '"', '"', false);
+            QString line_text      = SDS::parseFirst(frame_text, "line=",      '"', '"', false);
 
             // Find watchpoint number in the tree
             QList<QTreeWidgetItem*> matches = watchpointsTreeWidget->findItems(number_text, Qt::MatchExactly, 0);
@@ -232,15 +232,15 @@ void SeerWatchpointsBrowserWidget::handleText (const QString& text) {
         }else if (reason_text == "read-watchpoint-trigger") {
             //*stopped,reason="read-watchpoint-trigger",hw-rwpt={number="5",exp="i"},value={value="42"},frame={addr="0x0000000000400d9a",func="function1",args=[{name="text",value="\"Hello, World!\""}],file="function1.cpp",fullname="/home/erniep/Development/Peak/src/Seer/helloworld/function1.cpp",line="11",arch="i386:x86-64"},thread-id="1",stopped-threads="all",core="4"
 
-            QString hwwpt_text     = Seer::parseFirst(text,       "hw-rwpt=",   '{', '}', false);
-            QString number_text    = Seer::parseFirst(hwwpt_text, "number=",    '"', '"', false);
-            QString exp_text       = Seer::parseFirst(hwwpt_text, "exp=",       '"', '"', false);
-            QString value_text     = Seer::parseFirst(text,       "value=",     '{', '}', false);
-            QString value_text2    = Seer::parseFirst(value_text, "value=",     '"', '"', false);
-            QString frame_text     = Seer::parseFirst(text,       "frame=",     '{', '}', false);
-            QString file_text      = Seer::parseFirst(frame_text, "file=",      '"', '"', false);
-            QString fullname_text  = Seer::parseFirst(frame_text, "fullname=",  '"', '"', false);
-            QString line_text      = Seer::parseFirst(frame_text, "line=",      '"', '"', false);
+            QString hwwpt_text     = SDS::parseFirst(text,       "hw-rwpt=",   '{', '}', false);
+            QString number_text    = SDS::parseFirst(hwwpt_text, "number=",    '"', '"', false);
+            QString exp_text       = SDS::parseFirst(hwwpt_text, "exp=",       '"', '"', false);
+            QString value_text     = SDS::parseFirst(text,       "value=",     '{', '}', false);
+            QString value_text2    = SDS::parseFirst(value_text, "value=",     '"', '"', false);
+            QString frame_text     = SDS::parseFirst(text,       "frame=",     '{', '}', false);
+            QString file_text      = SDS::parseFirst(frame_text, "file=",      '"', '"', false);
+            QString fullname_text  = SDS::parseFirst(frame_text, "fullname=",  '"', '"', false);
+            QString line_text      = SDS::parseFirst(frame_text, "line=",      '"', '"', false);
 
             // Find watchpoint number in the tree
             QList<QTreeWidgetItem*> matches = watchpointsTreeWidget->findItems(number_text, Qt::MatchExactly, 0);
@@ -257,16 +257,16 @@ void SeerWatchpointsBrowserWidget::handleText (const QString& text) {
         }else if (reason_text == "access-watchpoint-trigger") {
             //*stopped,reason="access-watchpoint-trigger",hw-awpt={number="3",exp="v"},value={old="1",new="11"},frame={addr="0x000000000040059a",func="bar",args=[{name="v",value="11"}],file="helloonefile.cpp",fullname="/home/erniep/Development/Peak/src/Seer/helloonefile/helloonefile.cpp",line="15",arch="i386:x86-64"},thread-id="1",stopped-threads="all",core="3"
 
-            QString hwawpt_text    = Seer::parseFirst(text,        "hw-awpt=",  '{', '}', false);
-            QString number_text    = Seer::parseFirst(hwawpt_text, "number=",   '"', '"', false);
-            QString exp_text       = Seer::parseFirst(hwawpt_text, "exp=",      '"', '"', false);
-            QString value_text     = Seer::parseFirst(text,        "value=",    '{', '}', false);
-            QString old_text       = Seer::parseFirst(value_text,  "old=",      '"', '"', false);
-            QString new_text       = Seer::parseFirst(value_text,  "new=",      '"', '"', false);
-            QString frame_text     = Seer::parseFirst(text,       "frame=",     '{', '}', false);
-            QString file_text      = Seer::parseFirst(frame_text, "file=",      '"', '"', false);
-            QString fullname_text  = Seer::parseFirst(frame_text, "fullname=",  '"', '"', false);
-            QString line_text      = Seer::parseFirst(frame_text, "line=",      '"', '"', false);
+            QString hwawpt_text    = SDS::parseFirst(text,        "hw-awpt=",  '{', '}', false);
+            QString number_text    = SDS::parseFirst(hwawpt_text, "number=",   '"', '"', false);
+            QString exp_text       = SDS::parseFirst(hwawpt_text, "exp=",      '"', '"', false);
+            QString value_text     = SDS::parseFirst(text,        "value=",    '{', '}', false);
+            QString old_text       = SDS::parseFirst(value_text,  "old=",      '"', '"', false);
+            QString new_text       = SDS::parseFirst(value_text,  "new=",      '"', '"', false);
+            QString frame_text     = SDS::parseFirst(text,       "frame=",     '{', '}', false);
+            QString file_text      = SDS::parseFirst(frame_text, "file=",      '"', '"', false);
+            QString fullname_text  = SDS::parseFirst(frame_text, "fullname=",  '"', '"', false);
+            QString line_text      = SDS::parseFirst(frame_text, "line=",      '"', '"', false);
 
             // Find watchpoint number in the tree
             QList<QTreeWidgetItem*> matches = watchpointsTreeWidget->findItems(number_text, Qt::MatchExactly, 0);

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "SeerLogWidget.h"
+#include "LogWidget.h"
 
-class SeerTildeLogWidget : public SeerLogWidget {
+class SeerTildeLogWidget : public LogWidget {
 
     Q_OBJECT
 

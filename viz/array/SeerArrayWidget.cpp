@@ -1,5 +1,5 @@
 #include "SeerArrayWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QHeaderView>
 #include <QtCore/QDebug>
 #include <stdexcept>

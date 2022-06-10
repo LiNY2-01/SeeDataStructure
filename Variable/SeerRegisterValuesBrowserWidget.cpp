@@ -1,5 +1,5 @@
 #include "SeerRegisterValuesBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -48,13 +48,13 @@ void SeerRegisterValuesBrowserWidget::handleText (const QString& text) {
         // This recreates the tree.
         registersTreeWidget->clear();
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString frame_text = Seer::parseFirst(newtext, "register-names=", '[', ']', false);
+        QString frame_text = SDS::parseFirst(newtext, "register-names=", '[', ']', false);
 
         //qDebug() << frame_text;
 
-        QStringList name_list = Seer::parse(frame_text, "", '"', '"', false);
+        QStringList name_list = SDS::parse(frame_text, "", '"', '"', false);
 
         int i = 0;
         for ( const auto& name_text : name_list  ) {
@@ -91,16 +91,16 @@ void SeerRegisterValuesBrowserWidget::handleText (const QString& text) {
 
         //qDebug() << text;
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString frame_text = Seer::parseFirst(newtext, "register-values=", '[', ']', false);
+        QString frame_text = SDS::parseFirst(newtext, "register-values=", '[', ']', false);
 
-        QStringList registers_list = Seer::parse(frame_text, "", '{', '}', false);
+        QStringList registers_list = SDS::parse(frame_text, "", '{', '}', false);
 
         for ( const auto& register_text : registers_list  ) {
 
-            QString number_text = Seer::parseFirst(register_text, "number=",  '"', '"', false);
-            QString value_text  = Seer::parseFirst(register_text, "value=",   '"', '"', false);
+            QString number_text = SDS::parseFirst(register_text, "number=",  '"', '"', false);
+            QString value_text  = SDS::parseFirst(register_text, "value=",   '"', '"', false);
 
             // Instead of creating a new tree each time, we will reuse existing items, if they are there.
             // This allows the expanded items to remain expanded.

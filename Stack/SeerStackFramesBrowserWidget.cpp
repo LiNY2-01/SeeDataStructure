@@ -1,5 +1,5 @@
 #include "SeerStackFramesBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -62,12 +62,12 @@ void SeerStackFramesBrowserWidget::handleText (const QString& text) {
 
             stackTreeWidget->clear();
 
-            QString stack_text = Seer::parseFirst(text, "stack=", '[', ']', false);
+            QString stack_text = SDS::parseFirst(text, "stack=", '[', ']', false);
 
             if (stack_text != "") {
 
                 // Parse through the frame list and set the current lines that are in the frame list.
-                QStringList frame_list = Seer::parse(text, "frame=", '{', '}', false);
+                QStringList frame_list = SDS::parse(text, "frame=", '{', '}', false);
 
                 QString firstLiveFrameLevel     = "";
                 QString firstLiveFrameFile      = "";
@@ -76,13 +76,13 @@ void SeerStackFramesBrowserWidget::handleText (const QString& text) {
 
                 for ( const auto& frame_text : frame_list  ) {
 
-                    QString level_text    = Seer::parseFirst(frame_text, "level=",    '"', '"', false);
-                    QString addr_text     = Seer::parseFirst(frame_text, "addr=",     '"', '"', false);
-                    QString func_text     = Seer::parseFirst(frame_text, "func=",     '"', '"', false);
-                    QString file_text     = Seer::parseFirst(frame_text, "file=",     '"', '"', false);
-                    QString fullname_text = Seer::parseFirst(frame_text, "fullname=", '"', '"', false);
-                    QString line_text     = Seer::parseFirst(frame_text, "line=",     '"', '"', false);
-                    QString arch_text     = Seer::parseFirst(frame_text, "arch=",     '"', '"', false);
+                    QString level_text    = SDS::parseFirst(frame_text, "level=",    '"', '"', false);
+                    QString addr_text     = SDS::parseFirst(frame_text, "addr=",     '"', '"', false);
+                    QString func_text     = SDS::parseFirst(frame_text, "func=",     '"', '"', false);
+                    QString file_text     = SDS::parseFirst(frame_text, "file=",     '"', '"', false);
+                    QString fullname_text = SDS::parseFirst(frame_text, "fullname=", '"', '"', false);
+                    QString line_text     = SDS::parseFirst(frame_text, "line=",     '"', '"', false);
+                    QString arch_text     = SDS::parseFirst(frame_text, "arch=",     '"', '"', false);
 
                     // qDebug() << file_text << fullname_text << line_text;
 

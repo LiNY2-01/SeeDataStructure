@@ -20,7 +20,7 @@ SeerConfigDialog::SeerConfigDialog(QWidget* parent) : QDialog(parent) {
     contentsListWidget->setSpacing(12);
 
     // Create pages.
-    _gdbConfigPage    = new SeerGdbConfigPage;
+    _gdbConfigPage    = new GdbConfigPage;
     _editorConfigPage = new SeerEditorConfigPage;
     _sourceConfigPage = new SeerSourceConfigPage;
     _keysConfigPage   = new SeerKeysConfigPage;
@@ -35,31 +35,31 @@ SeerConfigDialog::SeerConfigDialog(QWidget* parent) : QDialog(parent) {
 
     // Create icons.
     QListWidgetItem* configGdbButton = new QListWidgetItem(contentsListWidget);
-    configGdbButton->setIcon(QIcon(":/seer/resources/gdb.png"));
+    configGdbButton->setIcon(QIcon(":/SeeDataStructure/resources/gdb.png"));
     configGdbButton->setText(tr("GDB"));
     configGdbButton->setTextAlignment(Qt::AlignHCenter);
     configGdbButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     QListWidgetItem* configEditorButton = new QListWidgetItem(contentsListWidget);
-    configEditorButton->setIcon(QIcon(":/seer/resources/editor.png"));
+    configEditorButton->setIcon(QIcon(":/SeeDataStructure/resources/editor.png"));
     configEditorButton->setText(tr("Editor"));
     configEditorButton->setTextAlignment(Qt::AlignHCenter);
     configEditorButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     QListWidgetItem* configSourceButton = new QListWidgetItem(contentsListWidget);
-    configSourceButton->setIcon(QIcon(":/seer/resources/source.png"));
+    configSourceButton->setIcon(QIcon(":/SeeDataStructure/resources/source.png"));
     configSourceButton->setText(tr("Source"));
     configSourceButton->setTextAlignment(Qt::AlignHCenter);
     configSourceButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     QListWidgetItem* configKeysButton = new QListWidgetItem(contentsListWidget);
-    configKeysButton->setIcon(QIcon(":/seer/resources/keyboard-key.png"));
+    configKeysButton->setIcon(QIcon(":/SeeDataStructure/resources/keyboard-key.png"));
     configKeysButton->setText(tr("Keys"));
     configKeysButton->setTextAlignment(Qt::AlignHCenter);
     configKeysButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     QListWidgetItem* configSeerButton = new QListWidgetItem(contentsListWidget);
-    configSeerButton->setIcon(QIcon(":/seer/resources/seer_128x128.png"));
+    configSeerButton->setIcon(QIcon(":/SeeDataStructure/resources/seer_128x128.png"));
     configSeerButton->setText(tr("Seer"));
     configSeerButton->setTextAlignment(Qt::AlignHCenter);
     configSeerButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -115,35 +115,35 @@ bool SeerConfigDialog::gdbHandleTerminatingException () const {
     return _gdbConfigPage->gdbHandleTerminatingException();
 }
 
-void SeerConfigDialog::setDprintfStyle (const QString& style) {
+//void SeerConfigDialog::setDprintfStyle (const QString& style) {
+//
+//    _gdbConfigPage->setDprintfStyle(style);
+//}
+//
+//QString SeerConfigDialog::dprintfStyle () const {
+//
+//    return _gdbConfigPage->dprintfStyle();
+//}
 
-    _gdbConfigPage->setDprintfStyle(style);
-}
-
-QString SeerConfigDialog::dprintfStyle () const {
-
-    return _gdbConfigPage->dprintfStyle();
-}
-
-void SeerConfigDialog::setDprintfFunction (const QString& function) {
-
-    _gdbConfigPage->setDprintfFunction(function);
-}
-
-QString SeerConfigDialog::dprintfFunction () const {
-
-    return _gdbConfigPage->dprintfFunction();
-}
-
-void SeerConfigDialog::setDprintfChannel (const QString& channel) {
-
-    _gdbConfigPage->setDprintfChannel(channel);
-}
-
-QString SeerConfigDialog::dprintfChannel () const {
-
-    return _gdbConfigPage->dprintfChannel();
-}
+//void SeerConfigDialog::setDprintfFunction (const QString& function) {
+//
+//    _gdbConfigPage->setDprintfFunction(function);
+//}
+//
+//QString SeerConfigDialog::dprintfFunction () const {
+//
+//    return _gdbConfigPage->dprintfFunction();
+//}
+//
+//void SeerConfigDialog::setDprintfChannel (const QString& channel) {
+//
+//    _gdbConfigPage->setDprintfChannel(channel);
+//}
+//
+//QString SeerConfigDialog::dprintfChannel () const {
+//
+//    return _gdbConfigPage->dprintfChannel();
+//}
 
 void SeerConfigDialog::setEditorFont (const QFont& font) {
 
@@ -185,12 +185,12 @@ QStringList SeerConfigDialog::sourceAlternateDirectories () const {
     return _sourceConfigPage->alternateDirectories();
 }
 
-void SeerConfigDialog::setKeySettings (const SeerKeySettings& settings) {
+void SeerConfigDialog::setKeySettings (const KeySettings& settings) {
 
     _keysConfigPage->setKeySettings(settings);
 }
 
-SeerKeySettings SeerConfigDialog::keySettings () const {
+KeySettings SeerConfigDialog::keySettings () const {
 
     return _keysConfigPage->keySettings();
 }
@@ -272,14 +272,14 @@ void SeerConfigDialog::handleButtonClicked (QAbstractButton* button) {
 
         if (itemLabel == "GDB") {
 
-            setGdbProgram("/usr/bin/gdb");
+            setGdbProgram("gdb");
             setGdbArguments("--interpreter=mi");
             setGdbAsyncMode(true);
             setGdbHandleTerminatingException(true);
 
-            setDprintfStyle("gdb");
-            setDprintfFunction("printf");
-            setDprintfChannel("");
+//            setDprintfStyle("gdb");
+//            setDprintfFunction("printf");
+//            setDprintfChannel("");
 
         }else if (itemLabel == "Editor") {
 
@@ -297,7 +297,7 @@ void SeerConfigDialog::handleButtonClicked (QAbstractButton* button) {
 
         }else if (itemLabel == "Keys") {
 
-            setKeySettings(SeerKeySettings::populate());
+            setKeySettings(KeySettings::populate());
 
         }else if (itemLabel == "Seer") {
 

@@ -8,7 +8,7 @@ namespace SDS {
     QString version () {
 
         // Increment this with every release on GitHub.
-        return "1.5-beta";
+        return "0.1";
     }
 
     QString filterEscapes (const QString& str) {

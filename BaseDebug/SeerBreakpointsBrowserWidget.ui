@@ -92,8 +92,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
-         <normaloff>:/seer/resources/RelaxLightIcons/view-refresh.svg</normaloff>:/seer/resources/RelaxLightIcons/view-refresh.svg</iconset>
+        <iconset resource="../SeeDataStructureRc.qrc">
+         <normaloff>:/resources/RelaxLightIcons/view-refresh.svg</normaloff>:/resources/RelaxLightIcons/view-refresh.svg</iconset>
        </property>
       </widget>
      </item>
@@ -106,8 +106,8 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
-         <normaloff>:/seer/resources/RelaxLightIcons/document-new.svg</normaloff>:/seer/resources/RelaxLightIcons/document-new.svg</iconset>
+        <iconset resource="../SeeDataStructureRc.qrc">
+         <normaloff>:/resources/RelaxLightIcons/document-new.svg</normaloff>:/resources/RelaxLightIcons/document-new.svg</iconset>
        </property>
       </widget>
      </item>
@@ -120,8 +120,8 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
-         <normaloff>:/seer/resources/RelaxLightIcons/edit-delete.svg</normaloff>:/seer/resources/RelaxLightIcons/edit-delete.svg</iconset>
+        <iconset resource="../SeeDataStructureRc.qrc">
+         <normaloff>:/resources/RelaxLightIcons/edit-delete.svg</normaloff>:/resources/RelaxLightIcons/edit-delete.svg</iconset>
        </property>
       </widget>
      </item>
@@ -134,8 +134,8 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
-         <normaloff>:/seer/resources/RelaxLightIcons/list-add.svg</normaloff>:/seer/resources/RelaxLightIcons/list-add.svg</iconset>
+        <iconset resource="../SeeDataStructureRc.qrc">
+         <normaloff>:/resources/RelaxLightIcons/list-add.svg</normaloff>:/resources/RelaxLightIcons/list-add.svg</iconset>
        </property>
       </widget>
      </item>
@@ -148,8 +148,8 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="resource.qrc">
-         <normaloff>:/seer/resources/RelaxLightIcons/list-remove.svg</normaloff>:/seer/resources/RelaxLightIcons/list-remove.svg</iconset>
+        <iconset resource="../SeeDataStructureRc.qrc">
+         <normaloff>:/resources/RelaxLightIcons/list-remove.svg</normaloff>:/resources/RelaxLightIcons/list-remove.svg</iconset>
        </property>
       </widget>
      </item>
@@ -171,7 +171,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../SeeDataStructureRc.qrc"/>
  </resources>
  <connections/>
 </ui>

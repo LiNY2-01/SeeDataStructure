@@ -1,5 +1,5 @@
 #include "SeerStackLocalsBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -60,15 +60,15 @@ void SeerStackLocalsBrowserWidget::handleText (const QString& text) {
 
         //qDebug() << text;
 
-        QString frame_text = Seer::parseFirst(text, "variables=", '[', ']', false);
+        QString frame_text = SDS::parseFirst(text, "variables=", '[', ']', false);
 
-        QStringList variable_list = Seer::parse(frame_text, "", '{', '}', false);
+        QStringList variable_list = SDS::parse(frame_text, "", '{', '}', false);
 
         for ( const auto& variable_text : variable_list  ) {
 
-            QString name_text  = Seer::parseFirst(variable_text, "name=",  '"', '"', false);
-            QString arg_text   = Seer::parseFirst(variable_text, "arg=",   '"', '"', false);
-            QString value_text = Seer::parseFirst(variable_text, "value=", '"', '"', false);
+            QString name_text  = SDS::parseFirst(variable_text, "name=",  '"', '"', false);
+            QString arg_text   = SDS::parseFirst(variable_text, "arg=",   '"', '"', false);
+            QString value_text = SDS::parseFirst(variable_text, "value=", '"', '"', false);
 
             // Instead of creating a new tree each time, we will reuse existing items, if they are there.
             // This allows the expanded items to remain expanded.
@@ -91,7 +91,7 @@ void SeerStackLocalsBrowserWidget::handleText (const QString& text) {
                     QTreeWidgetItem* item = new QTreeWidgetItem;
                     item->setText(0, name_text);
                     item->setText(1, arg_text);
-                    item->setText(2, Seer::filterEscapes(value_text));
+                    item->setText(2, SDS::filterEscapes(value_text));
                     item->setText(3, "new");
 
                     topItem->addChild(item);
@@ -101,7 +101,7 @@ void SeerStackLocalsBrowserWidget::handleText (const QString& text) {
                     QTreeWidgetItem* item = new QTreeWidgetItem;
                     item->setText(0, name_text);
                     item->setText(1, arg_text);
-                    item->setText(2, Seer::filterEscapes(value_text));
+                    item->setText(2, SDS::filterEscapes(value_text));
                     item->setText(3, "new");
 
                     localsTreeWidget->addTopLevelItem(item);
@@ -132,7 +132,7 @@ void SeerStackLocalsBrowserWidget::handleText (const QString& text) {
 
                     child->setText(0, name_text);
                     child->setText(1, arg_text);
-                    child->setText(2, Seer::filterEscapes(value_text));
+                    child->setText(2, SDS::filterEscapes(value_text));
                     child->setText(3, "reused");
 
                 // Add the simple entry to the tree.
@@ -146,7 +146,7 @@ void SeerStackLocalsBrowserWidget::handleText (const QString& text) {
 
                     item->setText(0, name_text);
                     item->setText(1, arg_text);
-                    item->setText(2, Seer::filterEscapes(value_text));
+                    item->setText(2, SDS::filterEscapes(value_text));
                     item->setText(3, "reused");
                 }
             }

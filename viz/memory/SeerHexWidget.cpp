@@ -1,5 +1,5 @@
 #include "SeerHexWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
 #include <QtGui/QKeyEvent>
@@ -271,7 +271,7 @@ void SeerHexWidget::create () {
         if (charMode() == SeerHexWidget::AsciiCharMode) {
             for (int b=0; b<bytesPerLine() && i+b < _pdata->size(); b++) {
 
-                unsigned char ch = Seer::ucharToAscii( data[b] );
+                unsigned char ch = SDS::ucharToAscii( data[b] );
 
                 QString val(ch);
 
@@ -282,7 +282,7 @@ void SeerHexWidget::create () {
         }else if (charMode() == SeerHexWidget::EbcdicCharMode) {
             for (int b=0; b<bytesPerLine() && i+b < _pdata->size(); b++) {
 
-                unsigned char ch = Seer::ebcdicToAscii( data[b] );
+                unsigned char ch = SDS::ebcdicToAscii( data[b] );
 
                 QString val(ch);
 

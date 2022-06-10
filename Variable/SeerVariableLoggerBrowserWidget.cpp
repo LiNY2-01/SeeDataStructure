@@ -1,5 +1,5 @@
 #include "SeerVariableLoggerBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -48,12 +48,12 @@ void SeerVariableLoggerBrowserWidget::handleText (const QString& text) {
         // "6^done,value=\"\\\"abc\\\"\""
 
         QString id_text    = text.section('^', 0,0);
-        QString value_text = Seer::parseFirst(text, "value=", '"', '"', false);
+        QString value_text = SDS::parseFirst(text, "value=", '"', '"', false);
 
         QList<QTreeWidgetItem*> matches = variablesTreeWidget->findItems(id_text, Qt::MatchExactly, 0);
 
         if (matches.size() > 0) {
-            matches.first()->setText(3, Seer::filterEscapes(value_text));
+            matches.first()->setText(3, SDS::filterEscapes(value_text));
         }
 
     }else if (text.contains(QRegExp("^([0-9]+)\\^error,msg="))) {
@@ -63,12 +63,12 @@ void SeerVariableLoggerBrowserWidget::handleText (const QString& text) {
         // "1^error,msg=\"No symbol \\\"j\\\" in current context.\""
 
         QString id_text  = text.section('^', 0,0);
-        QString msg_text = Seer::parseFirst(text, "msg=", '"', '"', false);
+        QString msg_text = SDS::parseFirst(text, "msg=", '"', '"', false);
 
         QList<QTreeWidgetItem*> matches = variablesTreeWidget->findItems(id_text, Qt::MatchExactly, 0);
 
         if (matches.size() > 0) {
-            matches.first()->setText(3, Seer::filterEscapes(msg_text));
+            matches.first()->setText(3, SDS::filterEscapes(msg_text));
         }
 
     }else if (text.startsWith("^error,msg=\"No registers.\"")) {
@@ -130,7 +130,7 @@ void SeerVariableLoggerBrowserWidget::addVariableExpression (QString expression)
 
     if (expression != "") {
 
-        int id = Seer::createID();
+        int id = SDS::createID();
 
         emit evaluateVariableExpression(id, expression);
     }
@@ -146,7 +146,7 @@ void SeerVariableLoggerBrowserWidget::handleAddLineEdit () {
 
     if (variable != "") {
 
-        int id = Seer::createID();
+        int id = SDS::createID();
 
         emit evaluateVariableExpression(id, variable);
     }

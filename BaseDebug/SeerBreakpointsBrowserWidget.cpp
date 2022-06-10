@@ -1,6 +1,6 @@
 #include "SeerBreakpointsBrowserWidget.h"
 #include "SeerBreakpointCreateDialog.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -96,29 +96,29 @@ void SeerBreakpointsBrowserWidget::handleText (const QString& text) {
         // }
         //
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString body_text = Seer::parseFirst(newtext, "body=", '[', ']', false);
+        QString body_text = SDS::parseFirst(newtext, "body=", '[', ']', false);
 
         //qDebug() << body_text;
 
         if (body_text != "") {
 
-            QStringList bkpt_list = Seer::parse(newtext, "bkpt=", '{', '}', false);
+            QStringList bkpt_list = SDS::parse(newtext, "bkpt=", '{', '}', false);
 
             for ( const auto& bkpt_text : bkpt_list  ) {
-                QString number_text            = Seer::parseFirst(bkpt_text, "number=",            '"', '"', false);
-                QString type_text              = Seer::parseFirst(bkpt_text, "type=",              '"', '"', false);
-                QString disp_text              = Seer::parseFirst(bkpt_text, "disp=",              '"', '"', false);
-                QString enabled_text           = Seer::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
-                QString addr_text              = Seer::parseFirst(bkpt_text, "addr=",              '"', '"', false);
-                QString func_text              = Seer::parseFirst(bkpt_text, "func=",              '"', '"', false);
-                QString file_text              = Seer::parseFirst(bkpt_text, "file=",              '"', '"', false);
-                QString fullname_text          = Seer::parseFirst(bkpt_text, "fullname=",          '"', '"', false);
-                QString line_text              = Seer::parseFirst(bkpt_text, "line=",              '"', '"', false);
-                QString thread_groups_text     = Seer::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
-                QString times_text             = Seer::parseFirst(bkpt_text, "times=",             '"', '"', false);
-                QString original_location_text = Seer::parseFirst(bkpt_text, "original-location=", '"', '"', false);
+                QString number_text            = SDS::parseFirst(bkpt_text, "number=",            '"', '"', false);
+                QString type_text              = SDS::parseFirst(bkpt_text, "type=",              '"', '"', false);
+                QString disp_text              = SDS::parseFirst(bkpt_text, "disp=",              '"', '"', false);
+                QString enabled_text           = SDS::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
+                QString addr_text              = SDS::parseFirst(bkpt_text, "addr=",              '"', '"', false);
+                QString func_text              = SDS::parseFirst(bkpt_text, "func=",              '"', '"', false);
+                QString file_text              = SDS::parseFirst(bkpt_text, "file=",              '"', '"', false);
+                QString fullname_text          = SDS::parseFirst(bkpt_text, "fullname=",          '"', '"', false);
+                QString line_text              = SDS::parseFirst(bkpt_text, "line=",              '"', '"', false);
+                QString thread_groups_text     = SDS::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
+                QString times_text             = SDS::parseFirst(bkpt_text, "times=",             '"', '"', false);
+                QString original_location_text = SDS::parseFirst(bkpt_text, "original-location=", '"', '"', false);
 
                 // Only look for 'breakpoint' type break points.
                 if (type_text != "breakpoint") {

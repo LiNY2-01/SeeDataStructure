@@ -1,5 +1,5 @@
 #pragma once
-#include "ui_SeerEditorWidget.h"
+
 #include "SeerCppSourceHighlighter.h"
 #include "keysettings.h"
 #include <QtWidgets/QPlainTextEdit>
@@ -212,7 +212,7 @@ class SeerEditorWidgetMiniMapArea : public QWidget {
         SeerEditorWidgetSourceArea*         _editorWidget;
 };
 
-
+#include "ui_SeerEditorWidget.h"
 
 class SeerEditorWidget : public QWidget, protected Ui::SeerEditorWidgetForm {
 

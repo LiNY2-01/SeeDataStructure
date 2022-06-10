@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SeerKeySettings.h"
+#include "keysettings.h"
 #include <QtWidgets/QWidget>
 
 #include "ui_SeerKeysConfigPage.h"
@@ -13,8 +13,8 @@ class SeerKeysConfigPage : public QWidget, protected Ui::SeerKeysConfigPage {
         explicit SeerKeysConfigPage (QWidget* parent = 0);
        ~SeerKeysConfigPage ();
 
-        void                        setKeySettings              (const SeerKeySettings& settings);
-        SeerKeySettings             keySettings                 () const;
+        void                        setKeySettings              (const KeySettings& settings);
+        KeySettings             keySettings                 () const;
 
     protected slots:
 

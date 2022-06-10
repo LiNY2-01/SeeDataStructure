@@ -84,7 +84,7 @@ void GdbMonitor::handleReadyReadStandardOutput () {
 
         // Start broadcasting it around.
         emit allTextOutput(text);
-
+        text=text.trimmed();
         if (text[0] == '~') {
             emit tildeTextOutput(text);
         }else if (text[0] == '=') {

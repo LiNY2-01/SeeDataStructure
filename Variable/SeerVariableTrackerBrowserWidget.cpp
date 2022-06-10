@@ -1,5 +1,5 @@
 #include "SeerVariableTrackerBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -38,10 +38,6 @@ SeerVariableTrackerBrowserWidget::~SeerVariableTrackerBrowserWidget () {
 void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
 
     // Don't do any work if the widget is hidden.
-    if (isHidden()) {
-        return;
-    }
-
     QApplication::setOverrideCursor(Qt::BusyCursor);
 
     if (text.startsWith("^done,DataExpressionTable={") && text.endsWith("}")) {
@@ -57,16 +53,16 @@ void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
 
         variablesTreeWidget->clear();
 
-        QString frame_text = Seer::parseFirst(text, "DataExpressionTable=", '{', '}', false);
+        QString frame_text = SDS::parseFirst(text, "DataExpressionTable=", '{', '}', false);
 
-        QStringList entries_list = Seer::parse(frame_text, "entry=", '{', '}', false);
+        QStringList entries_list = SDS::parse(frame_text, "entry=", '{', '}', false);
 
         for (int i=0; i<entries_list.size(); i++) {
 
             QString entry_text = entries_list[i];
 
-            QString id_text         = Seer::parseFirst(entry_text, "id=",         '"', '"', false);
-            QString expression_text = Seer::parseFirst(entry_text, "expression=", '"', '"', false);
+            QString id_text         = SDS::parseFirst(entry_text, "id=",         '"', '"', false);
+            QString expression_text = SDS::parseFirst(entry_text, "expression=", '"', '"', false);
 
             QTreeWidgetItem* topItem = new QTreeWidgetItem;
             topItem->setText(0, id_text);
@@ -85,10 +81,10 @@ void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
         //          expression=\"m\"
         //      }"
 
-        QString frame_text = Seer::parseFirst(text, "DataExpressionAdded=", '{', '}', false);
+        QString frame_text = SDS::parseFirst(text, "DataExpressionAdded=", '{', '}', false);
 
-        QString id_text         = Seer::parseFirst(frame_text, "id=",         '"', '"', false);
-        QString expression_text = Seer::parseFirst(frame_text, "expression=", '"', '"', false);
+        QString id_text         = SDS::parseFirst(frame_text, "id=",         '"', '"', false);
+        QString expression_text = SDS::parseFirst(frame_text, "expression=", '"', '"', false);
 
         QTreeWidgetItem* topItem = new QTreeWidgetItem;
         topItem->setText(0, id_text);
@@ -106,16 +102,16 @@ void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
         //          entry={id=\"3\",expression=\"vb\"}
         //      }"
 
-        QString frame_text = Seer::parseFirst(text, "DataExpressionDeleted=", '{', '}', false);
+        QString frame_text = SDS::parseFirst(text, "DataExpressionDeleted=", '{', '}', false);
 
-        QStringList entries_list = Seer::parse(frame_text, "entry=", '{', '}', false);
+        QStringList entries_list = SDS::parse(frame_text, "entry=", '{', '}', false);
 
         for (int i=0; i<entries_list.size(); i++) {
 
             QString entry_text = entries_list[i];
 
-            QString id_text         = Seer::parseFirst(entry_text, "id=",         '"', '"', false);
-            QString expression_text = Seer::parseFirst(entry_text, "expression=", '"', '"', false);
+            QString id_text         = SDS::parseFirst(entry_text, "id=",         '"', '"', false);
+            QString expression_text = SDS::parseFirst(entry_text, "expression=", '"', '"', false);
 
             QList<QTreeWidgetItem*> matches = variablesTreeWidget->findItems(id_text, Qt::MatchExactly, 0);
 
@@ -129,12 +125,12 @@ void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
         // "6^done,value=\"\\\"abc\\\"\""
 
         QString id_text    = text.section('^', 0,0);
-        QString value_text = Seer::parseFirst(text, "value=", '"', '"', false);
+        QString value_text = SDS::parseFirst(text, "value=", '"', '"', false);
 
         QList<QTreeWidgetItem*> matches = variablesTreeWidget->findItems(id_text, Qt::MatchExactly, 0);
 
         if (matches.size() > 0) {
-            matches.first()->setText(2, Seer::filterEscapes(value_text));
+            matches.first()->setText(2, SDS::filterEscapes(value_text));
         }
 
     }else if (text.contains(QRegExp("^([0-9]+)\\^error,msg="))) {
@@ -144,12 +140,12 @@ void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
         // "1^error,msg=\"No symbol \\\"j\\\" in current context.\""
 
         QString id_text  = text.section('^', 0,0);
-        QString msg_text = Seer::parseFirst(text, "msg=", '"', '"', false);
+        QString msg_text = SDS::parseFirst(text, "msg=", '"', '"', false);
 
         QList<QTreeWidgetItem*> matches = variablesTreeWidget->findItems(id_text, Qt::MatchExactly, 0);
 
         if (matches.size() > 0) {
-            matches.first()->setText(2, Seer::filterEscapes(msg_text));
+            matches.first()->setText(2, SDS::filterEscapes(msg_text));
         }
 
     }else if (text.startsWith("^error,msg=\"No registers.\"")) {
@@ -169,9 +165,6 @@ void SeerVariableTrackerBrowserWidget::handleText (const QString& text) {
 void SeerVariableTrackerBrowserWidget::handleStoppingPointReached () {
 
     // Don't do any work if the widget is hidden.
-    if (isHidden()) {
-        return;
-    }
 
     refresh();
 }

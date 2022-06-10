@@ -48,5 +48,6 @@
         <file>resources/RelaxLightIcons/view-refresh.svg</file>
         <file>resources/RelaxLightIcons/x.x</file>
         <file>resources/icons/test.svg</file>
+        <file>resources/style.qss</file>
     </qresource>
 </RCC>

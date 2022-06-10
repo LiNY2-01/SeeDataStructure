@@ -9,7 +9,7 @@ SeerKeysConfigPage::SeerKeysConfigPage(QWidget* parent) : QWidget(parent) {
     setupUi(this);
 
     // Setup the widgets
-    setKeySettings(SeerKeySettings::populate());
+    setKeySettings(KeySettings::populate());
 
     // Connect things.
 }
@@ -17,7 +17,7 @@ SeerKeysConfigPage::SeerKeysConfigPage(QWidget* parent) : QWidget(parent) {
 SeerKeysConfigPage::~SeerKeysConfigPage() {
 }
 
-void SeerKeysConfigPage::setKeySettings (const SeerKeySettings& settings) {
+void SeerKeysConfigPage::setKeySettings (const KeySettings& settings) {
 
     // Clear the table contents.
     keysTableWidget->setRowCount(0);
@@ -31,7 +31,7 @@ void SeerKeysConfigPage::setKeySettings (const SeerKeySettings& settings) {
 
         QString key = keys[r];
 
-        SeerKeySetting setting = settings.get(key);
+        KeySetting setting = settings.get(key);
 
         keysTableWidget->insertRow(r);
 
@@ -52,9 +52,9 @@ void SeerKeysConfigPage::setKeySettings (const SeerKeySettings& settings) {
     keysTableWidget->resizeColumnToContents(1); // Description
 }
 
-SeerKeySettings SeerKeysConfigPage::keySettings() const {
+KeySettings SeerKeysConfigPage::keySettings() const {
 
-    SeerKeySettings settings;
+    KeySettings settings;
 
     for (int r=0; r<keysTableWidget->rowCount(); r++) {
 
@@ -66,7 +66,7 @@ SeerKeySettings SeerKeysConfigPage::keySettings() const {
         QLabel*           descriptionLabel = dynamic_cast<QLabel*>(keysTableWidget->cellWidget(r,1));
 
         // Create key setting.
-        SeerKeySetting setting(key, keySequenceEdit->keySequence(), descriptionLabel->text());
+        KeySetting setting(key, keySequenceEdit->keySequence(), descriptionLabel->text());
 
         // Add the setting to our settings.
         settings.add(key, setting);

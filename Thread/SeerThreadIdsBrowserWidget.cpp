@@ -1,5 +1,5 @@
 #include "SeerThreadIdsBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -35,7 +35,7 @@ void SeerThreadIdsBrowserWidget::handleText (const QString& text) {
 
     if (text.startsWith("^done,thread-ids={")) {
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
         // ^done,thread-ids={
         //        thread-id=\"1\",
@@ -46,9 +46,9 @@ void SeerThreadIdsBrowserWidget::handleText (const QString& text) {
 
         idsTreeWidget->clear();
 
-        QString threadids_text       = Seer::parseFirst(newtext,   "thread-ids=",        '{', '}', false);
-        QStringList threadids_list   = Seer::parse(threadids_text, "thread-id=",         '"', '"', false);
-        QString currentthreadid_text = Seer::parseFirst(newtext,   "current-thread-id=", '"', '"', false);
+        QString threadids_text       = SDS::parseFirst(newtext,   "thread-ids=",        '{', '}', false);
+        QStringList threadids_list   = SDS::parse(threadids_text, "thread-id=",         '"', '"', false);
+        QString currentthreadid_text = SDS::parseFirst(newtext,   "current-thread-id=", '"', '"', false);
 
         // Add the thread-ids.
         for ( const auto& threadid_text : threadids_list  ) {

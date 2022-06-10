@@ -1,5 +1,5 @@
 #include "SeerThreadFramesBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -41,9 +41,6 @@ SeerThreadFramesBrowserWidget::~SeerThreadFramesBrowserWidget () {
 void SeerThreadFramesBrowserWidget::handleText (const QString& text) {
 
     // Don't do any work if the widget is hidden.
-    if (isHidden()) {
-        return;
-    }
 
     QApplication::setOverrideCursor(Qt::BusyCursor);
 
@@ -93,32 +90,32 @@ void SeerThreadFramesBrowserWidget::handleText (const QString& text) {
 
         threadTreeWidget->clear();
 
-        QString threads_text         = Seer::parseFirst(text, "threads=", '[', ']', false);
-        QString currentthreadid_text = Seer::parseFirst(text, "current-thread-id=", '"', '"', false);
+        QString threads_text         = SDS::parseFirst(text, "threads=", '[', ']', false);
+        QString currentthreadid_text = SDS::parseFirst(text, "current-thread-id=", '"', '"', false);
 
         //qDebug() << threads_text;
 
         if (threads_text != "") {
 
-            QStringList threads_list = Seer::parse(threads_text, "", '{', '}', false);
+            QStringList threads_list = SDS::parse(threads_text, "", '{', '}', false);
 
             for ( const auto& thread_text : threads_list  ) {
-                QString id_text       = Seer::parseFirst(thread_text, "id=",        '"', '"', false);
-                QString targetid_text = Seer::parseFirst(thread_text, "target-id=", '"', '"', false);
-                QString name_text     = Seer::parseFirst(thread_text, "name=",      '"', '"', false);
+                QString id_text       = SDS::parseFirst(thread_text, "id=",        '"', '"', false);
+                QString targetid_text = SDS::parseFirst(thread_text, "target-id=", '"', '"', false);
+                QString name_text     = SDS::parseFirst(thread_text, "name=",      '"', '"', false);
 
-                QString frame_text    = Seer::parseFirst(thread_text, "frame=",     '{', '}', false);
-                QString level_text    = Seer::parseFirst(frame_text,  "level=",     '"', '"', false);
-                QString addr_text     = Seer::parseFirst(frame_text,  "addr=",      '"', '"', false);
-                QString func_text     = Seer::parseFirst(frame_text,  "func=",      '"', '"', false);
-                QString args_text     = Seer::parseFirst(frame_text,  "args=",      '[', ']', false);
-                QString file_text     = Seer::parseFirst(frame_text,  "file=",      '"', '"', false);
-                QString fullname_text = Seer::parseFirst(frame_text,  "fullname=",  '"', '"', false);
-                QString line_text     = Seer::parseFirst(frame_text,  "line=",      '"', '"', false);
-                QString arch_text     = Seer::parseFirst(frame_text,  "arch=",      '"', '"', false);
+                QString frame_text    = SDS::parseFirst(thread_text, "frame=",     '{', '}', false);
+                QString level_text    = SDS::parseFirst(frame_text,  "level=",     '"', '"', false);
+                QString addr_text     = SDS::parseFirst(frame_text,  "addr=",      '"', '"', false);
+                QString func_text     = SDS::parseFirst(frame_text,  "func=",      '"', '"', false);
+                QString args_text     = SDS::parseFirst(frame_text,  "args=",      '[', ']', false);
+                QString file_text     = SDS::parseFirst(frame_text,  "file=",      '"', '"', false);
+                QString fullname_text = SDS::parseFirst(frame_text,  "fullname=",  '"', '"', false);
+                QString line_text     = SDS::parseFirst(frame_text,  "line=",      '"', '"', false);
+                QString arch_text     = SDS::parseFirst(frame_text,  "arch=",      '"', '"', false);
 
-                QString state_text    = Seer::parseFirst(thread_text, "state=",     '"', '"', false);
-                QString core_text     = Seer::parseFirst(thread_text, "core=",      '"', '"', false);
+                QString state_text    = SDS::parseFirst(thread_text, "state=",     '"', '"', false);
+                QString core_text     = SDS::parseFirst(thread_text, "core=",      '"', '"', false);
 
                 //qDebug() << file_text << fullname_text;
 

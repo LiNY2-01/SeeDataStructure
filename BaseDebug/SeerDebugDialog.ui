@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>660</height>
+    <height>661</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,8 +57,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</iconset>
+         <iconset resource="../SeeDataStructureRc.qrc">
+          <normaloff>:/resources/RelaxLightIcons/document-open.svg</normaloff>:/resources/RelaxLightIcons/document-open.svg</iconset>
         </property>
        </widget>
       </item>
@@ -341,8 +341,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
-            <normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</iconset>
+           <iconset resource="../SeeDataStructureRc.qrc">
+            <normaloff>:/resources/RelaxLightIcons/document-open.svg</normaloff>:/resources/RelaxLightIcons/document-open.svg</iconset>
           </property>
          </widget>
         </item>
@@ -416,8 +416,8 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="resource.qrc">
-            <normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</iconset>
+           <iconset resource="../SeeDataStructureRc.qrc">
+            <normaloff>:/resources/RelaxLightIcons/document-open.svg</normaloff>:/resources/RelaxLightIcons/document-open.svg</iconset>
           </property>
          </widget>
         </item>
@@ -463,8 +463,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="resource.qrc">
-          <normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</iconset>
+         <iconset resource="../SeeDataStructureRc.qrc">
+          <normaloff>:/resources/RelaxLightIcons/document-open.svg</normaloff>:/resources/RelaxLightIcons/document-open.svg</iconset>
         </property>
        </widget>
       </item>
@@ -488,7 +488,7 @@
   <zorder>buttonBox</zorder>
  </widget>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../SeeDataStructureRc.qrc"/>
  </resources>
  <connections>
   <connection>

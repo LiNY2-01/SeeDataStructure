@@ -1,5 +1,5 @@
 #include "SeerStackArgumentsBrowserWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -54,7 +54,7 @@ void SeerStackArgumentsBrowserWidget::handleText (const QString& text) {
         // "level=\"0\",args=[{name=\"message\",value=\"\\\"Hello, World!\\\"\"}]",
         // "level=\"1\",args=[{name=\"argc\",value=\"1\"},{name=\"argv\",value=\"0x7fffffffd5b8\"}]"
 
-        QStringList frame_list = Seer::parse(text, "frame=", '{', '}', false);
+        QStringList frame_list = SDS::parse(text, "frame=", '{', '}', false);
 
         //qDebug() << frame_list.count() << frame_list;
 
@@ -62,13 +62,13 @@ void SeerStackArgumentsBrowserWidget::handleText (const QString& text) {
 
             //qDebug() << frame_text;
 
-            QString level_text = Seer::parseFirst(frame_text, "level=", '"', '"', false);
-            QString args_text  = Seer::parseFirst(frame_text, "args=",  '[', ']', false);
+            QString level_text = SDS::parseFirst(frame_text, "level=", '"', '"', false);
+            QString args_text  = SDS::parseFirst(frame_text, "args=",  '[', ']', false);
 
             //qDebug() << level_text;
             //qDebug() << args_text;
 
-            QStringList namevalue_list  = Seer::parse(args_text, "",  '{', '}', false);
+            QStringList namevalue_list  = SDS::parse(args_text, "",  '{', '}', false);
 
             // Add the level to the tree.
             QTreeWidgetItem* topItem = new QTreeWidgetItem;
@@ -79,12 +79,12 @@ void SeerStackArgumentsBrowserWidget::handleText (const QString& text) {
             // Get the argument names and values for the level.
             for ( const auto& namevalue_text : namevalue_list  ) {
 
-                QString name_text  = Seer::parseFirst(namevalue_text, "name=",  '"', '"', false);
-                QString value_text = Seer::parseFirst(namevalue_text, "value=", '"', '"', false);
+                QString name_text  = SDS::parseFirst(namevalue_text, "name=",  '"', '"', false);
+                QString value_text = SDS::parseFirst(namevalue_text, "value=", '"', '"', false);
 
                 QTreeWidgetItem* item = new QTreeWidgetItem;
                 item->setText(1, name_text); // Set the name and value. Don't set the level.
-                item->setText(2, Seer::filterEscapes(value_text));
+                item->setText(2, SDS::filterEscapes(value_text));
 
                 topItem->addChild(item);
             }

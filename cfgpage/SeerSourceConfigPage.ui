@@ -26,8 +26,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/document-new.svg</normaloff>:/seer/resources/HighContrast/document-new.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/RelaxLightIcons/document-new.svg</normaloff>:/resources/RelaxLightIcons/document-new.svg</iconset>
      </property>
     </widget>
    </item>
@@ -40,8 +40,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/go-up.svg</normaloff>:/seer/resources/HighContrast/go-up.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/up_arrow.png</normaloff>:/resources/up_arrow.png</iconset>
      </property>
     </widget>
    </item>
@@ -54,8 +54,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/go-down.svg</normaloff>:/seer/resources/HighContrast/go-down.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/down_arrow.png</normaloff>:/resources/down_arrow.png</iconset>
      </property>
     </widget>
    </item>
@@ -68,8 +68,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/edit-delete.svg</normaloff>:/seer/resources/HighContrast/edit-delete.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/RelaxLightIcons/edit-delete.svg</normaloff>:/resources/RelaxLightIcons/edit-delete.svg</iconset>
      </property>
     </widget>
    </item>
@@ -96,16 +96,16 @@
      </property>
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Specify alternate directories for locating source files.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If Seer can't find the source file in the directory that gdb knows of, then Seer will look in these directories in the order they appear.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If Seer still can't find the source file, it will prompt you to enter the location.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Select single or multiple entries in the list to move up, move down, or delete.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:600;&quot;&gt;Specify alternate directories for locating source files.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;If Seer can't find the source file in the directory that gdb knows of, then Seer will look in these directories in the order they appear.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;If Seer still can't find the source file, it will prompt you to enter the location.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;Select single or multiple entries in the list to move up, move down, or delete.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../SeeDataStructureRc.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SeerGdbConfigPage.h"
+#include "gdbconfigpage.h"
 #include "SeerEditorConfigPage.h"
 #include "SeerSourceConfigPage.h"
 #include "SeerKeysConfigPage.h"
@@ -34,14 +34,14 @@ class SeerConfigDialog : public QDialog, protected Ui::SeerConfigDialogForm {
         void                                setGdbHandleTerminatingException                (bool flag);
         bool                                gdbHandleTerminatingException                   () const;
 
-        void                                setDprintfStyle                                 (const QString& style);
-        QString                             dprintfStyle                                    () const;
-
-        void                                setDprintfFunction                              (const QString& function);
-        QString                             dprintfFunction                                 () const;
-
-        void                                setDprintfChannel                               (const QString& channel);
-        QString                             dprintfChannel                                  () const;
+//        void                                setDprintfStyle                                 (const QString& style);
+//        QString                             dprintfStyle                                    () const;
+//
+//        void                                setDprintfFunction                              (const QString& function);
+//        QString                             dprintfFunction                                 () const;
+//
+//        void                                setDprintfChannel                               (const QString& channel);
+//        QString                             dprintfChannel                                  () const;
 
         // Editor settings.
         void                                setEditorFont                                   (const QFont& font);
@@ -58,8 +58,8 @@ class SeerConfigDialog : public QDialog, protected Ui::SeerConfigDialogForm {
         QStringList                         sourceAlternateDirectories                      () const;
 
         // Key settings.
-        void                                setKeySettings                                  (const SeerKeySettings& settings);
-        SeerKeySettings                     keySettings                                     () const;
+        void                                setKeySettings                                  (const KeySettings& settings);
+        KeySettings                     keySettings                                     () const;
 
         // Seer settings.
         void                                setSeerConsoleMode                              (const QString& mode);
@@ -82,7 +82,7 @@ class SeerConfigDialog : public QDialog, protected Ui::SeerConfigDialogForm {
         void                                handleButtonClicked                             (QAbstractButton* button);
 
     private:
-        SeerGdbConfigPage*                  _gdbConfigPage;
+        GdbConfigPage*                  _gdbConfigPage;
         SeerEditorConfigPage*               _editorConfigPage;
         SeerSourceConfigPage*               _sourceConfigPage;
         SeerKeysConfigPage*                 _keysConfigPage;

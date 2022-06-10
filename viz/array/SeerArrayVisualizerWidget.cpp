@@ -1,5 +1,5 @@
 #include "SeerArrayVisualizerWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
 #include <QtCharts/QScatterSeries>
@@ -18,15 +18,15 @@
 SeerArrayVisualizerWidget::SeerArrayVisualizerWidget (QWidget* parent) : QWidget(parent) {
 
     // Init variables.
-    _variableId = Seer::createID(); // Create two id's for queries.
-    _memoryId   = Seer::createID();
+    _variableId = SDS::createID(); // Create two id's for queries.
+    _memoryId   = SDS::createID();
     _series     = 0;
 
     // Set up UI.
     setupUi(this);
 
     // Setup the widgets
-    setWindowIcon(QIcon(":/seer/resources/seer_64x64.png"));
+    setWindowIcon(QIcon(":/SeeDataStructure/resources/seer_64x64.png"));
     setWindowTitle("Seer Array Visualizer");
 
     arrayLengthLineEdit->setValidator(new QIntValidator(1, 9999999, this));
@@ -155,7 +155,7 @@ void SeerArrayVisualizerWidget::handleText (const QString& text) {
 
         if (id_text.toInt() == _variableId) {
 
-            QStringList words = Seer::filterEscapes(Seer::parseFirst(text, "value=", '"', '"', false)).split(' ', Qt::SkipEmptyParts);
+            QStringList words = SDS::filterEscapes(SDS::parseFirst(text, "value=", '"', '"', false)).split(' ', QString::SkipEmptyParts);
 
             setVariableAddress(words.first());
         }
@@ -171,14 +171,14 @@ void SeerArrayVisualizerWidget::handleText (const QString& text) {
 
             //qDebug() << text;
 
-            QString memory_text = Seer::parseFirst(text, "memory=", '[', ']', false);
+            QString memory_text = SDS::parseFirst(text, "memory=", '[', ']', false);
 
-            QStringList range_list = Seer::parse(memory_text, "", '{', '}', false);
+            QStringList range_list = SDS::parse(memory_text, "", '{', '}', false);
 
             // Loop through the memory ranges.
             for ( const auto& range_text : range_list  ) {
 
-                QString contents_text = Seer::parseFirst(range_text, "contents=", '"', '"', false);
+                QString contents_text = SDS::parseFirst(range_text, "contents=", '"', '"', false);
 
                 //qDebug() << contents_text;
 
@@ -227,15 +227,15 @@ void SeerArrayVisualizerWidget::handleText (const QString& text) {
         QString id_text = text.section('^', 0,0);
 
         if (id_text.toInt() == _variableId) {
-            variableAddressLineEdit->setText( Seer::filterEscapes(Seer::parseFirst(text, "msg=", '"', '"', false)) );
+            variableAddressLineEdit->setText( SDS::filterEscapes(SDS::parseFirst(text, "msg=", '"', '"', false)) );
         }
 
         if (id_text.toInt() == _memoryId) {
             // Display the error message.
-            QString msg_text = Seer::parseFirst(text, "msg=", false);
+            QString msg_text = SDS::parseFirst(text, "msg=", false);
 
             if (msg_text != "") {
-                QMessageBox::warning(this, "Error.", Seer::filterEscapes(msg_text));
+                QMessageBox::warning(this, "Error.", SDS::filterEscapes(msg_text));
             }
         }
 
@@ -258,7 +258,7 @@ void SeerArrayVisualizerWidget::handleRefreshButton () {
         return;
     }
 
-    int bytes = arrayLengthLineEdit->text().toInt() * Seer::typeBytes(arrayDisplayFormatComboBox->currentText());
+    int bytes = arrayLengthLineEdit->text().toInt() * SDS::typeBytes(arrayDisplayFormatComboBox->currentText());
 
     //qDebug() << _memoryId << variableAddressLineEdit->text() << arrayLengthLineEdit->text() << arrayDisplayFormatComboBox->currentText() << bytes;
 

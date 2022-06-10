@@ -23,7 +23,7 @@ SeerVariableManagerWidget::SeerVariableManagerWidget (QWidget* parent) : QWidget
     tabWidget->addTab(_registerValuesBrowserWidget,  "Registers");
 
     QToolButton* refreshToolButton = new QToolButton(tabWidget);
-    refreshToolButton->setIcon(QIcon(":/seer/resources/RelaxLightIcons/view-refresh.svg"));
+    refreshToolButton->setIcon(QIcon(":/SeeDataStructure/resources/RelaxLightIcons/view-refresh.svg"));
     refreshToolButton->setToolTip("Refresh the variable/register information.");
     tabWidget->setCornerWidget(refreshToolButton, Qt::TopRightCorner);
 

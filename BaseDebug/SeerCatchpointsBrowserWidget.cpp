@@ -1,6 +1,6 @@
 #include "SeerCatchpointsBrowserWidget.h"
 #include "SeerCatchpointCreateDialog.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QTreeWidgetItemIterator>
 #include <QtWidgets/QApplication>
@@ -84,9 +84,9 @@ void SeerCatchpointsBrowserWidget::handleText (const QString& text) {
         //          ]
         //
 
-        QString newtext = Seer::filterEscapes(text); // Filter escaped characters.
+        QString newtext = SDS::filterEscapes(text); // Filter escaped characters.
 
-        QString body_text = Seer::parseFirst(newtext, "body=", '[', ']', false);
+        QString body_text = SDS::parseFirst(newtext, "body=", '[', ']', false);
 
         //qDebug() << body_text;
 
@@ -106,19 +106,19 @@ void SeerCatchpointsBrowserWidget::handleText (const QString& text) {
                 ++it;
             }
 
-            QStringList bkpt_list = Seer::parse(newtext, "bkpt=", '{', '}', false);
+            QStringList bkpt_list = SDS::parse(newtext, "bkpt=", '{', '}', false);
 
             for ( const auto& bkpt_text : bkpt_list  ) {
 
-                QString number_text            = Seer::parseFirst(bkpt_text, "number=",            '"', '"', false);
-                QString type_text              = Seer::parseFirst(bkpt_text, "type=",              '"', '"', false);
-                QString disp_text              = Seer::parseFirst(bkpt_text, "disp=",              '"', '"', false);
-                QString enabled_text           = Seer::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
-                QString what_text              = Seer::parseFirst(bkpt_text, "what=",              '"', '"', false);
-                QString catch_type_text        = Seer::parseFirst(bkpt_text, "catch-type=",        '"', '"', false);
-                QString name_text              = Seer::parseFirst(bkpt_text, "regexp=",            '"', '"', false);
-                QString thread_groups_text     = Seer::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
-                QString times_text             = Seer::parseFirst(bkpt_text, "times=",             '"', '"', false);
+                QString number_text            = SDS::parseFirst(bkpt_text, "number=",            '"', '"', false);
+                QString type_text              = SDS::parseFirst(bkpt_text, "type=",              '"', '"', false);
+                QString disp_text              = SDS::parseFirst(bkpt_text, "disp=",              '"', '"', false);
+                QString enabled_text           = SDS::parseFirst(bkpt_text, "enabled=",           '"', '"', false);
+                QString what_text              = SDS::parseFirst(bkpt_text, "what=",              '"', '"', false);
+                QString catch_type_text        = SDS::parseFirst(bkpt_text, "catch-type=",        '"', '"', false);
+                QString name_text              = SDS::parseFirst(bkpt_text, "regexp=",            '"', '"', false);
+                QString thread_groups_text     = SDS::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
+                QString times_text             = SDS::parseFirst(bkpt_text, "times=",             '"', '"', false);
 
                 // Only look for 'catchpoint' type break points.
                 if (type_text != "catchpoint") {

@@ -1,8 +1,9 @@
 #include "SeerTildeLogWidget.h"
-#include "SeerUtl.h"
+#include "util.h"
 #include <QtWidgets/QScrollBar>
 
-SeerTildeLogWidget::SeerTildeLogWidget (QWidget* parent) : SeerLogWidget(parent) {
+
+SeerTildeLogWidget::SeerTildeLogWidget (QWidget* parent) : LogWidget(parent) {
 }
 
 SeerTildeLogWidget::~SeerTildeLogWidget () {
@@ -20,12 +21,13 @@ void SeerTildeLogWidget::processText (const QString& text) {
         str.chop(1);
     }
 
-    str = Seer::filterEscapes(str);
+    str = SDS::filterEscapes(str);
 
     if (str.back() == '\n') { // Remove trailing "\n"
         str.chop(1);
     }
 
-    textEdit->append(str);
+//    textEdit->append(str);
+    ui->textEdit->append(str);
 }
 
