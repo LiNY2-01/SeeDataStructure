@@ -44,8 +44,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</normaloff>:/seer/resources/RelaxLightIcons/document-open.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/RelaxLightIcons/document-open.svg</normaloff>:/resources/RelaxLightIcons/document-open.svg</iconset>
      </property>
     </widget>
    </item>
@@ -64,8 +64,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/list-remove.svg</normaloff>:/seer/resources/RelaxLightIcons/list-remove.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/RelaxLightIcons/list-remove.svg</normaloff>:/resources/RelaxLightIcons/list-remove.svg</iconset>
      </property>
     </widget>
    </item>
@@ -84,15 +84,15 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
-       <normaloff>:/seer/resources/RelaxLightIcons/edit-find.svg</normaloff>:/seer/resources/RelaxLightIcons/edit-find.svg</iconset>
+      <iconset resource="../SeeDataStructureRc.qrc">
+       <normaloff>:/resources/RelaxLightIcons/edit-find.svg</normaloff>:/resources/RelaxLightIcons/edit-find.svg</iconset>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../SeeDataStructureRc.qrc"/>
  </resources>
  <connections/>
 </ui>

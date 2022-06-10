@@ -36,7 +36,7 @@ SeerEditorWidget::SeerEditorWidget(QWidget* parent) : QWidget(parent) {
     _textSearchPrevShortcut = new QShortcut(QKeySequence(tr("Ctrl+Shift+G")), this);
     _alternateDirShortcut   = new QShortcut(QKeySequence(tr("Ctrl+O")), this);
 
-    setKeySettings(SeerKeySettings::populate());
+    setKeySettings(KeySettings::populate());
 
     // Connect things.
     QObject::connect(searchTextLineEdit,                &QLineEdit::returnPressed,                      this,  &SeerEditorWidget::handleSearchTextLineEdit);
@@ -113,7 +113,7 @@ bool SeerEditorWidget::isAlternateBarShown () const {
     return shown;
 }
 
-void SeerEditorWidget::setKeySettings (const SeerKeySettings& settings) {
+void SeerEditorWidget::setKeySettings (const KeySettings& settings) {
 
     _keySettings = settings;
 
@@ -134,7 +134,7 @@ void SeerEditorWidget::setKeySettings (const SeerKeySettings& settings) {
     }
 }
 
-const SeerKeySettings& SeerEditorWidget::keySettings () const {
+const KeySettings& SeerEditorWidget::keySettings () const {
 
     return _keySettings;
 }
@@ -270,7 +270,7 @@ void SeerEditorWidget::handleAlternateFileOpenToolButton () {
     //qDebug() << "fullname =" << sourceArea()->fullname();
     //qDebug() << "file     =" << sourceArea()->file();
 
-    QString filename = QFileDialog::getOpenFileName(this, "Locate File", sourceArea()->fullname(), QString("File (%1)").arg(sourceArea()->file()), nullptr, QFileDialog::DontUseNativeDialog);
+    QString filename = QFileDialog::getOpenFileName(this, "Locate File", sourceArea()->fullname(), QString("File (%1)").arg(sourceArea()->file()), nullptr);///, QFileDialog::DontUseNativeDialog);
 
     //qDebug() << "location =" << filename;
     //qDebug() << "directory=" << QFileInfo(filename).absolutePath();

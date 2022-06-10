@@ -16,7 +16,7 @@
 SeerEditorManagerWidget::SeerEditorManagerWidget (QWidget* parent) : QWidget(parent) {
 
     // Initialize private data
-    _editorFont                = QFont("Source Code Pro", 10);              // Default font.
+    _editorFont                = QFont("Consolas", 11);              // Default font.
     _editorHighlighterSettings = SeerHighlighterSettings::populateForCPP(); // Default syntax highlighting.
     _editorHighlighterEnabled  = true;
     _editorKeySettings         = KeySettings::populate();               // Defualt key settings.
@@ -235,7 +235,7 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
         QString fullname_text = SDS::parseFirst(frame_text, "fullname=", '"', '"', false);
         QString file_text     = SDS::parseFirst(frame_text, "file=",     '"', '"', false);
         QString line_text     = SDS::parseFirst(frame_text, "line=",     '"', '"', false);
-
+        fullname_text=QDir::toNativeSeparators(fullname_text);
         //qDebug() << frame_text;
         //qDebug() << fullname_text << file_text << line_text;
 
@@ -316,7 +316,7 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
                 QString thread_groups_text     = SDS::parseFirst(bkpt_text, "thread-groups=",     '[', ']', false);
                 QString times_text             = SDS::parseFirst(bkpt_text, "times=",             '"', '"', false);
                 QString original_location_text = SDS::parseFirst(bkpt_text, "original-location=", '"', '"', false);
-
+                fullname_text=QDir::toNativeSeparators(fullname_text);
                 SeerEditorManagerEntries::iterator i = findEntry(fullname_text);
                 SeerEditorManagerEntries::iterator e = endEntry();
 
@@ -365,7 +365,7 @@ void SeerEditorManagerWidget::handleText (const QString& text) {
                 QString fullname_text = SDS::parseFirst(frame_text, "fullname=", '"', '"', false);
                 QString line_text     = SDS::parseFirst(frame_text, "line=",     '"', '"', false);
                 QString arch_text     = SDS::parseFirst(frame_text, "arch=",     '"', '"', false);
-
+                fullname_text=QDir::toNativeSeparators(fullname_text);
                 SeerEditorManagerEntries::iterator i = findEntry(fullname_text);
                 SeerEditorManagerEntries::iterator e = endEntry();
 
@@ -510,7 +510,7 @@ SeerEditorWidget* SeerEditorManagerWidget::createEditorWidgetTab (const QString&
 
     // Connect signals.
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::insertBreakpoint,              this, &SeerEditorManagerWidget::handleInsertBreakpoint);
-    QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::insertPrintpoint,              this, &SeerEditorManagerWidget::handleInsertPrintpoint);
+//    QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::insertPrintpoint,              this, &SeerEditorManagerWidget::handleInsertPrintpoint);
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::deleteBreakpoints,             this, &SeerEditorManagerWidget::handleDeleteBreakpoints);
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::enableBreakpoints,             this, &SeerEditorManagerWidget::handleEnableBreakpoints);
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::disableBreakpoints,            this, &SeerEditorManagerWidget::handleDisableBreakpoints);
@@ -557,7 +557,7 @@ SeerEditorWidget* SeerEditorManagerWidget::createEditorWidgetTab (const QString&
 
     // Connect signals.
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::insertBreakpoint,              this, &SeerEditorManagerWidget::handleInsertBreakpoint);
-    QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::insertPrintpoint,              this, &SeerEditorManagerWidget::handleInsertPrintpoint);
+//    QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::insertPrintpoint,              this, &SeerEditorManagerWidget::handleInsertPrintpoint);
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::deleteBreakpoints,             this, &SeerEditorManagerWidget::handleDeleteBreakpoints);
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::enableBreakpoints,             this, &SeerEditorManagerWidget::handleEnableBreakpoints);
     QObject::connect(editorWidget->sourceArea(), &SeerEditorWidgetSourceArea::disableBreakpoints,            this, &SeerEditorManagerWidget::handleDisableBreakpoints);
@@ -609,7 +609,7 @@ void SeerEditorManagerWidget::deleteEditorWidgetTab (int index) {
 
 void SeerEditorManagerWidget::handleFileOpenToolButtonClicked () {
 
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Source File"), "./", tr("Source files (*.*)"), nullptr, QFileDialog::DontUseNativeDialog);
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Source File"), "./", tr("Source files (*.*)"), nullptr);//, QFileDialog::DontUseNativeDialog);
 
     if (filename == "") {
         return;
@@ -712,7 +712,7 @@ void SeerEditorManagerWidget::handleInsertPrintpoint (QString printpoint) {
     //qDebug() << printpoint;
 
     // rethrow
-    emit insertPrintpoint (printpoint);
+//    emit insertPrintpoint (printpoint);
 }
 
 void SeerEditorManagerWidget::handleDeleteBreakpoints (QString breakpoints) {
