@@ -81,7 +81,12 @@ SOURCES += \
     viz/array/SeerArrayVisualizerWidget.cpp \
     viz/array/SeerArrayWidget.cpp \
     viz/memory/SeerHexWidget.cpp \
-    viz/memory/SeerMemoryVisualizerWidget.cpp
+    viz/memory/SeerMemoryVisualizerWidget.cpp\
+    viz/arr.cpp \
+    viz/double_link.cpp \
+    viz/solo_link.cpp \
+    viz/struct_view.cpp \
+    viz/table.cpp
 
 HEADERS += \
     BaseDebug/LogWidget.h \
@@ -146,7 +151,13 @@ HEADERS += \
     viz/array/SeerArrayVisualizerWidget.h \
     viz/array/SeerArrayWidget.h \
     viz/memory/SeerHexWidget.h \
-    viz/memory/SeerMemoryVisualizerWidget.h
+    viz/memory/SeerMemoryVisualizerWidget.h\
+    viz/arr.h \
+    viz/double_link.h \
+    viz/solo_link.h \
+    viz/struct_view.h \
+    viz/table.h
+
 
 FORMS += \
     BaseDebug/LogWidget.ui \
@@ -192,7 +203,11 @@ FORMS += \
     myQT/QProcessInfoWidget.ui \
     sdsmainwindow.ui \
     viz/array/SeerArrayVisualizerWidget.ui \
-    viz/memory/SeerMemoryVisualizerWidget.ui
+    viz/memory/SeerMemoryVisualizerWidget.ui\
+    viz/arr.ui \
+    viz/double_link.ui \
+    viz/solo_link.ui \
+    viz/struct_view.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

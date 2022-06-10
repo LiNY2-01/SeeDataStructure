@@ -89,6 +89,10 @@ sdsMainWindow::sdsMainWindow(QWidget *parent)
     QObject::connect(ui->actionInterruptProcess,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterrupt);
     QObject::connect(ui->actionMemoryVisualizer,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbMemoryVisualizer);
     QObject::connect(ui->actionArrayVisualizer,             &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbArrayVisualizer);
+    QObject::connect(ui->actionArr,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbArrVisualizer);
+    QObject::connect(ui->actionstruct,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbStrVisualizer);
+    QObject::connect(ui->actionsolo,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbSoloVisualizer);
+    QObject::connect(ui->actiondouble,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbDoubleVisualizer);
     QObject::connect(interruptAction,                   &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterrupt);
     QObject::connect(interruptActionSIGINT,             &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGINT);
     QObject::connect(interruptActionSIGKILL,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGKILL);
@@ -953,3 +957,23 @@ void sdsMainWindow::refreshShortCuts () {
 
 
 
+
+//void sdsMainWindow::on_actionArr_triggered()
+//{
+//m1.show();
+//}
+
+//void sdsMainWindow::on_actionstruct_triggered()
+//{
+//m2.show();
+//}
+
+//void sdsMainWindow::on_actionsolo_triggered()
+//{
+//m3.show();
+//}
+
+//void sdsMainWindow::on_actiondouble_triggered()
+//{
+//m4.show();
+//}

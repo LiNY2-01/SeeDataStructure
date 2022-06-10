@@ -194,6 +194,14 @@ public slots:
     void                                handleLogOuputChanged               ();
     void                                handleGdbLoadBreakpoints            ();
     void                                handleGdbSaveBreakpoints            ();
+    void handleGdbArrVisualizer();
+    void handleGdbStrVisualizer();
+    void handleGdbSoloVisualizer();
+    void handleGdbDoubleVisualizer();
+    void handleGdbArrAddExpression(QString expression);
+    void handleGdbArrStrExpression(QString expression);
+    void handleGdbSoloAddExpression(QString expression);
+    void handleGdbDoubleAddExpression(QString expression);
 
     void                                handleGdbProcessFinished            (int exitCode, QProcess::ExitStatus exitStatus);
     void                                handleGdbProcessErrored             (QProcess::ProcessError errorStatus);

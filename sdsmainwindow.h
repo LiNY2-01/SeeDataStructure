@@ -12,10 +12,18 @@
 #include <QtGui/QResizeEvent>
 #include <QtCore/QString>
 #include <QtCore/QStringList>
+#include<QWidget>
+#include<arr.h>
+#include<struct_view.h>
+#include<solo_link.h>
+#include<double_link.h>
+#include <QGraphicsDropShadowEffect>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class sdsMainWindow; }
 QT_END_NAMESPACE
 
+struct cWindow;
 class sdsMainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -79,5 +87,10 @@ private:
 
 private:
     Ui::sdsMainWindow *ui;
+    arr m1;
+    Struct_view m2;
+    Solo_link m3;
+    Double_link m4;
+    cWindow *d;
 };
 #endif // SDSMAINWINDOW_H

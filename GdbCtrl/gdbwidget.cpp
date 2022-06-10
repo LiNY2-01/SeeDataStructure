@@ -1,5 +1,9 @@
 #include "gdbwidget.h"
-
+#include "arr.h"
+#include "table.h"
+#include"struct_view.h"
+#include"solo_link.h"
+#include"double_link.h"
 #include "LogWidget.h"
 #include "SeerMemoryVisualizerWidget.h"
 #include "SeerArrayVisualizerWidget.h"
@@ -121,8 +125,9 @@ GdbWidget::GdbWidget(QWidget *parent) :
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               _watchpointsBrowserWidget,                                      &SeerWatchpointsBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               _catchpointsBrowserWidget,                                      &SeerCatchpointsBrowserWidget::handleText);
 //        QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               _printpointsBrowserWidget,                                      &SeerPrintpointsBrowserWidget::handleText);
-//        QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->variableManagerWidget->registerValuesBrowserWidget(),           &SeerRegisterValuesBrowserWidget::handleText);
+        // QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->variableManagerWidget->registerValuesBrowserWidget(),           &SeerRegisterValuesBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->variableManagerWidget->variableTrackerBrowserWidget(),          &SeerVariableTrackerBrowserWidget::handleText);
+//        QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               array,          &arr::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->variableManagerWidget->variableLoggerBrowserWidget(),           &SeerVariableLoggerBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::astrixTextOutput,                                                              _watchpointsBrowserWidget,                                      &SeerWatchpointsBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::astrixTextOutput,                                                              this,                                                           &GdbWidget::handleText);
@@ -1525,7 +1530,7 @@ void GdbWidget::handleGdbDataDeleteExpressions (QString expressionids) {
 
     }else{
 
-        QStringList ids = expressionids.split(' ', Qt::SkipEmptyParts);
+        QStringList ids = expressionids.split(' ', QString::SkipEmptyParts);
 
         bool first = true;
         for (int i=0; i<ids.size(); i++) {
@@ -1720,6 +1725,102 @@ void GdbWidget::handleGdbSaveBreakpoints () {
     QMessageBox::information(this, "Seer", "Saved.");
 }
 
+void GdbWidget::handleGdbArrVisualizer()
+{
+    handleGdbArrAddExpression("");
+}
+
+void GdbWidget::handleGdbStrVisualizer()
+{
+handleGdbArrStrExpression("");
+}
+
+void GdbWidget::handleGdbSoloVisualizer()
+{
+handleGdbSoloAddExpression("");
+}
+
+void GdbWidget::handleGdbDoubleVisualizer()
+{
+    handleGdbDoubleAddExpression("");
+}
+
+void GdbWidget::handleGdbArrAddExpression(QString expression)
+{
+    Q_UNUSED(expression);
+
+    if (executableLaunchMode() == "") {
+        return;
+    }
+
+    arr* w = new arr(0);
+    w->show();
+
+    // Connect things.
+    QObject::connect(_gdbMonitor,  &GdbMonitor::astrixTextOutput,                           w,    &arr::handleText);
+    QObject::connect(_gdbMonitor,  &GdbMonitor::caretTextOutput,                            w,    &arr::handleText);
+    QObject::connect(w,            &arr::evaluateVariableExpression,  this, &GdbWidget::handleGdbDataEvaluateExpression);
+    QObject::connect(w,            &arr::evaluateMemoryExpression,    this, &GdbWidget::handleGdbArrayEvaluateExpression);
+    QObject::connect(w,     &arr::refreshVariableTrackerValues,                            this,                                                           &GdbWidget::handleGdbDataListExpressions);
+    QObject::connect(w,     &arr::refreshVariableTrackerNames,                             this,                                                           &GdbWidget::handleGdbDataListValues);
+    QObject::connect(w,     &arr::get_data,                                   this,                                                           &GdbWidget::handleGdbDataAddExpression);
+    QObject::connect(w,     &arr::deleteVariableExpressions,                               this,                                                           &GdbWidget::handleGdbDataDeleteExpressions);
+    // Tell the visualizer what variable to use.
+    w->setVariableName(expression);
+    Table* t = new Table(w);
+    QObject::connect(_gdbMonitor,  &GdbMonitor::astrixTextOutput,                           t,    &Table::handleText);
+    QObject::connect(_gdbMonitor,  &GdbMonitor::caretTextOutput,                            t,    &Table::handleText);
+    QObject::connect(t,            &Table::evaluateVariableExpression,  this, &GdbWidget::handleGdbDataEvaluateExpression);
+    QObject::connect(t,            &Table::evaluateMemoryExpression,    this, &GdbWidget::handleGdbArrayEvaluateExpression);
+}
+
+void GdbWidget::handleGdbArrStrExpression(QString expression)
+{
+    Q_UNUSED(expression);
+
+    if (executableLaunchMode() == "") {
+        return;
+    }
+    Struct_view* w = new Struct_view(0);
+    w->show();
+
+    QObject::connect(_gdbMonitor, &GdbMonitor::caretTextOutput, w, &Struct_view::handleText);
+    QObject::connect(this, &GdbWidget::stoppingPointReached, w, &Struct_view::handleStoppingPointReached);
+    QObject::connect(w, &Struct_view::refreshStackFrames, this, &GdbWidget::handleGdbStackListFrames);
+}
+
+void GdbWidget::handleGdbSoloAddExpression(QString expression)
+{
+    Q_UNUSED(expression);
+
+    if (executableLaunchMode() == "") {
+        return;
+    }
+    Solo_link* w = new Solo_link(0);
+    w->show();
+    QObject::connect(_gdbMonitor, &GdbMonitor::astrixTextOutput, w, &Solo_link::handleText);
+    QObject::connect(_gdbMonitor, &GdbMonitor::caretTextOutput, w, &Solo_link::handleText);
+    QObject::connect(w, &Solo_link::evaluateVariableExpression, this, &GdbWidget::handleGdbDataEvaluateExpression);
+    QObject::connect(w, &Solo_link::evaluateMemoryExpression, this, &GdbWidget::handleGdbArrayEvaluateExpression);
+    QObject::connect(this, &GdbWidget::stoppingPointReached, w, &Solo_link::handleStoppingPointReached);
+}
+
+void GdbWidget::handleGdbDoubleAddExpression(QString expression)
+{
+    Q_UNUSED(expression);
+
+    if (executableLaunchMode() == "") {
+        return;
+    }
+    Double_link* w = new Double_link(0);
+    w->show();
+    QObject::connect(_gdbMonitor, &GdbMonitor::astrixTextOutput, w, &Double_link::handleText);
+    QObject::connect(_gdbMonitor, &GdbMonitor::caretTextOutput, w, &Double_link::handleText);
+    QObject::connect(w, &Double_link::evaluateVariableExpression, this, &GdbWidget::handleGdbDataEvaluateExpression);
+    QObject::connect(w, &Double_link::evaluateMemoryExpression, this, &GdbWidget::handleGdbArrayEvaluateExpression);
+    QObject::connect(this, &GdbWidget::stoppingPointReached, w, &Double_link::handleStoppingPointReached);
+}
+
 void GdbWidget::handleGdbProcessFinished (int exitCode, QProcess::ExitStatus exitStatus) {
 
     //qDebug() << "Gdb process finished. Exit code =" << exitCode << "Exit status =" << exitStatus;
@@ -1882,7 +1983,7 @@ void GdbWidget::startGdb () {
     _gdbProcess->setProgram(gdbProgram());
 
     // Build the gdb argument list.
-    QStringList args = gdbArguments().split(' ', Qt::SkipEmptyParts);
+    QStringList args = gdbArguments().split(' ', QString::SkipEmptyParts);
 
     // Give the gdb process the argument list.
     _gdbProcess->setArguments(args);

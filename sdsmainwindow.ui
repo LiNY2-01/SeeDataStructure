@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
+    <width>1208</width>
     <height>628</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>984</width>
+     <width>1208</width>
      <height>26</height>
     </rect>
    </property>
@@ -107,7 +107,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <addaction name="actionGdbRun"/>
    <addaction name="actionGdbStart"/>
@@ -119,7 +119,10 @@
    <addaction name="actionInterruptProcess"/>
    <addaction name="separator"/>
    <addaction name="actionMemoryVisualizer"/>
-   <addaction name="actionArrayVisualizer"/>
+   <addaction name="actionArr"/>
+   <addaction name="actionstruct"/>
+   <addaction name="actionsolo"/>
+   <addaction name="actiondouble"/>
   </widget>
   <action name="actionGdbQuit">
    <property name="text">
@@ -463,6 +466,30 @@
    </property>
    <property name="statusTip">
     <string>Minimize the console window.</string>
+   </property>
+  </action>
+  <action name="actionArr">
+   <property name="icon">
+    <iconset resource="SeeDataStructureRc.qrc">
+     <normaloff>:/resources/array.png</normaloff>:/resources/array.png</iconset>
+   </property>
+   <property name="text">
+    <string>Arr</string>
+   </property>
+  </action>
+  <action name="actionstruct">
+   <property name="text">
+    <string>struct</string>
+   </property>
+  </action>
+  <action name="actionsolo">
+   <property name="text">
+    <string>单链表</string>
+   </property>
+  </action>
+  <action name="actiondouble">
+   <property name="text">
+    <string>双链表</string>
    </property>
   </action>
  </widget>

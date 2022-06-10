@@ -113,7 +113,17 @@ int main(int argc, char *argv[])
 
 
     sdsMainWindow w;
+    if (file.open(QFile::ReadOnly))
+    {
+        QString style = QString::fromLatin1(file.readAll());
+        a.setStyleSheet(style);
+        file.close();
+    }
     w.setWindowIcon(QIcon(":/resources/seer_64x64.png"));
+    QFile file(":/resources/style.qss");
+    
+
+
     w.setExecutableName(executableName);
     w.setExecutableArguments(positionalArguments);
     w.setExecutableBreakpointsFilename(executableBreakpointsFilename);

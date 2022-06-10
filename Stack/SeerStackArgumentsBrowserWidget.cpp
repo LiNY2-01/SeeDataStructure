@@ -39,7 +39,6 @@ void SeerStackArgumentsBrowserWidget::handleText (const QString& text) {
 
         argumentsTreeWidget->clear();
 
-
         //qDebug() << text;
 
         // ^done,stack-args=[
@@ -76,7 +75,6 @@ void SeerStackArgumentsBrowserWidget::handleText (const QString& text) {
             topItem->setText(0, level_text);
 
             argumentsTreeWidget->addTopLevelItem(topItem);
-
 
             // Get the argument names and values for the level.
             for ( const auto& namevalue_text : namevalue_list  ) {

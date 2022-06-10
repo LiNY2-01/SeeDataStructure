@@ -7,7 +7,7 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QLoggingCategory>
-static QLoggingCategory LC("seer.stack");
+// static QLoggingCategory LC("seer.stack");
 SeerStackFramesBrowserWidget::SeerStackFramesBrowserWidget (QWidget* parent) : QWidget(parent) {
 
     // Construct the UI.
