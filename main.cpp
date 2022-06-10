@@ -6,6 +6,7 @@
 #include <QtCore/QCommandLineOption>
 #include <QtCore/QString>
 #include <QtCore/QDebug>
+#include <QtCore/QFile>
 #include <QLoggingCategory>
 #include <QApplication>
 
@@ -111,7 +112,7 @@ int main(int argc, char *argv[])
 
 
 
-
+    QFile file(":/resources/style.qss");
     sdsMainWindow w;
     if (file.open(QFile::ReadOnly))
     {
@@ -120,7 +121,7 @@ int main(int argc, char *argv[])
         file.close();
     }
     w.setWindowIcon(QIcon(":/resources/seer_64x64.png"));
-    QFile file(":/resources/style.qss");
+
     
 
 

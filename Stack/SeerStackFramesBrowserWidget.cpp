@@ -168,8 +168,8 @@ void SeerStackFramesBrowserWidget::handleText (const QString& text) {
 
             // Add the level to the tree.
 
-            qCDebug(LC) << level_text;
-            qCDebug(LC) << level;
+//            qCDebug(LC) << level_text;
+//            qCDebug(LC) << level;
             QTreeWidgetItem* topItem=stackTreeWidget->topLevelItem(level);
             while(topItem->childCount()>0)
             {

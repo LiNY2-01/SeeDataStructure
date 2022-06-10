@@ -4,7 +4,7 @@
 #include <QMouseEvent>
 #include <complex>
 #include<cmath>
-
+#include <QDebug>
 struct cWindow {
 cWindow(QLayout *contentWidget) : contentWidget(contentWidget) {}
 
@@ -96,20 +96,20 @@ void Double_link::draw_point(QString var_name)
 
 void Double_link::refresh()
 {
-    scene->clear();
-    num = 0;
-    last_point = NULL;
-    QString head_name = ui->headEdit->text();
-    QString next_name = ui->nextEdit->text();
-    QString pre_name = ui->frontEdit->text();
-    if (head_name == "" || next_name == ""||pre_name=="")
-        return;
-    link = link_name;
-    _variableId = SDS::createID();
-    _memoryId = SDS::createID();
-    variableName = head_name;
-    setVariableName(head_name);
-    emit evaluateVariableExpression(_variableId, head_name);
+//    scene->clear();
+//    num = 0;
+//    last_point = NULL;
+//    QString head_name = ui->headEdit->text();
+//    QString next_name = ui->nextEdit->text();
+//    QString pre_name = ui->frontEdit->text();
+//    if (head_name == "" || next_name == ""||pre_name=="")
+//        return;
+//    link = link_name;
+//    _variableId = SDS::createID();
+//    _memoryId = SDS::createID();
+//    variableName = head_name;
+//    setVariableName(head_name);
+//    emit evaluateVariableExpression(_variableId, head_name);
 
 }
 
@@ -149,26 +149,26 @@ void Double_link::test()
 
 void Double_link::handleText(const QString &text)
 {
-    if (text.contains(QRegExp("^([0-9]+)\\^done,value="))) {
+//    if (text.contains(QRegExp("^([0-9]+)\\^done,value="))) {
 
-        // 10^done,value="1"
-        // 11^done,value="0x7fffffffd538"
+//        // 10^done,value="1"
+//        // 11^done,value="0x7fffffffd538"
 
-        QString id_text = text.section('^', 0, 0);
-        qDebug() << text << "**********************" << _variableId << endl;
-        qDebug() << text << "**********************" << id_text.toInt() << endl;
-        if (id_text.toInt() == _variableId) {
+//        QString id_text = text.section('^', 0, 0);
+////        qDebug() << text << "**********************" << _variableId << endl;
+//        qDebug() << text << "**********************" << id_text.toInt() << endl;
+//        if (id_text.toInt() == _variableId) {
 
-            QStringList words = SDS::filterEscapes(SDS::parseFirst(text, "value=", '"', '"', false)).split(' ', QString::SkipEmptyParts);
+//            QStringList words = SDS::filterEscapes(SDS::parseFirst(text, "value=", '"', '"', false)).split(' ', QString::SkipEmptyParts);
 
-            setVariableAddress(words.first());
-        }
+//            setVariableAddress(words.first());
+//        }
 
-    }
+//    }
 
-    else {
-        // Ignore anything else.
-    }
+//    else {
+//        // Ignore anything else.
+//    }
 }
 
 void Double_link::handleStoppingPointReached()
