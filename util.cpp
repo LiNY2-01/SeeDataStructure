@@ -2,23 +2,25 @@
 
 #include <QtCore/QDebug>
 #include <mutex>
-
+#include <QtCore/QDir>
 namespace SDS {
 
     QString version () {
 
         // Increment this with every release on GitHub.
-        return "1.5-beta";
+        return "0.1";
     }
 
     QString filterEscapes (const QString& str) {
 
-        QString tmp = str;
-
+        QString tmp = str;//QDir::toNativeSeparators();
+        tmp.replace("\\\\\\\\",  "//");
+        tmp.replace("\\\\",  "//");
         tmp.replace("\\r",  "\r");
         tmp.replace("\\n",  "\n");
-        tmp.replace("\\t",  "\t");
         tmp.replace("\\\"", "\"");
+        tmp.replace("\\t",  "\t");
+
 
         return tmp;
     }
