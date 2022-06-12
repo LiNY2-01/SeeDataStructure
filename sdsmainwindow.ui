@@ -70,6 +70,9 @@
     <addaction name="actionSettingsSaveConfiguration"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>Help</string>
     </property>
@@ -107,7 +110,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionGdbRun"/>
    <addaction name="actionGdbStart"/>
@@ -119,7 +122,7 @@
    <addaction name="actionInterruptProcess"/>
    <addaction name="separator"/>
    <addaction name="actionMemoryVisualizer"/>
-   <addaction name="actionArr"/>
+   <addaction name="actionArrayVisualizer"/>
    <addaction name="actionstruct"/>
    <addaction name="actionsolo"/>
    <addaction name="actiondouble"/>
@@ -244,6 +247,9 @@
    </property>
   </action>
   <action name="actionHelpAbout">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normaloff>:/seer/resources/seer_32x32.png</normaloff>:/seer/resources/seer_32x32.png</iconset>
