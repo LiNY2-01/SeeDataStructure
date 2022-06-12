@@ -18,8 +18,8 @@ SeerVariableManagerWidget::SeerVariableManagerWidget (QWidget* parent) : QWidget
     _variableTrackerBrowserWidget = new SeerVariableTrackerBrowserWidget(this);
 //    _registerValuesBrowserWidget  = new SeerRegisterValuesBrowserWidget(this);
 
-    tabWidget->addTab(_variableLoggerBrowserWidget,  "Logger");
-    tabWidget->addTab(_variableTrackerBrowserWidget, "Tracker");
+    tabWidget->addTab(_variableLoggerBrowserWidget,  "记录");
+    tabWidget->addTab(_variableTrackerBrowserWidget, "监视");
 //    tabWidget->addTab(_registerValuesBrowserWidget,  "Registers");
 
     QToolButton* refreshToolButton = new QToolButton(tabWidget);

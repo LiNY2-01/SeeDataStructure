@@ -63,17 +63,17 @@
      </column>
      <column>
       <property name="text">
-       <string>Style</string>
+       <string>风格</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Foreground</string>
+       <string>前景色</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Background</string>
+       <string>背景色</string>
       </property>
      </column>
     </widget>
@@ -145,7 +145,7 @@ p, li { white-space: pre-wrap; }
       <string>Enable or disable highlighting for C/C++ files.</string>
      </property>
      <property name="text">
-      <string>Enable C/C++ highlighter.</string>
+      <string>启用 C/C++ 语法高亮</string>
      </property>
     </widget>
    </item>

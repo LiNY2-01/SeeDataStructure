@@ -40,8 +40,7 @@ set (
 		GdbCtrl/gdbconfigpage.h 
 		GdbCtrl/gdblogwidget.h 
 		GdbCtrl/gdbmonitor.h 
-		GdbCtrl/gdbwidget.h 
-		SeerAboutDialog.h 
+		GdbCtrl/gdbwidget.h
 		SeerArgumentsDialog.h 
 		SeerRunStatusIndicator.h 
 		SeerSlashProcDialog.h 
@@ -112,8 +111,7 @@ set ( 	SeeDataStructure_SRCS
 		GdbCtrl/gdbconfigpage.cpp 
 		GdbCtrl/gdblogwidget.cpp 
 		GdbCtrl/gdbmonitor.cpp 
-		GdbCtrl/gdbwidget.cpp 
-		SeerAboutDialog.cpp 
+		GdbCtrl/gdbwidget.cpp
 		SeerArgumentsDialog.cpp 
 		SeerRunStatusIndicator.cpp 
 		SeerSlashProcDialog.cpp 
@@ -177,8 +175,7 @@ set ( 	SeeDataStructure_UIS
 		Editor/SeerEditorWidget.ui 
 		Editor/SeerTypeBrowserWidget.ui 
 		GdbCtrl/gdbconfigpage.ui 
-		GdbCtrl/gdbwidget.ui 
-		SeerAboutDialog.ui 
+		GdbCtrl/gdbwidget.ui
 		SeerArgumentsDialog.ui 
 		SeerSlashProcDialog.ui 
 		Stack/SeerStackArgumentsBrowserWidget.ui 

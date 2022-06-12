@@ -72,11 +72,11 @@ GdbWidget::GdbWidget(QWidget *parent) :
     _gdbOutputLog             = new GdbLogWidget(this);
     _seerOutputLog            = new LogWidget(this);
 
-    ui->logsTabWidget->addTab(_breakpointsBrowserWidget, "Breakpoints");
-    ui->logsTabWidget->addTab(_watchpointsBrowserWidget, "Watchpoints");
-    ui->logsTabWidget->addTab(_catchpointsBrowserWidget, "Catchpoints");
-    ui->logsTabWidget->addTab(_gdbOutputLog,             "GDB  output");
-    ui->logsTabWidget->addTab(_seerOutputLog,            "SDS output");
+    ui->logsTabWidget->addTab(_breakpointsBrowserWidget, "断点");
+    ui->logsTabWidget->addTab(_watchpointsBrowserWidget, "监测点");
+    ui->logsTabWidget->addTab(_catchpointsBrowserWidget, "捕捉点");
+    ui->logsTabWidget->addTab(_gdbOutputLog,             "GDB 输出");
+    ui->logsTabWidget->addTab(_seerOutputLog,            "SDS 输出");
     ui->logsTabWidget->setCurrentIndex(0);
 
     SeerBreakpointsOptionsBarWidget* breakpointsOptionsBar = new SeerBreakpointsOptionsBarWidget(ui->logsTabWidget);
@@ -85,8 +85,8 @@ GdbWidget::GdbWidget(QWidget *parent) :
 
     ui->manualCommandComboBox->setFont(font);
     ui->manualCommandComboBox->setEditable(true);
-    ui->manualCommandComboBox->lineEdit()->setPlaceholderText("Manually enter a gdb/mi command...");
-    ui->manualCommandComboBox->lineEdit()->setToolTip("Manually enter a gdb/mi command.");
+    ui->manualCommandComboBox->lineEdit()->setPlaceholderText("手动输入gdb/mi 指令...");
+    ui->manualCommandComboBox->lineEdit()->setToolTip("手动输入gdb/mi 指令");
     ui->manualCommandComboBox->lineEdit()->setClearButtonEnabled(true);
 
     // Create the gdb process.
@@ -117,7 +117,7 @@ GdbWidget::GdbWidget(QWidget *parent) :
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->sourceLibraryManagerWidget->libraryBrowserWidget(),             &SeerLibraryBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->stackManagerWidget->stackFramesBrowserWidget(),                 &SeerStackFramesBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->stackManagerWidget->stackLocalsBrowserWidget(),                 &SeerStackLocalsBrowserWidget::handleText);
-        QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->stackManagerWidget->stackArgumentsBrowserWidget(),              &SeerStackArgumentsBrowserWidget::handleText);
+//        QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->stackManagerWidget->stackArgumentsBrowserWidget(),              &SeerStackArgumentsBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->stackManagerWidget,                                             &SeerStackManagerWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->threadManagerWidget->threadIdsBrowserWidget(),                  &SeerThreadIdsBrowserWidget::handleText);
         QObject::connect(_gdbMonitor,                                               &GdbMonitor::caretTextOutput,                                                               ui->threadManagerWidget->threadFramesBrowserWidget(),               &SeerThreadFramesBrowserWidget::handleText);
@@ -162,7 +162,7 @@ GdbWidget::GdbWidget(QWidget *parent) :
         QObject::connect(ui->stackManagerWidget->stackFramesBrowserWidget(),            &SeerStackFramesBrowserWidget::refreshStackFrames,                                          this,                                                           &GdbWidget::handleGdbStackListFrames);
         QObject::connect(ui->stackManagerWidget->stackLocalsBrowserWidget(),            &SeerStackLocalsBrowserWidget::refreshStackLocals,                                          this,                                                           &GdbWidget::handleGdbStackListLocals);
         QObject::connect(ui->stackManagerWidget->stackFramesBrowserWidget(),            &SeerStackFramesBrowserWidget::selectedFrame,                                               this,                                                           &GdbWidget::handleGdbStackSelectFrame);
-        QObject::connect(ui->stackManagerWidget->stackArgumentsBrowserWidget(),         &SeerStackArgumentsBrowserWidget::refreshStackArguments,                                    this,                                                           &GdbWidget::handleGdbStackListArguments);
+//        QObject::connect(ui->stackManagerWidget->stackArgumentsBrowserWidget(),         &SeerStackArgumentsBrowserWidget::refreshStackArguments,                                    this,                                                           &GdbWidget::handleGdbStackListArguments);
         QObject::connect(ui->stackManagerWidget->stackFramesBrowserWidget(),            &SeerStackFramesBrowserWidget::selectedFile,                                                ui->editorManagerWidget,                                            &SeerEditorManagerWidget::handleOpenFile);
         QObject::connect(ui->stackManagerWidget,                                        &SeerStackManagerWidget::refreshThreadFrames,                                               this,                                                           &GdbWidget::handleGdbThreadListFrames);
 
@@ -208,7 +208,7 @@ GdbWidget::GdbWidget(QWidget *parent) :
 
         QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->stackManagerWidget->stackFramesBrowserWidget(),                 &SeerStackFramesBrowserWidget::handleStoppingPointReached);
         QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->stackManagerWidget->stackLocalsBrowserWidget(),                 &SeerStackLocalsBrowserWidget::handleStoppingPointReached);
-        QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->stackManagerWidget->stackArgumentsBrowserWidget(),              &SeerStackArgumentsBrowserWidget::handleStoppingPointReached);
+//        QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->stackManagerWidget->stackArgumentsBrowserWidget(),              &SeerStackArgumentsBrowserWidget::handleStoppingPointReached);
         QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->threadManagerWidget->threadIdsBrowserWidget(),                  &SeerThreadIdsBrowserWidget::handleStoppingPointReached);
         QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->threadManagerWidget->threadFramesBrowserWidget(),               &SeerThreadFramesBrowserWidget::handleStoppingPointReached);
 //        QObject::connect(this,                                                      &GdbWidget::stoppingPointReached,                                                       ui->variableManagerWidget->registerValuesBrowserWidget(),           &SeerRegisterValuesBrowserWidget::handleStoppingPointReached);

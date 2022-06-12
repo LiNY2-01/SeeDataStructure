@@ -21,12 +21,12 @@
      </property>
      <column>
       <property name="text">
-       <string>File</string>
+       <string>文件</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Full Name</string>
+       <string>文件全名</string>
       </property>
      </column>
     </widget>

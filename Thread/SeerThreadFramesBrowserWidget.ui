@@ -21,47 +21,47 @@
      </property>
      <column>
       <property name="text">
-       <string>Thread Id</string>
+       <string>线程ID</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>State</string>
+       <string>状态</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Level</string>
+       <string>等级</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Function</string>
+       <string>函数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>File</string>
+       <string>文件</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Line</string>
+       <string>行数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Fullname</string>
+       <string>文件路径</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Arguments</string>
+       <string>参数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Name</string>
+       <string>名称</string>
       </property>
      </column>
      <column>
@@ -71,17 +71,17 @@
      </column>
      <column>
       <property name="text">
-       <string>Address</string>
+       <string>地址</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Arch</string>
+       <string>架构</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Core</string>
+       <string>核心</string>
       </property>
      </column>
     </widget>

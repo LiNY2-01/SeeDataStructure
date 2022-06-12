@@ -7,17 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>375</width>
-    <height>121</height>
+    <height>126</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Select Executable Arguments to Use</string>
+   <string>选择可执行文件的参数</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="executableArgumentsGroupBox">
      <property name="title">
-      <string>Executable Arguments</string>
+      <string>可执行文件参数</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

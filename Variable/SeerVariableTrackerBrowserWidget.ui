@@ -22,7 +22,7 @@
         <string>Add a variable to track.</string>
        </property>
        <property name="placeholderText">
-        <string>Enter a variable name to track</string>
+        <string>输入变量名/表达式以跟踪</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -71,12 +71,12 @@
      </column>
      <column>
       <property name="text">
-       <string>Name</string>
+       <string>表达式</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Value</string>
+       <string>值</string>
       </property>
      </column>
     </widget>

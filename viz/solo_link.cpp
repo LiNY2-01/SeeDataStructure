@@ -140,14 +140,6 @@ void Solo_link::draw_point(QString var_nem)
 
 void Solo_link::refresh()
 {
-//    QList<QString>f;
-//    f.append("head");
-//    f.append("point1");
-//    f.append("point2");
-//    f.append("point3");
-//    for (int i = 0; i < f.size() ; i++)
-//        draw_point(f[i], i);
-//    emit evaluateMemoryExpression(_memoryId, variableAddress,1);
     scene->clear();
     num=0;
     last_point=NULL;
@@ -162,23 +154,6 @@ void Solo_link::refresh()
     setVariableName(head_name);
     emit evaluateVariableExpression(_variableId, head_name);
 }
-struct a
-{
-    QString var_name;
-    QString data;
-    QString address;
-};
-//void Solo_link::handle_data(QString str)
-//{
-//        a head;
-//        head.var_name=str;
-//        head.data="0";
-//        head.address="0x7ffff";
-//        draw_point(head.var_name);
-////        if(head.address!="NULL")
-////            emit get_data_by_address(head.address);
-
-//}
 
 void Solo_link::handleText(const QString &text)
 {
@@ -218,17 +193,6 @@ void Solo_link::on_pushButton_clicked()
     setVariableName(head_name);
     emit evaluateVariableExpression(_variableId, head_name);
 }
-
-//void Solo_link::test(QString str)
-//{
-//    handle_data(str);
-//}
-
-
-
-
-
-
 
 
 void Solo_link::mousePressEvent(QMouseEvent *e) {

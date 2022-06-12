@@ -23,7 +23,7 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>Variable names</string>
+      <string>变量名</string>
      </property>
      <property name="clearButtonEnabled">
       <bool>true</bool>
@@ -39,7 +39,7 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>Variable types</string>
+      <string>变量类型</string>
      </property>
      <property name="clearButtonEnabled">
       <bool>true</bool>
@@ -53,32 +53,32 @@
      </property>
      <column>
       <property name="text">
-       <string>Variable</string>
+       <string>变量</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Type</string>
+       <string>类型</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>File</string>
+       <string>文件</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Line</string>
+       <string>行数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Full Name</string>
+       <string>文件路径和名称</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Description</string>
+       <string>描述</string>
       </property>
      </column>
     </widget>

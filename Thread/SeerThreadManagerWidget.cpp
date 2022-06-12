@@ -18,7 +18,7 @@ SeerThreadManagerWidget::SeerThreadManagerWidget (QWidget* parent) : QWidget(par
     _threadFramesBrowserWidget = new SeerThreadFramesBrowserWidget(this);
 
     tabWidget->addTab(_threadIdsBrowserWidget, "Ids");
-    tabWidget->addTab(_threadFramesBrowserWidget, "Frames");
+    tabWidget->addTab(_threadFramesBrowserWidget, "帧");
 
     QToolButton* refreshToolButton = new QToolButton(tabWidget);
     refreshToolButton->setIcon(QIcon(":/resources/RelaxLightIcons/view-refresh.svg"));

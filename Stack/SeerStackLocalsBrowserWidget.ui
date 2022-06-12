@@ -21,22 +21,22 @@
      </property>
      <column>
       <property name="text">
-       <string>Name</string>
+       <string>名称</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Arg</string>
+       <string>参数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Value</string>
+       <string>变量值</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Used</string>
+       <string>是否使用</string>
       </property>
      </column>
     </widget>

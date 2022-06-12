@@ -2,7 +2,7 @@
 
 #include "SeerVariableTrackerBrowserWidget.h"
 #include "SeerVariableLoggerBrowserWidget.h"
-#include "SeerRegisterValuesBrowserWidget.h"
+//#include "SeerRegisterValuesBrowserWidget.h"
 
 #include <QtWidgets/QWidget>
 
@@ -28,6 +28,6 @@ class SeerVariableManagerWidget : public QWidget, protected Ui::SeerVariableMana
     private:
         SeerVariableTrackerBrowserWidget*               _variableTrackerBrowserWidget;
         SeerVariableLoggerBrowserWidget*                _variableLoggerBrowserWidget;
-        SeerRegisterValuesBrowserWidget*                _registerValuesBrowserWidget;
+//        SeerRegisterValuesBrowserWidget*                _registerValuesBrowserWidget;
 };
 

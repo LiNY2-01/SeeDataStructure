@@ -232,6 +232,7 @@ void SeerStackFramesBrowserWidget::handleStoppingPointReached () {
 
 void SeerStackFramesBrowserWidget::refresh () {
     emit refreshStackFrames();
+    emit refreshStackArguments();
 }
 
 void SeerStackFramesBrowserWidget::handleItemDoubleClicked (QTreeWidgetItem* item, int column) {

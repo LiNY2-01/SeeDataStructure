@@ -21,32 +21,32 @@
      </property>
      <column>
       <property name="text">
-       <string>Function</string>
+       <string>函数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>File</string>
+       <string>文件</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Line</string>
+       <string>行号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Full Name</string>
+       <string>文件路径</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Type</string>
+       <string>类型</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Description</string>
+       <string>描述</string>
       </property>
      </column>
     </widget>

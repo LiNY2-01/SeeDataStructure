@@ -22,9 +22,6 @@ class arr : public QDialog
 public:
     explicit arr(QWidget *parent = nullptr);
     ~arr();
-//    QMenu *rightMenu;
-//    QAction *del;
-//    void createRightMenu();
     void                setVariableName                     (const QString& name);
     QString             variableName                        () const;
     void                setVariableAddress                  (const QString& address);
@@ -47,11 +44,6 @@ public slots:
 protected:
     void showEvent(QShowEvent* event);
 
-//private slots:
-//    void clicked_rightMenu(const QPoint &pos);
-//    void var_exist(QString);
-//    void add_tree(QString);
-//    void del_tree(QString);
 
 signals:
     void                evaluateVariableExpression          (int expressionid, QString expression);

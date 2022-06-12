@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
+TRANSLATIONS = \
+            language.zh_CN.ts
 SOURCES += \
     BaseDebug/LogWidget.cpp \
     BaseDebug/SeerBreakpointCreateDialog.cpp \
@@ -46,7 +47,6 @@ SOURCES += \
     GdbCtrl/gdblogwidget.cpp \
     GdbCtrl/gdbmonitor.cpp \
     GdbCtrl/gdbwidget.cpp \
-    SeerAboutDialog.cpp \
     SeerArgumentsDialog.cpp \
     SeerRunStatusIndicator.cpp \
     SeerSlashProcDialog.cpp \
@@ -57,7 +57,6 @@ SOURCES += \
     Thread/SeerThreadFramesBrowserWidget.cpp \
     Thread/SeerThreadIdsBrowserWidget.cpp \
     Thread/SeerThreadManagerWidget.cpp \
-    Variable/SeerRegisterValuesBrowserWidget.cpp \
     Variable/SeerVariableBrowserWidget.cpp \
     Variable/SeerVariableLoggerBrowserWidget.cpp \
     Variable/SeerVariableManagerWidget.cpp \
@@ -117,7 +116,6 @@ HEADERS += \
     GdbCtrl/gdblogwidget.h \
     GdbCtrl/gdbmonitor.h \
     GdbCtrl/gdbwidget.h \
-    SeerAboutDialog.h \
     SeerArgumentsDialog.h \
     SeerRunStatusIndicator.h \
     SeerSlashProcDialog.h \
@@ -128,7 +126,6 @@ HEADERS += \
     Thread/SeerThreadFramesBrowserWidget.h \
     Thread/SeerThreadIdsBrowserWidget.h \
     Thread/SeerThreadManagerWidget.h \
-    Variable/SeerRegisterValuesBrowserWidget.h \
     Variable/SeerVariableBrowserWidget.h \
     Variable/SeerVariableLoggerBrowserWidget.h \
     Variable/SeerVariableManagerWidget.h \
@@ -180,7 +177,6 @@ FORMS += \
     Editor/SeerTypeBrowserWidget.ui \
     GdbCtrl/gdbconfigpage.ui \
     GdbCtrl/gdbwidget.ui \
-    SeerAboutDialog.ui \
     SeerArgumentsDialog.ui \
     SeerSlashProcDialog.ui \
     Stack/SeerStackArgumentsBrowserWidget.ui \
@@ -190,7 +186,6 @@ FORMS += \
     Thread/SeerThreadFramesBrowserWidget.ui \
     Thread/SeerThreadIdsBrowserWidget.ui \
     Thread/SeerThreadManagerWidget.ui \
-    Variable/SeerRegisterValuesBrowserWidget.ui \
     Variable/SeerVariableBrowserWidget.ui \
     Variable/SeerVariableLoggerBrowserWidget.ui \
     Variable/SeerVariableManagerWidget.ui \
@@ -281,3 +276,4 @@ INCLUDEPATH +=  BaseDebug/  \
                 viz/        \
                 viz/array/  \
                 viz/memory/ \
+

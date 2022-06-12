@@ -23,6 +23,7 @@ class SeerStackFramesBrowserWidget : public QWidget, protected Ui::SeerStackFram
 
     signals:
         void                refreshStackFrames          ();
+        void                refreshStackArguments       ();
         void                selectedFile                (QString file, QString fullname, int lineno);
         void                selectedFrame               (int frameno);
 

@@ -80,6 +80,9 @@ protected:
     void                        setKeySettings                      (const KeySettings& settings);
     const KeySettings       keySettings                         () const;
     void                        refreshShortCuts                    ();
+    void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
 
 private:
     QProgressIndicator*         _progressIndicator;

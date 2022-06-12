@@ -6,81 +6,63 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1208</width>
+    <width>1223</width>
     <height>628</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>See Your DataStructure</string>
   </property>
-  <widget class="GdbWidget" name="gdbWidget"/>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(254, 254, 254);
+
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+
+border-bottom-left-radius:10px;
+
+border-bottom-right-radius:10px;
+</string>
+  </property>
+  <widget class="GdbWidget" name="gdbWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1208</width>
+     <width>1223</width>
      <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>文件</string>
     </property>
     <addaction name="actionFileDebug"/>
     <addaction name="actionFileArguments"/>
     <addaction name="actionFileQuit"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>视图</string>
     </property>
-    <widget class="QMenu" name="menuConsole">
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="statusTip">
-      <string/>
-     </property>
-     <property name="title">
-      <string>Console</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>:/seer/resources/console.png</normaloff>:/seer/resources/console.png</iconset>
-     </property>
-     <addaction name="actionConsoleNormal"/>
-     <addaction name="actionConsoleMinimized"/>
-     <addaction name="actionConsoleHidden"/>
-    </widget>
     <addaction name="actionViewMemoryVisualizer"/>
     <addaction name="actionViewArrayVisualizer"/>
-    <addaction name="menuConsole"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
-     <string>Settings</string>
+     <string>设置</string>
     </property>
     <addaction name="actionSettingsConfiguration"/>
     <addaction name="actionSettingsSaveConfiguration"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionHelpAbout"/>
-   </widget>
    <widget class="QMenu" name="menuControl">
     <property name="title">
-     <string>Control</string>
+     <string>控制</string>
     </property>
     <addaction name="actionControlRun"/>
     <addaction name="actionControlStart"/>
@@ -92,11 +74,9 @@
     <addaction name="actionControlInterrupt"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
    <addaction name="menuControl"/>
    <addaction name="menuView"/>
    <addaction name="menuSettings"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -114,18 +94,19 @@
    </attribute>
    <addaction name="actionGdbRun"/>
    <addaction name="actionGdbStart"/>
+   <addaction name="separator"/>
    <addaction name="actionGdbContinue"/>
    <addaction name="actionGdbNext"/>
    <addaction name="actionGdbStep"/>
    <addaction name="actionGdbFinish"/>
-   <addaction name="separator"/>
    <addaction name="actionInterruptProcess"/>
    <addaction name="separator"/>
    <addaction name="actionMemoryVisualizer"/>
-   <addaction name="actionArrayVisualizer"/>
+   <addaction name="actionViewArrayVisualizer"/>
    <addaction name="actionstruct"/>
    <addaction name="actionsolo"/>
    <addaction name="actiondouble"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionGdbQuit">
    <property name="text">
@@ -141,13 +122,13 @@
      <normaloff>:/resources/exit.png</normaloff>:/resources/exit.png</iconset>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>退出</string>
    </property>
    <property name="toolTip">
-    <string>Quit</string>
+    <string>退出</string>
    </property>
    <property name="statusTip">
-    <string>Quit the  Seer debugger.</string>
+    <string>退出程序。</string>
    </property>
   </action>
   <action name="actionGdbStart">
@@ -156,7 +137,7 @@
      <normaloff>:/resources/restart.png</normaloff>:/resources/restart.png</iconset>
    </property>
    <property name="text">
-    <string>Start</string>
+    <string>启动</string>
    </property>
   </action>
   <action name="actionGdbRun">
@@ -165,7 +146,7 @@
      <normaloff>:/resources/restart.png</normaloff>:/resources/restart.png</iconset>
    </property>
    <property name="text">
-    <string>Run</string>
+    <string>运行</string>
    </property>
   </action>
   <action name="actionGdbNext">
@@ -174,7 +155,10 @@
      <normaloff>:/resources/step_over.png</normaloff>:/resources/step_over.png</iconset>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>next</string>
    </property>
   </action>
   <action name="actionGdbStep">
@@ -183,7 +167,10 @@
      <normaloff>:/resources/step_into.png</normaloff>:/resources/step_into.png</iconset>
    </property>
    <property name="text">
-    <string>Step</string>
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>步进</string>
    </property>
   </action>
   <action name="actionGdbFinish">
@@ -192,7 +179,10 @@
      <normaloff>:/resources/step_out.png</normaloff>:/resources/step_out.png</iconset>
    </property>
    <property name="text">
-    <string>Finish</string>
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>步出</string>
    </property>
   </action>
   <action name="actionGdbContinue">
@@ -201,7 +191,10 @@
      <normaloff>:/resources/continue.png</normaloff>:/resources/continue.png</iconset>
    </property>
    <property name="text">
-    <string>Continue</string>
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>继续</string>
    </property>
   </action>
   <action name="actionFileDebug">
@@ -210,13 +203,13 @@
      <normaloff>:/resources/debug.png</normaloff>:/resources/debug.png</iconset>
    </property>
    <property name="text">
-    <string>Debug...</string>
+    <string>调试</string>
    </property>
    <property name="toolTip">
-    <string>Debug</string>
+    <string>调试</string>
    </property>
    <property name="statusTip">
-    <string>Load an executable to debug.</string>
+    <string>加载可执行文件进行调试。</string>
    </property>
   </action>
   <action name="actionFileArguments">
@@ -225,13 +218,13 @@
      <normaloff>:/resources/arguments.png</normaloff>:/resources/arguments.png</iconset>
    </property>
    <property name="text">
-    <string>Arguments...</string>
+    <string>运行参数</string>
    </property>
    <property name="toolTip">
-    <string>Arguments</string>
+    <string>程序运行参数</string>
    </property>
    <property name="statusTip">
-    <string>Specify new arguments to the current executable.</string>
+    <string>指定当前可执行文件的参数。</string>
    </property>
   </action>
   <action name="actionInterruptProcess">
@@ -240,16 +233,13 @@
      <normaloff>:/resources/stop.png</normaloff>:/resources/stop.png</iconset>
    </property>
    <property name="text">
-    <string>Interrupt</string>
+    <string>停止运行</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send a 'Terminate' signal to the process.&lt;br/&gt;&lt;br/&gt;Hold down for alternate signals.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
   <action name="actionHelpAbout">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="icon">
     <iconset>
      <normaloff>:/seer/resources/seer_32x32.png</normaloff>:/seer/resources/seer_32x32.png</iconset>
@@ -260,6 +250,9 @@
    <property name="statusTip">
     <string>About Seer</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionMemoryVisualizer">
    <property name="icon">
@@ -267,7 +260,7 @@
      <normaloff>:/resources/memory.png</normaloff>:/resources/memory.png</iconset>
    </property>
    <property name="text">
-    <string>Memory</string>
+    <string>内存</string>
    </property>
    <property name="toolTip">
     <string>Launch a blank Memory Visualizer.</string>
@@ -291,22 +284,22 @@
      <normaloff>:/resources/memory.png</normaloff>:/resources/memory.png</iconset>
    </property>
    <property name="text">
-    <string>Memory Visualizer</string>
+    <string>内存可视化</string>
    </property>
    <property name="statusTip">
-    <string>Launch a blank Memory Visualizer.</string>
+    <string>启动一个空的内存可视化窗口。</string>
    </property>
   </action>
   <action name="actionViewArrayVisualizer">
    <property name="icon">
-    <iconset resource="SeeDataStructureRc.qrc">
-     <normaloff>:/resources/array.png</normaloff>:/resources/array.png</iconset>
+    <iconset>
+     <normaloff>:/resources/icons/3516600_analysis_chart_graph_options_report_icon.svg</normaloff>:/resources/icons/3516600_analysis_chart_graph_options_report_icon.svg</iconset>
    </property>
    <property name="text">
-    <string>Array Visualizer</string>
+    <string>数组可视化</string>
    </property>
    <property name="statusTip">
-    <string>Launch a blank Array Visualizer.</string>
+    <string/>
    </property>
   </action>
   <action name="actionControlRun">
@@ -315,13 +308,13 @@
      <normaloff>:/resources/restart.png</normaloff>:/resources/restart.png</iconset>
    </property>
    <property name="text">
-    <string>Run</string>
+    <string>运行</string>
    </property>
    <property name="toolTip">
-    <string>Run</string>
+    <string>运行</string>
    </property>
    <property name="statusTip">
-    <string>Start the program in GDB. Honor breakpoints, if any.</string>
+    <string>重新运行。在断点处断点。</string>
    </property>
   </action>
   <action name="actionControlStart">
@@ -330,13 +323,13 @@
      <normaloff>:/resources/restart.png</normaloff>:/resources/restart.png</iconset>
    </property>
    <property name="text">
-    <string>Start</string>
+    <string>启动</string>
    </property>
    <property name="toolTip">
     <string>Start</string>
    </property>
    <property name="statusTip">
-    <string>Start the program in GDB. Stop in main().</string>
+    <string>重新运行。在main()函数断点。</string>
    </property>
   </action>
   <action name="actionControlContinue">
@@ -345,13 +338,13 @@
      <normaloff>:/resources/continue.png</normaloff>:/resources/continue.png</iconset>
    </property>
    <property name="text">
-    <string>Continue</string>
+    <string>继续</string>
    </property>
    <property name="toolTip">
-    <string>Continue</string>
+    <string>继续</string>
    </property>
    <property name="statusTip">
-    <string>Continue executing the program. Stop at any breakpoints, or when the program exits.</string>
+    <string/>
    </property>
   </action>
   <action name="actionControlNext">
@@ -360,13 +353,13 @@
      <normaloff>:/resources/step_over.png</normaloff>:/resources/step_over.png</iconset>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string>步过</string>
    </property>
    <property name="toolTip">
     <string>Next</string>
    </property>
    <property name="statusTip">
-    <string>Execute next step, step over functions.</string>
+    <string>执行到下一行。 步过函数。</string>
    </property>
   </action>
   <action name="actionControlStep">
@@ -375,13 +368,13 @@
      <normaloff>:/resources/step_into.png</normaloff>:/resources/step_into.png</iconset>
    </property>
    <property name="text">
-    <string>Step</string>
+    <string>步进</string>
    </property>
    <property name="toolTip">
-    <string>Step</string>
+    <string>步进</string>
    </property>
    <property name="statusTip">
-    <string>Execute next step, step into functions.</string>
+    <string>执行到下一行。 步入函数。</string>
    </property>
   </action>
   <action name="actionControlFinish">
@@ -390,13 +383,13 @@
      <normaloff>:/resources/step_out.png</normaloff>:/resources/step_out.png</iconset>
    </property>
    <property name="text">
-    <string>Finish</string>
+    <string>步出</string>
    </property>
    <property name="toolTip">
-    <string>Finish</string>
+    <string>步出</string>
    </property>
    <property name="statusTip">
-    <string>Execute the remaining function, stop after it exits.</string>
+    <string>执行函数中余下代码，在函数结束后停止。</string>
    </property>
   </action>
   <action name="actionControlInterrupt">
@@ -405,13 +398,13 @@
      <normaloff>:/resources/stop.png</normaloff>:/resources/stop.png</iconset>
    </property>
    <property name="text">
-    <string>Interrupt</string>
+    <string>中断</string>
    </property>
    <property name="toolTip">
-    <string>Interrupt</string>
+    <string>中断</string>
    </property>
    <property name="statusTip">
-    <string>Send a 'Terminate' signal to the process.</string>
+    <string>终止程序运行</string>
    </property>
   </action>
   <action name="actionSettingsConfiguration">
@@ -420,10 +413,10 @@
      <normaloff>:/resources/arguments.png</normaloff>:/resources/arguments.png</iconset>
    </property>
    <property name="text">
-    <string>Configuration...</string>
+    <string>配置</string>
    </property>
    <property name="statusTip">
-    <string>Configure Seer.</string>
+    <string>配置本程序</string>
    </property>
   </action>
   <action name="actionSettingsSaveConfiguration">
@@ -432,10 +425,10 @@
      <normaloff>:/resources/RelaxLightIcons/document-save.svg</normaloff>:/resources/RelaxLightIcons/document-save.svg</iconset>
    </property>
    <property name="text">
-    <string>Save Configuration...</string>
+    <string>保存配置</string>
    </property>
    <property name="statusTip">
-    <string>Save the configurations so future Seer sessions will use them.</string>
+    <string>保存配置,之后程序将使用此配置。</string>
    </property>
   </action>
   <action name="actionConsoleNormal">
@@ -476,26 +469,47 @@
   </action>
   <action name="actionArr">
    <property name="icon">
-    <iconset resource="SeeDataStructureRc.qrc">
-     <normaloff>:/resources/array.png</normaloff>:/resources/array.png</iconset>
+    <iconset>
+     <normaloff>:/resources/icons/3516600_analysis_chart_graph_options_report_icon.svg</normaloff>:/resources/icons/3516600_analysis_chart_graph_options_report_icon.svg</iconset>
    </property>
    <property name="text">
     <string>Arr</string>
    </property>
   </action>
   <action name="actionstruct">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/icons/2955247_chart_node_analytics_diagram_growth_icon.svg</normaloff>:/resources/icons/2955247_chart_node_analytics_diagram_growth_icon.svg</iconset>
+   </property>
    <property name="text">
-    <string>struct</string>
+    <string>结构视图</string>
    </property>
   </action>
   <action name="actionsolo">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/icons/2203530_connect_direction_path_way_icon.png</normaloff>:/resources/icons/2203530_connect_direction_path_way_icon.png</iconset>
+   </property>
    <property name="text">
     <string>单链表</string>
    </property>
   </action>
   <action name="actiondouble">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/icons/2317763_link_screenhero_screenshare_share_talk_icon.svg</normaloff>:/resources/icons/2317763_link_screenhero_screenshare_share_talk_icon.svg</iconset>
+   </property>
    <property name="text">
     <string>双链表</string>
+   </property>
+  </action>
+  <action name="actionclose">
+   <property name="icon">
+    <iconset resource="SeeDataStructureRc.qrc">
+     <normaloff>:/resources/hide.png</normaloff>:/resources/hide.png</iconset>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </action>
  </widget>
@@ -510,5 +524,22 @@
  <resources>
   <include location="SeeDataStructureRc.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionclose</sender>
+   <signal>triggered()</signal>
+   <receiver>sdsMainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>611</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

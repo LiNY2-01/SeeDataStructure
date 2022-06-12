@@ -19,10 +19,10 @@
      <item>
       <widget class="QLineEdit" name="variableNameLineEdit">
        <property name="toolTip">
-        <string>Variable name or expression.</string>
+        <string/>
        </property>
        <property name="placeholderText">
-        <string>variable name</string>
+        <string>变量名</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -32,13 +32,13 @@
      <item>
       <widget class="QLineEdit" name="variableAddressLineEdit">
        <property name="toolTip">
-        <string>Variable address.</string>
+        <string>变量地址</string>
        </property>
        <property name="readOnly">
         <bool>true</bool>
        </property>
        <property name="placeholderText">
-        <string>variable address</string>
+        <string>变量地址</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
@@ -48,13 +48,13 @@
      <item>
       <widget class="QLineEdit" name="arrayLengthLineEdit">
        <property name="toolTip">
-        <string>Total number of elements in array.</string>
+        <string>数组中元素个数</string>
        </property>
        <property name="inputMask">
         <string/>
        </property>
        <property name="placeholderText">
-        <string># elements</string>
+        <string>元素数量</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -64,7 +64,7 @@
      <item>
       <widget class="QLineEdit" name="arrayOffsetLineEdit">
        <property name="toolTip">
-        <string>Element offset into array. (default=0)</string>
+        <string>元素偏置 (默认为=0)</string>
        </property>
        <property name="inputMask">
         <string/>
@@ -73,7 +73,7 @@
         <string/>
        </property>
        <property name="placeholderText">
-        <string>array offset</string>
+        <string>偏置</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -83,13 +83,13 @@
      <item>
       <widget class="QLineEdit" name="arrayStrideLineEdit">
        <property name="toolTip">
-        <string>Element stride between values. (default=1)</string>
+        <string>变量步长 (默认为=1)</string>
        </property>
        <property name="inputMask">
         <string/>
        </property>
        <property name="placeholderText">
-        <string>array stride</string>
+        <string>步长</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -99,7 +99,7 @@
      <item>
       <widget class="QComboBox" name="arrayDisplayFormatComboBox">
        <property name="toolTip">
-        <string>Array data type.</string>
+        <string>数据类型</string>
        </property>
        <item>
         <property name="text">
@@ -146,7 +146,7 @@
      <item>
       <widget class="QToolButton" name="refreshToolButton">
        <property name="toolTip">
-        <string>Refresh the display.</string>
+        <string>刷新</string>
        </property>
        <property name="text">
         <string>...</string>
@@ -204,10 +204,10 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Set chart title.</string>
+            <string>设置表标题</string>
            </property>
            <property name="placeholderText">
-            <string>chart title</string>
+            <string>表标题</string>
            </property>
            <property name="clearButtonEnabled">
             <bool>true</bool>
@@ -224,7 +224,7 @@
          <item>
           <widget class="QRadioButton" name="lineRadioButton">
            <property name="text">
-            <string>Line</string>
+            <string>线</string>
            </property>
            <attribute name="buttonGroup">
             <string notr="true">lineTypeButtonGroup</string>
@@ -234,7 +234,7 @@
          <item>
           <widget class="QRadioButton" name="splineRadioButton">
            <property name="text">
-            <string>Spline</string>
+            <string>样条</string>
            </property>
            <attribute name="buttonGroup">
             <string notr="true">lineTypeButtonGroup</string>
@@ -244,7 +244,7 @@
          <item>
           <widget class="QRadioButton" name="scatterRadioButton">
            <property name="text">
-            <string>Scatter</string>
+            <string>散点</string>
            </property>
            <attribute name="buttonGroup">
             <string notr="true">lineTypeButtonGroup</string>
@@ -261,20 +261,20 @@
          <item>
           <widget class="QCheckBox" name="pointsCheckBox">
            <property name="toolTip">
-            <string>Show chart data points.</string>
+            <string>显示数据点</string>
            </property>
            <property name="text">
-            <string>Points</string>
+            <string>点</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QCheckBox" name="labelsCheckBox">
            <property name="toolTip">
-            <string>Show chart data labels.</string>
+            <string>显示数据标签</string>
            </property>
            <property name="text">
-            <string>Labels</string>
+            <string>标签</string>
            </property>
           </widget>
          </item>

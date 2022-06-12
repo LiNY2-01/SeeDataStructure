@@ -20,11 +20,11 @@ SeerSourceLibraryManagerWidget::SeerSourceLibraryManagerWidget (QWidget* parent)
     _variableBrowserWidget  = new SeerVariableBrowserWidget(this);
     _libraryBrowserWidget   = new SeerLibraryBrowserWidget(this);
 
-    tabWidget->addTab(_sourceBrowserWidget,    "Source");
-    tabWidget->addTab(_functionBrowserWidget,  "Functions");
-    tabWidget->addTab(_typeBrowserWidget,      "Types");
-    tabWidget->addTab(_variableBrowserWidget,  "Variables");
-    tabWidget->addTab(_libraryBrowserWidget,   "Libraries");
+    tabWidget->addTab(_sourceBrowserWidget,    "源代码");
+    tabWidget->addTab(_functionBrowserWidget,  "函数");
+    tabWidget->addTab(_typeBrowserWidget,      "类型");
+    tabWidget->addTab(_variableBrowserWidget,  "变量");
+    tabWidget->addTab(_libraryBrowserWidget,   "链接库");
 
     QToolButton* refreshToolButton = new QToolButton(tabWidget);
     refreshToolButton->setIcon(QIcon(":/resources/RelaxLightIcons/view-refresh.svg"));

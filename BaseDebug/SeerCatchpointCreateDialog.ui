@@ -17,13 +17,13 @@
    <item>
     <widget class="QGroupBox" name="catchpointTypeGroupBox">
      <property name="title">
-      <string>Catchpoint Type</string>
+      <string>捕捉点类型</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="QRadioButton" name="throwRadioButton">
         <property name="text">
-         <string>Catch on 'throw'</string>
+         <string>在 'throw'捕捉</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">typeButtonGroup</string>
@@ -33,7 +33,7 @@
       <item row="0" column="1">
        <widget class="QRadioButton" name="loadRadioButton">
         <property name="text">
-         <string>Catch on library 'load'</string>
+         <string>在库 'load'捕捉</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">typeButtonGroup</string>
@@ -43,7 +43,7 @@
       <item row="1" column="0">
        <widget class="QRadioButton" name="rethrowRadioButton">
         <property name="text">
-         <string>Catch on 'rethrow'</string>
+         <string>在 'rethrow'捕捉</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">typeButtonGroup</string>
@@ -53,7 +53,7 @@
       <item row="1" column="1">
        <widget class="QRadioButton" name="unloadRadioButton">
         <property name="text">
-         <string>Catch on library 'unload'</string>
+         <string>在库 'unload'捕捉</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">typeButtonGroup</string>
@@ -63,7 +63,7 @@
       <item row="2" column="0">
        <widget class="QRadioButton" name="catchRadioButton">
         <property name="text">
-         <string>Catch on 'catch'</string>
+         <string>在'catch'捕捉</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">typeButtonGroup</string>
@@ -76,20 +76,20 @@
    <item>
     <widget class="QGroupBox" name="catchpointDetailsGroupBox">
      <property name="title">
-      <string>Catchpoint Details</string>
+      <string>捕捉点详情</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0" colspan="2">
        <widget class="QCheckBox" name="temporaryCheckBox">
         <property name="text">
-         <string>Temporary</string>
+         <string>临时的</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="nameLabel">
         <property name="text">
-         <string>Name</string>
+         <string>名称</string>
         </property>
        </widget>
       </item>

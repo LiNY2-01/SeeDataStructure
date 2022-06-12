@@ -130,7 +130,7 @@ void SeerMemoryVisualizerWidget::handleText (const QString& text) {
 
         if (id_text.toInt() == _variableId) {
 
-            QStringList words = SDS::filterEscapes(SDS::parseFirst(text, "value=", '"', '"', false)).split(' ', Qt::SkipEmptyParts);
+            QStringList words = SDS::filterEscapes(SDS::parseFirst(text, "value=", '"', '"', false)).split(' ', QString::SkipEmptyParts);
 
             setVariableAddress(words.first());
         }

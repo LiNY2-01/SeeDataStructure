@@ -22,7 +22,7 @@
         <string>Variable name or expression.</string>
        </property>
        <property name="placeholderText">
-        <string>variable name</string>
+        <string>变量名</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
@@ -38,20 +38,20 @@
         <bool>true</bool>
        </property>
        <property name="placeholderText">
-        <string>variable address</string>
+        <string>变量地址</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="memoryLengthLineEdit">
        <property name="toolTip">
-        <string>Number of bytes to display.</string>
+        <string>要显示的字节数目</string>
        </property>
        <property name="inputMask">
         <string/>
        </property>
        <property name="placeholderText">
-        <string># Bytes</string>
+        <string>字节数</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
@@ -61,7 +61,7 @@
      <item>
       <widget class="QComboBox" name="memoryDisplayFormatComboBox">
        <property name="toolTip">
-        <string>Memory display format.</string>
+        <string>选择可视化格式</string>
        </property>
        <item>
         <property name="text">
@@ -88,7 +88,7 @@
      <item>
       <widget class="QComboBox" name="charDisplayFormatComboBox">
        <property name="toolTip">
-        <string>Character display format.</string>
+        <string>字符编码</string>
        </property>
        <item>
         <property name="text">
@@ -105,7 +105,7 @@
      <item>
       <widget class="QSpinBox" name="columnCountSpinBox">
        <property name="toolTip">
-        <string>Number of columns in display.</string>
+        <string>行数</string>
        </property>
        <property name="minimum">
         <number>1</number>
@@ -118,7 +118,7 @@
      <item>
       <widget class="QToolButton" name="printToolButton">
        <property name="toolTip">
-        <string>Print the display.</string>
+        <string>打印输出内容</string>
        </property>
        <property name="text">
         <string>...</string>
@@ -132,7 +132,7 @@
      <item>
       <widget class="QToolButton" name="saveToolButton">
        <property name="toolTip">
-        <string>Save the display to a file.</string>
+        <string>保存输出内容到文件中</string>
        </property>
        <property name="text">
         <string>...</string>
@@ -146,7 +146,7 @@
      <item>
       <widget class="QToolButton" name="refreshToolButton">
        <property name="toolTip">
-        <string>Refresh the display.</string>
+        <string>刷新输出</string>
        </property>
        <property name="text">
         <string>...</string>

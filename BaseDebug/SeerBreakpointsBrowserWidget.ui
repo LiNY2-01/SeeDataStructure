@@ -21,12 +21,12 @@
      </property>
      <column>
       <property name="text">
-       <string>Number</string>
+       <string>编号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Type</string>
+       <string>类型</string>
       </property>
      </column>
      <column>
@@ -36,47 +36,47 @@
      </column>
      <column>
       <property name="text">
-       <string>Enabled</string>
+       <string>可用</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Address</string>
+       <string>地址</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Function</string>
+       <string>函数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>File</string>
+       <string>文件</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Fullname</string>
+       <string>文件路径</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Line</string>
+       <string>行数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Thread Groups</string>
+       <string>线程组</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Times</string>
+       <string>次数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Original Location</string>
+       <string>原始位置</string>
       </property>
      </column>
     </widget>

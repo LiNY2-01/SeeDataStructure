@@ -16,12 +16,12 @@ SeerStackManagerWidget::SeerStackManagerWidget (QWidget* parent) : QWidget(paren
     tabWidget->setTabsClosable(false);
 
     _stackFramesBrowserWidget    = new SeerStackFramesBrowserWidget(this);
-    _stackArgumentsBrowserWidget = new SeerStackArgumentsBrowserWidget(this);
+//    _stackArgumentsBrowserWidget = new SeerStackArgumentsBrowserWidget(this);
     _stackLocalsBrowserWidget    = new SeerStackLocalsBrowserWidget(this);
 
-    tabWidget->addTab(_stackFramesBrowserWidget,    "Frames");
-    tabWidget->addTab(_stackArgumentsBrowserWidget, "Arguments");
-    tabWidget->addTab(_stackLocalsBrowserWidget,    "Locals");
+    tabWidget->addTab(_stackFramesBrowserWidget,    "帧 ");
+//    tabWidget->addTab(_stackArgumentsBrowserWidget, "Arguments");
+    tabWidget->addTab(_stackLocalsBrowserWidget,    "局部变量");
 
     QToolButton* refreshToolButton = new QToolButton(tabWidget);
     refreshToolButton->setIcon(QIcon(":/resources/RelaxLightIcons/view-refresh.svg"));
@@ -39,10 +39,6 @@ SeerStackFramesBrowserWidget* SeerStackManagerWidget::stackFramesBrowserWidget (
     return _stackFramesBrowserWidget;
 }
 
-SeerStackArgumentsBrowserWidget* SeerStackManagerWidget::stackArgumentsBrowserWidget () {
-    return _stackArgumentsBrowserWidget;
-}
-
 SeerStackLocalsBrowserWidget* SeerStackManagerWidget::stackLocalsBrowserWidget () {
     return _stackLocalsBrowserWidget;
 }
@@ -50,7 +46,7 @@ SeerStackLocalsBrowserWidget* SeerStackManagerWidget::stackLocalsBrowserWidget (
 void SeerStackManagerWidget::handleRefreshToolButtonClicked () {
 
     stackFramesBrowserWidget()->refresh();
-    stackArgumentsBrowserWidget()->refresh();
+
     stackLocalsBrowserWidget()->refresh();
 
     refresh();
@@ -78,11 +74,11 @@ void SeerStackManagerWidget::handleText (const QString& text) {
 
         QString currentthreadid_text = SDS::parseFirst(newtext,   "current-thread-id=", '"', '"', false);
 
-        groupBox->setTitle("Stack Info for Thread Id : " + currentthreadid_text);
+        groupBox->setTitle("线程ID: " + currentthreadid_text+"的栈信息");
 
     }else if (text.startsWith("^error,msg=\"No registers.\"")) {
 
-        groupBox->setTitle("Stack Info");
+        groupBox->setTitle("栈信息");
 
     }else{
         // Ignore others.

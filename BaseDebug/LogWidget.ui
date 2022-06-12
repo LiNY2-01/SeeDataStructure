@@ -29,7 +29,7 @@
       <bool>false</bool>
      </property>
      <property name="placeholderText">
-      <string>[gdb output]</string>
+      <string>[gdb 输出]</string>
      </property>
     </widget>
    </item>

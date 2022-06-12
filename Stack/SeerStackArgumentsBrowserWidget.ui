@@ -21,17 +21,17 @@
      </property>
      <column>
       <property name="text">
-       <string>Level</string>
+       <string>级别</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Name</string>
+       <string>名称</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Value</string>
+       <string>值</string>
       </property>
      </column>
     </widget>

@@ -4,7 +4,7 @@
 #include "SeerDebugDialog.h"
 #include "SeerConfigDialog.h"
 #include "SeerArgumentsDialog.h"
-#include "SeerAboutDialog.h"
+//#include "SeerAboutDialog.h"
 #include "util.h"
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QMenu>
@@ -14,6 +14,13 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QSettings>
 #include <QtCore/QDebug>
+struct cWindow {
+cWindow(QWidget *contentWidget) : contentWidget(contentWidget) {}
+
+QWidget *contentWidget;
+QPoint mousePressedPosition;
+QPoint windowPositionAsDrag;
+};
 
 
 sdsMainWindow::sdsMainWindow(QWidget *parent)
@@ -21,6 +28,15 @@ sdsMainWindow::sdsMainWindow(QWidget *parent)
     , ui(new Ui::sdsMainWindow)
 {
     ui->setupUi(this);
+
+//    this->setAttribute(Qt::WA_TranslucentBackground);
+//    this->setWindowFlags(Qt::FramelessWindowHint);
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect;
+    effect->setOffset(4,4);
+    effect->setColor(QColor(0,0,0,50));
+    effect->setBlurRadius(10);
+    ui->gdbWidget->setGraphicsEffect(effect);
+    d = new cWindow(ui->gdbWidget);
 
     SeerRunStatusIndicator* runStatus = new SeerRunStatusIndicator(this);
 
@@ -42,7 +58,7 @@ sdsMainWindow::sdsMainWindow(QWidget *parent)
     // Set up Interrupt menu.
     //
     QMenu* interruptMenu = new QMenu(this);
-    QAction* interruptAction = interruptMenu->addAction("GDB Interrupt");
+    QAction* interruptAction = interruptMenu->addAction("GDB 中断");
     interruptMenu->addSeparator();
 //    QAction* interruptActionSIGINT  = interruptMenu->addAction("SIGINT");
 //    QAction* interruptActionSIGKILL = interruptMenu->addAction("SIGKILL");
@@ -67,7 +83,7 @@ sdsMainWindow::sdsMainWindow(QWidget *parent)
     QObject::connect(ui->actionConsoleNormal,               &QAction::triggered,                    this,           &sdsMainWindow::handleViewConsoleNormal);
     QObject::connect(ui->actionConsoleHidden,               &QAction::triggered,                    this,           &sdsMainWindow::handleViewConsoleHidden);
     QObject::connect(ui->actionConsoleMinimized,            &QAction::triggered,                    this,           &sdsMainWindow::handleViewConsoleMinimized);
-    QObject::connect(ui->actionHelpAbout,                   &QAction::triggered,                    this,           &sdsMainWindow::handleHelpAbout);
+//    QObject::connect(ui->actionHelpAbout,                   &QAction::triggered,                    this,           &sdsMainWindow::handleHelpAbout);
 
     QObject::connect(ui->actionControlRun,                  &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbRunExecutable);
     QObject::connect(ui->actionControlStart,                &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbStartExecutable);
@@ -405,8 +421,8 @@ void sdsMainWindow::handleSettingsConfiguration () {
 
 void sdsMainWindow::handleSettingsSaveConfiguration () {
 
-    int result = QMessageBox::warning(this, "Seer - Settings",
-                                      QString("Write the configuration settings?"),
+    int result = QMessageBox::warning(this, "SeeDataStructure - 设置",
+                                      QString("覆盖配置?"),
                                       QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel);
 
     if (result == QMessageBox::Cancel) {
@@ -416,14 +432,14 @@ void sdsMainWindow::handleSettingsSaveConfiguration () {
     writeConfigSettings();
     ui->gdbWidget->writeSettings();
 
-    QMessageBox::information(this, "Seer", "Saved.");
+    QMessageBox::information(this, "SeeDataStructure", "保存.");
 }
 
 void sdsMainWindow::handleHelpAbout () {
 
-    SeerAboutDialog dlg(this);
+//    SeerAboutDialog dlg(this);
 
-    dlg.exec();
+//    dlg.exec();
 }
 
 void sdsMainWindow::handleText (const QString& text) {
@@ -542,7 +558,7 @@ void sdsMainWindow::handleText (const QString& text) {
 
         QString threadid_text = SDS::parseFirst(text, "thread-id=", '"', '"', false);
 
-        statusBar()->showMessage("Program started. Thread id: " + threadid_text, 3000);
+        statusBar()->showMessage("程序已启动. Thread id: " + threadid_text, 3000);
 
         return;
 
@@ -558,14 +574,14 @@ void sdsMainWindow::handleText (const QString& text) {
             reason_text = "unknown";
         }
 
-        statusBar()->showMessage("Program stopped. Reason: " + reason_text, 3000);
+        statusBar()->showMessage("程序停止. 原因: " + reason_text, 3000);
 
         if (reason_text == "signal-received") {
             //*stopped,reason="signal-received",signal-name="SIGSEGV",signal-meaning="Segmentation fault", ...
 
             QString signalname_text = SDS::parseFirst(text, "signal-name=", '"', '"', false);
 
-            QMessageBox::warning(this, "Warning.", "Program encountered a '" + signalname_text + "' signal.");
+            QMessageBox::warning(this, "警告.", "程序遇到一个 '" + signalname_text + "' 信号.");
 
         }else if (reason_text == "watchpoint-trigger") {
             //*stopped,reason="watchpoint-trigger",wpt={number="3",exp="i"},value={old="32767",new="42"},frame={addr="0x0000000000400d79",func="function1",args=[{name="text",value="\"Hello, World!\""}],file="function1.cpp",fullname="/home/erniep/Development/Peak/src/Seer/helloworld/function1.cpp",line="9",arch="i386:x86-64"},thread-id="1",stopped-threads="all",core="0"
@@ -577,7 +593,7 @@ void sdsMainWindow::handleText (const QString& text) {
             QString old_text    = SDS::parseFirst(value_text, "old=",    '"', '"', false);
             QString new_text    = SDS::parseFirst(value_text, "new=",    '"', '"', false);
 
-            QMessageBox::information(this, "Note.", QString("Watchpoint triggered.\n\nNumber: %1\nExpression: %2\nOld value: %3\nNew value: %4").arg(number_text).arg(exp_text).arg(old_text).arg(new_text) );
+            QMessageBox::information(this, "Note.", QString("Watchpoint 触发。\n\nNumber: %1\nExpression: %2\nOld value: %3\nNew value: %4").arg(number_text).arg(exp_text).arg(old_text).arg(new_text) );
 
         }else if (reason_text == "read-watchpoint-trigger") {
             //*stopped,reason="read-watchpoint-trigger",hw-rwpt={number="5",exp="i"},value={value="42"},frame={addr="0x0000000000400d9a",func="function1",args=[{name="text",value="\"Hello, World!\""}],file="function1.cpp",fullname="/home/erniep/Development/Peak/src/Seer/helloworld/function1.cpp",line="11",arch="i386:x86-64"},thread-id="1",stopped-threads="all",core="4"
@@ -588,7 +604,7 @@ void sdsMainWindow::handleText (const QString& text) {
             QString value_text  = SDS::parseFirst(text,       "value=",   '{', '}', false);
             QString value_text2 = SDS::parseFirst(value_text, "value=",   '"', '"', false);
 
-            QMessageBox::information(this, "Note.", QString("Watchpoint triggered.\n\nNumber: %1\nExpression: %2\nValue: %3").arg(number_text).arg(exp_text).arg(value_text2) );
+            QMessageBox::information(this, "Note.", QString("Watchpoint 触发。\n\nNumber: %1\nExpression: %2\nValue: %3").arg(number_text).arg(exp_text).arg(value_text2) );
 
         }else if (reason_text == "access-watchpoint-trigger") {
             //*stopped,reason="access-watchpoint-trigger",hw-awpt={number="3",exp="v"},value={old="1",new="11"},frame={addr="0x000000000040059a",func="bar",args=[{name="v",value="11"}],file="helloonefile.cpp",fullname="/home/erniep/Development/Peak/src/Seer/helloonefile/helloonefile.cpp",line="15",arch="i386:x86-64"},thread-id="1",stopped-threads="all",core="3"
@@ -600,33 +616,33 @@ void sdsMainWindow::handleText (const QString& text) {
             QString old_text    = SDS::parseFirst(value_text,  "old=",     '"', '"', false);
             QString new_text    = SDS::parseFirst(value_text,  "new=",     '"', '"', false);
 
-            QMessageBox::information(this, "Note.", QString("Watchpoint triggered.\n\nNumber: %1\nExpression: %2\nOld value: %3\nNew value: %4").arg(number_text).arg(exp_text).arg(old_text).arg(new_text) );
+            QMessageBox::information(this, "Note.", QString("Watchpoint 触发。\n\nNumber: %1\nExpression: %2\nOld value: %3\nNew value: %4").arg(number_text).arg(exp_text).arg(old_text).arg(new_text) );
 
         }else if (reason_text == "watchpoint-scope") {
             //*stopped,reason="watchpoint-scope",wpnum="5", frame={func="callee3",args=[{name="strarg", value="0x11940 \"A string argument.\""}], file="../../../devo/gdb/testsuite/gdb.mi/basics.c", fullname="/home/foo/bar/devo/gdb/testsuite/gdb.mi/basics.c",line="18"}
 
             QString wpnum_text = SDS::parseFirst(text, "wpnum=", '"', '"', false);
 
-            QMessageBox::information(this, "Note.", QString("Watchpoint went out of scope. Will be deleted.\n\nNumber: %1").arg(wpnum_text) );
+            QMessageBox::information(this, "Note.", QString("Watchpoint 超出范围。 监视点将被删除。\n\nNumber: %1").arg(wpnum_text) );
 
         }else if (reason_text == "exited-normally") {
             //*stopped,reason="exited-normally"
 
-            QMessageBox::information(this, "Note.", "Program exited normally.");
+            QMessageBox::information(this, "Note.", "程序正常退出。");
 
         }else if (reason_text == "exited") {
             //*stopped,reason="exited",exit-code="01"
 
             QString exitcode_text = SDS::parseFirst(text, "exit-code=", '"', '"', false);
 
-            QMessageBox::information(this, "Note.", "Program exited with code '" + exitcode_text +"'");
+            QMessageBox::information(this, "注意。", "程序已退出，返回值为： '" + exitcode_text +"'");
 
         }else if (reason_text == "exited-signalled") {
             //*stopped,reason="exited-signalled",signal-name="SIGSEGV",signal-meaning="Segmentation fault"
 
             QString signalname_text = SDS::parseFirst(text, "signal-name=", '"', '"', false);
 
-            QMessageBox::warning(this, "Error.", "Program exited abnormally.\n\nIt encountered a '" + signalname_text + "' signal.");
+            QMessageBox::warning(this, "错误。", "程序员异常退出\n\n程序收到 '" + signalname_text + "' 信号。");
 
         }else if (reason_text == "unknown") {
 
@@ -663,9 +679,9 @@ void sdsMainWindow::handleRunStatusChanged (SeerRunStatusIndicator::RunStatus st
 void sdsMainWindow::handleChangeWindowTitle (QString title) {
 
     if (title == "") {
-        setWindowTitle("Seer Debugger");
+        setWindowTitle("调试器");
     }else{
-        setWindowTitle("Seer Debugger - '" + title + "'");
+        setWindowTitle("调试器 - '" + title + "'");
     }
 }
 
@@ -955,25 +971,19 @@ void sdsMainWindow::refreshShortCuts () {
     ui->gdbWidget->editorManager()->setEditorKeySettings(keySettings());
 }
 
+void sdsMainWindow::mousePressEvent(QMouseEvent *e) {
+d->mousePressedPosition = e->globalPos();
+d->windowPositionAsDrag = pos();
+}
 
+void sdsMainWindow::mouseReleaseEvent(QMouseEvent *e) {
+Q_UNUSED(e)
+d->mousePressedPosition = QPoint();
+}
 
-
-//void sdsMainWindow::on_actionArr_triggered()
-//{
-//m1.show();
-//}
-
-//void sdsMainWindow::on_actionstruct_triggered()
-//{
-//m2.show();
-//}
-
-//void sdsMainWindow::on_actionsolo_triggered()
-//{
-//m3.show();
-//}
-
-//void sdsMainWindow::on_actiondouble_triggered()
-//{
-//m4.show();
-//}
+void sdsMainWindow::mouseMoveEvent(QMouseEvent *e) {
+if (!d->mousePressedPosition.isNull()) {
+QPoint delta = e->globalPos() - d->mousePressedPosition;
+move(d->windowPositionAsDrag + delta);
+    }
+}

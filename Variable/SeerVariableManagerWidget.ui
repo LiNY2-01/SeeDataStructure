@@ -23,7 +23,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Variable/Register Info</string>
+      <string>变量信息</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">

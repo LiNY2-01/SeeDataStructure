@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="executableNameGroupBox">
      <property name="title">
-      <string>Executable Name</string>
+      <string>可执行文件位置</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -84,7 +84,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Launch Method</string>
+      <string>启动方法</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -108,7 +108,7 @@
         <item row="10" column="0">
          <widget class="QLabel" name="connectProgramSerialLabel">
           <property name="text">
-           <string>Serial</string>
+           <string>串口</string>
           </property>
          </widget>
         </item>
@@ -131,7 +131,7 @@
         <item row="6" column="0">
          <widget class="QLabel" name="attachProgramPidLabel">
           <property name="text">
-           <string>Process PID</string>
+           <string>进程PID</string>
           </property>
          </widget>
         </item>
@@ -177,7 +177,7 @@
            <string>Attach to an already running program.</string>
           </property>
           <property name="text">
-           <string>Attach to a local program</string>
+           <string>绑定到本地程序</string>
           </property>
          </widget>
         </item>
@@ -187,7 +187,7 @@
            <string>Load a core file to debug.</string>
           </property>
           <property name="text">
-           <string>Load a core file</string>
+           <string>加载核心文件</string>
           </property>
          </widget>
         </item>
@@ -197,7 +197,7 @@
            <string>Set a breakpoint in main() before running program.</string>
           </property>
           <property name="text">
-           <string>Break in main()</string>
+           <string>在main()处断点</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -239,7 +239,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="runProgramArgumentsLabel">
           <property name="text">
-           <string>Arguments</string>
+           <string>参数</string>
           </property>
          </widget>
         </item>
@@ -258,7 +258,7 @@
            <string>999999</string>
           </property>
           <property name="placeholderText">
-           <string>baudrate</string>
+           <string>波特率</string>
           </property>
           <property name="clearButtonEnabled">
            <bool>true</bool>
@@ -268,14 +268,14 @@
         <item row="2" column="0">
          <widget class="QLabel" name="loadBreakpointsFilenameLabel">
           <property name="text">
-           <string>Breakpoints</string>
+           <string>加载断点</string>
           </property>
          </widget>
         </item>
         <item row="11" column="0">
          <widget class="QLabel" name="connectProgramParityLabel">
           <property name="text">
-           <string>Parity</string>
+           <string>校验</string>
           </property>
          </widget>
         </item>
@@ -301,7 +301,7 @@
            <string>Run the program.</string>
           </property>
           <property name="text">
-           <string>Run a program</string>
+           <string>运行程序</string>
           </property>
          </widget>
         </item>
@@ -318,7 +318,7 @@
         <item row="14" column="0">
          <widget class="QLabel" name="loadCoreFilenameLabel">
           <property name="text">
-           <string>Core</string>
+           <string>核心</string>
           </property>
          </widget>
         </item>
@@ -328,7 +328,7 @@
            <string>Connect to an already running program started with gdbserver.</string>
           </property>
           <property name="text">
-           <string>Connect to a gdbserver running a program</string>
+           <string>连接到gdbserver 运行程序</string>
           </property>
          </widget>
         </item>
@@ -448,7 +448,7 @@
       <string/>
      </property>
      <property name="title">
-      <string>Working Directory</string>
+      <string>工作目录</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

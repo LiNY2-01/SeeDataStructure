@@ -58,7 +58,7 @@ QStringList SeerSourceConfigPage::alternateDirectories () const {
 void SeerSourceConfigPage::handleAddButtonClicked () {
 
     // Ask for the alternate directory to add to the list.
-    QString directory = QInputDialog::getText(this, "Seer", "Enter an alternate directory",  QLineEdit::Normal);
+    QString directory = QInputDialog::getText(this, "SeeDataStructure", "输入文件目录",  QLineEdit::Normal);
 
     if (directory == "") {
         return;

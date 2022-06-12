@@ -307,22 +307,3 @@ QPoint delta = e->globalPos() - d->mousePressedPosition;
 move(d->windowPositionAsDrag + delta);
     }
 }
-//void arr::var_exist(QString var_name)
-//{
-
-//    QMessageBox::information(NULL, "错误", "变量已存在",QMessageBox::Ok);
-//}
-
-//void arr::add_tree(QString var_name)
-//{
-//    QTreeWidgetItem *var = new QTreeWidgetItem();
-//    var->setText(0,var_name);
-//    ui->treeWidget->addTopLevelItem(var);
-//}
-
-//void arr::del_tree(QString var_name)
-//{
-//    QList<QTreeWidgetItem *> vars = ui->treeWidget->findItems(var_name,Qt::MatchExactly);
-//    delete(vars[0]);
-//}
-

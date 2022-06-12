@@ -21,37 +21,37 @@
      </property>
      <column>
       <property name="text">
-       <string>Level</string>
+       <string>级别</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Function</string>
+       <string>函数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>File</string>
+       <string>文件</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Line</string>
+       <string>行数</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Fullname</string>
+       <string>文件路径</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Address</string>
+       <string>地址</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Arch</string>
+       <string>架构</string>
       </property>
      </column>
     </widget>

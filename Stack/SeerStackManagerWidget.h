@@ -17,7 +17,7 @@ class SeerStackManagerWidget : public QWidget, protected Ui::SeerStackManagerWid
        ~SeerStackManagerWidget ();
 
         SeerStackFramesBrowserWidget*                   stackFramesBrowserWidget            ();
-        SeerStackArgumentsBrowserWidget*                stackArgumentsBrowserWidget         ();
+//        SeerStackArgumentsBrowserWidget*                stackArgumentsBrowserWidget         ();
         SeerStackLocalsBrowserWidget*                   stackLocalsBrowserWidget            ();
 
     signals:
@@ -33,7 +33,7 @@ class SeerStackManagerWidget : public QWidget, protected Ui::SeerStackManagerWid
 
     private:
         SeerStackFramesBrowserWidget*                   _stackFramesBrowserWidget;
-        SeerStackArgumentsBrowserWidget*                _stackArgumentsBrowserWidget;
+//        SeerStackArgumentsBrowserWidget*                _stackArgumentsBrowserWidget;
         SeerStackLocalsBrowserWidget*                   _stackLocalsBrowserWidget;
 };
 

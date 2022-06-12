@@ -26,27 +26,27 @@
      </column>
      <column>
       <property name="text">
-       <string>Target-Name</string>
+       <string>目标名</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Host-Name</string>
+       <string>主机名</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Symbols Loaded</string>
+       <string>加载的符号</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Thread Group</string>
+       <string>线程组</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Ranges</string>
+       <string>范围</string>
       </property>
      </column>
     </widget>

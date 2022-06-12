@@ -38,7 +38,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Open a source file.</string>
+      <string>打开源文件</string>
      </property>
      <property name="text">
       <string>...</string>
@@ -58,7 +58,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Close opened source files.</string>
+      <string>关闭打开的源文件。</string>
      </property>
      <property name="text">
       <string>...</string>
@@ -78,7 +78,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Show search bar for text.</string>
+      <string>搜索文本</string>
      </property>
      <property name="text">
       <string>...</string>

@@ -49,5 +49,14 @@
         <file>resources/RelaxLightIcons/x.x</file>
         <file>resources/icons/test.svg</file>
         <file>resources/style.qss</file>
+        <file>resources/icons/2203530_connect_direction_path_way_icon.png</file>
+        <file>resources/icons/2317763_link_screenhero_screenshare_share_talk_icon.svg</file>
+        <file>resources/icons/2955247_chart_node_analytics_diagram_growth_icon.png</file>
+        <file>resources/icons/2955247_chart_node_analytics_diagram_growth_icon.svg</file>
+        <file>resources/icons/2955256_connect_connection_node_communication_internet_icon.png</file>
+        <file>resources/icons/2955256_connect_connection_node_communication_internet_icon.svg</file>
+        <file>resources/icons/3005765_analysis_bar_chart_graph_icon.png</file>
+        <file>resources/icons/3516600_analysis_chart_graph_options_report_icon.svg</file>
+        <file>resources/icons/style.qss</file>
     </qresource>
 </RCC>
