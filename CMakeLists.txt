@@ -76,6 +76,11 @@ set (
 		viz/array/SeerArrayWidget.h 
 		viz/memory/SeerHexWidget.h 
 		viz/memory/SeerMemoryVisualizerWidget.h
+		viz/arr.h
+		viz/double_link.h
+		viz/solo_link.h
+		viz/struct_view.h
+		viz/table.h
 )
 
 set ( 	SeeDataStructure_SRCS
@@ -144,6 +149,11 @@ set ( 	SeeDataStructure_SRCS
 		viz/array/SeerArrayWidget.cpp 
 		viz/memory/SeerHexWidget.cpp 
 		viz/memory/SeerMemoryVisualizerWidget.cpp
+		viz/arr.cpp
+		viz/double_link.cpp
+		viz/solo_link.cpp
+		viz/struct_view.cpp
+		viz/table.cpp
 		)
 
 set ( 	SeeDataStructure_UIS
@@ -192,6 +202,11 @@ set ( 	SeeDataStructure_UIS
 		sdsmainwindow.ui 
 		viz/array/SeerArrayVisualizerWidget.ui 
 		viz/memory/SeerMemoryVisualizerWidget.ui
+		viz/arr.ui
+		viz/double_link.ui
+		viz/solo_link.ui
+		viz/struct_view.ui
+		viz/table.ui
 	)
 QT5_WRAP_UI(UIS ${SeeDataStructure_UIS})
 include_directories(myQT Editor GdbCtrl BaseDebug Stack Variable Thread cfgpage )

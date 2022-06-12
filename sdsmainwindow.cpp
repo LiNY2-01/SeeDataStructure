@@ -44,12 +44,12 @@ sdsMainWindow::sdsMainWindow(QWidget *parent)
     QMenu* interruptMenu = new QMenu(this);
     QAction* interruptAction = interruptMenu->addAction("GDB Interrupt");
     interruptMenu->addSeparator();
-    QAction* interruptActionSIGINT  = interruptMenu->addAction("SIGINT");
-    QAction* interruptActionSIGKILL = interruptMenu->addAction("SIGKILL");
-    QAction* interruptActionSIGFPE  = interruptMenu->addAction("SIGFPE");
-    QAction* interruptActionSIGSEGV = interruptMenu->addAction("SIGSEGV");
-    QAction* interruptActionSIGUSR1 = interruptMenu->addAction("SIGUSR1");
-    QAction* interruptActionSIGUSR2 = interruptMenu->addAction("SIGUSR2");
+//    QAction* interruptActionSIGINT  = interruptMenu->addAction("SIGINT");
+//    QAction* interruptActionSIGKILL = interruptMenu->addAction("SIGKILL");
+//    QAction* interruptActionSIGFPE  = interruptMenu->addAction("SIGFPE");
+//    QAction* interruptActionSIGSEGV = interruptMenu->addAction("SIGSEGV");
+//    QAction* interruptActionSIGUSR1 = interruptMenu->addAction("SIGUSR1");
+//    QAction* interruptActionSIGUSR2 = interruptMenu->addAction("SIGUSR2");
 
     ui->actionInterruptProcess->setMenu(interruptMenu);
 
@@ -94,13 +94,13 @@ sdsMainWindow::sdsMainWindow(QWidget *parent)
     QObject::connect(ui->actionsolo,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbSoloVisualizer);
     QObject::connect(ui->actiondouble,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbDoubleVisualizer);
     QObject::connect(interruptAction,                   &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterrupt);
-    QObject::connect(interruptActionSIGINT,             &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGINT);
+    /*QObject::connect(interruptActionSIGINT,             &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGINT);
     QObject::connect(interruptActionSIGKILL,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGKILL);
     QObject::connect(interruptActionSIGFPE,             &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGFPE);
     QObject::connect(interruptActionSIGSEGV,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGSEGV);
     QObject::connect(interruptActionSIGUSR1,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGUSR1);
     QObject::connect(interruptActionSIGUSR2,            &QAction::triggered,                    ui->gdbWidget,      &GdbWidget::handleGdbInterruptSIGUSR2);
-
+    */
     QObject::connect(ui->gdbWidget->gdbMonitor(),           &GdbMonitor::astrixTextOutput,          runStatus,      &SeerRunStatusIndicator::handleText);
     QObject::connect(ui->gdbWidget->gdbMonitor(),           &GdbMonitor::astrixTextOutput,          this,           &sdsMainWindow::handleText);
     QObject::connect(ui->gdbWidget->gdbMonitor(),           &GdbMonitor::caretTextOutput,           this,           &sdsMainWindow::handleText);

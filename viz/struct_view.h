@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QMenu>
 #include <QAction>
+#include <QMap>
 #include<QGraphicsView>
 #include<QGraphicsLineItem>
 #include <QGraphicsDropShadowEffect>
@@ -26,18 +27,31 @@ public slots:
 private:
     Ui::Struct_view *ui;
     QGraphicsScene *scene;
-    QGraphicsItemGroup* last_level=NULL;
+
     cWindow *d;
-    QList<QString>f;
-    void init();
-    void draw_point(QString,bool now,int num);
+
+    void DrawTree(int x);
     void refresh();
     void reset();
+    void getNodePoint(int x,int &rbound,int depth);
+    QMap<qulonglong,int >NodeMap;//pair<level,nodenum>
+    QMap<int,int>levelMap;
+    QStringList NodeInfo;
+    QStringList NodeTitle;
+    int nodecnt=0;
+    int nownode=0;
+    int dataget=false;
+    QVector<QVector<int>>NodeEdge;
+    QVector<int>Nodefa;
+    QVector<QPointF > *NodePoint=0;//x,y
+
+
 
     QBrush regBrush = QBrush(QColor(240,248,255));
     QBrush accessBrush = QBrush(QColor(30 ,144, 255));
     QFont nameFont = QFont("Corbel", 13, QFont::Normal, true);
     QFont hintFont = QFont("Corbel", 12);
+
 signals:
     void refreshStackFrames();
 protected:

@@ -241,4 +241,5 @@ debug/util.o
 ui_*.h
 Makefile*
 object_script.See*
-
+SeeDataStructure.pro.user
+SeeDataStructure.pro.user*
